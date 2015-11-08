@@ -5,11 +5,15 @@ Written by: Austin Bohannon
 Made to work with pointers to objects so that no data has to be copied,
 it's just organized.
 *****/
+
+#include "LinkedList.h"
+
 template <class T>
 class HashTable
 {
-    T * arr[];
+    LinkedList<T> * arr[];
     int arraySize, filledSlots, collisions, count;
+    int _hash(int & id);
 public:
     //Constructor - Destructor
     HashTable(int & setSize);
