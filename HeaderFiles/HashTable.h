@@ -6,12 +6,12 @@ Made to work with pointers to objects so that no data has to be copied,
 it's just organized.
 *****/
 
+#include "Food.h"
 #include "LinkedList.h"
 
-template <class T>
 class HashTable
 {
-    LinkedList<T> * arr[];
+    LinkedList * arr[];
     int arraySize, filledSlots, collisions, count;
     int _hash(int & id);
 public:
@@ -19,9 +19,9 @@ public:
     HashTable(int & setSize);
     ~HashTable();
     //Mutators and accessors
-    void addEntry(T * newEntry);
-    bool remove(T * deletePtr);
-    bool search(int & id, T * returnedPtr);
+    void addEntry(Food * newEntry);
+    bool remove(Food * deletePtr);
+    bool search(int & id, Food * returnedPtr);
     //Const accessors
     int getSize() const {return arraySize;}
     int getFilledSlots() const {return filledSlots;}
