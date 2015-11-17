@@ -1,4 +1,4 @@
-# CIS-22C-Group-Project
+# USDA Nutritional Facts: CIS 22C Group Project
 
 **Current goals:**
 -----------------
