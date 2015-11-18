@@ -1,5 +1,10 @@
 #include "../HeaderFiles/HashTable.h"
 
+int HashTable::_hash(int id)
+{
+    return id % arraySize;
+}
+
 HashTable::HashTable(int setSize)
 {
   arraySize = setSize;
