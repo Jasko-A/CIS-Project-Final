@@ -1,6 +1,6 @@
 #include "../HeaderFiles/Food.h"
 
-food::food()
+Food::Food()
 {
 	uniqueKey = 0;
 	foodDescription = "";
@@ -12,7 +12,7 @@ food::food()
 	sugar = 0.0;
 
 }
-food::food(int _key, string _name, double _water, int _calories, double _protien, double _fat, double _fiber, double _sugar)
+Food::Food(int _key, string _name, double _water, int _calories, double _protien, double _fat, double _fiber, double _sugar)
 {
 	uniqueKey = _key;
 	foodDescription = _name;
@@ -37,43 +37,43 @@ food::food(int _key, string _name, double _water, int _calories, double _protien
 
 }
 
-void food::setKey(int _key)
+void Food::setKey(int _key)
 {
 	uniqueKey = _key;
 }
 /*int uniqueKey;
-string foodDescription;
+string FoodDescription;
 double water;
 int calories;
 double protein;
 double fat;
 double fiber;
 double sugar;*/
-void food::setName(string _name)
+void Food::setName(string _name)
 {
 	foodDescription = _name;
 }
-void food::setW(double _water)
+void Food::setW(double _water)
 {
 	water = water;
 }
-void food::setC(int _calories)
+void Food::setC(int _calories)
 {
 	calories = _calories;
 }
-void food::setP(double _protien)
+void Food::setP(double _protien)
 {
 	protein = _protien;
 }
-void food::setF(double _fat)
+void Food::setF(double _fat)
 {
 	fat = _fat;
 }
-void food::setFi(double _fiber)
+void Food::setFi(double _fiber)
 {
 	fiber = _fiber;
 }
-void food::setS(double _sugar)
+void Food::setS(double _sugar)
 {
 	sugar = _sugar;
 }
