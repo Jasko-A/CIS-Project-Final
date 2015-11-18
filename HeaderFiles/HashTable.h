@@ -13,7 +13,7 @@ it's just organized.
 
 class HashTable
 {
-    LinkedList * arr[];
+    LinkedList * arr;
     int arraySize, filledSlots, collisions, count;
     int _hash(int & id);
 public:
