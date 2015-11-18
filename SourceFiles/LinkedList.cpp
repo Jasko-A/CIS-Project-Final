@@ -72,8 +72,8 @@ bool LinkedList::itemExists(int &id)
 
 bool LinkedList::search(int &id, Food *& returnedItem)
 {
-  node * temp = head;
-  while(temp->next != tail && temp->data->getKey() > id)
+  node * temp = head->next;
+  while(temp != tail && temp->data->getKey() > id)
     temp = temp->next;
   if(temp->data->getKey() == id)
   {
