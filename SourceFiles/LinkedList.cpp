@@ -1,3 +1,10 @@
+/**
+LinkedList source
+Written by: Austin Bohannon
+**/
+
+#include "../HeaderFiles/LinkedList.h"
+
 LinkedList::LinkedList()
 {
   count = 0;
