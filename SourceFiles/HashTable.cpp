@@ -16,8 +16,7 @@ HashTable::~HashTable()
 
 void HashTable::addEntry(Food * newEntry)
 {
-  int hash = newEntry->getKey();
-  hash = hash % arraySize;
+  int hash = newEntry->getKey() % arraySize;
   if(arr[hash].getCount() > 0)
     collisions++;
   arr[hash].addItem(newEntry);
@@ -34,8 +33,7 @@ bool HashTable::remove(Food * deletePtr)
 
 bool HashTable::search(int & id, Food *& returnedPtr)
 {
-  int hash = id;
-  hash = hash % arraySize;
+  int hash = id % arraySize;
   if(arr[hash].search(id, returnedPtr))
     return true;
   return false;
