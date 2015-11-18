@@ -23,9 +23,9 @@ public:
 	Food();
 	Food(int key, string name, double w, int c, double p, double f, double fi, double s);
 	
-	friend bool operator> (const Food &F1, const Food &F2) {return F1.uniqueKey > F2.uniqueKey}
-	friend bool operator< (const Food &F1, const Food &F2) { return F1.uniqueKey < F2.uniqueKey }
-	friend bool operator== (const Food &F1, const Food &F2) { return F1.uniqueKey == F2.uniqueKey }
+	friend bool operator> (const Food &F1, const Food &F2) {return F1.uniqueKey > F2.uniqueKey;}
+	friend bool operator< (const Food &F1, const Food &F2) {return F1.uniqueKey < F2.uniqueKey;}
+	friend bool operator== (const Food &F1, const Food &F2) {return F1.uniqueKey == F2.uniqueKey;}
 
 	int getKey(){ return uniqueKey; }
 	string getName(){ return foodDescription; }
