@@ -1,5 +1,5 @@
-#ifndef Food_H
-#define Food_H
+#ifndef FOOD_H
+#define FOOD_H
 
 #include <iostream>
 
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class food
+class Food
 {
 private:
 	int uniqueKey;
@@ -20,8 +20,8 @@ private:
 	double sugar;
 
 public:
-	food();
-	food(int key, string name, double w, int c, double p, double f, double fi, double s);
+	Food();
+	Food(int key, string name, double w, int c, double p, double f, double fi, double s);
 	
 	friend bool operator> (const Food &F1, const Food &F2) {return F1.uniqueKey > F2.uniqueKey}
 	friend bool operator< (const Food &F1, const Food &F2) { return F1.uniqueKey < F2.uniqueKey }
