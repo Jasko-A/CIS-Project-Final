@@ -10,23 +10,23 @@ LinkedList::LinkedList()
   count = 0;
   
   head = new node;
-  tail = new tail;
+  tail = new node;
   
-  head.data = NULL;
-  head.next = tail;
-  head.back = tail;
+  head->data = NULL;
+  head->next = tail;
+  head->back = tail;
   
-  tail.data = NULL;
-  tail.next = head;
-  tail.back = head;
+  tail->data = NULL;
+  tail->next = head;
+  tail->back = head;
 }
 
 LinkedList::~LinkedList()
 {
-  node temp = head, tempNext;
+  node * temp = head, * tempNext;
   while (temp != tail)
   {
-    tempNext = temp.next;
+    tempNext = temp->next;
     delete temp;
     temp = tempNext;
   }
@@ -35,21 +35,21 @@ LinkedList::~LinkedList()
 
 void LinkedList::addItem(Food * newFood)
 {
-  node newNode = new node;
-  newNode.data = newFood;
+  node * newNode = new node;
+  newNode->data = newFood;
   
-  node temp = head;
-  while(temp.next != tail && newFood.getKey() > temp.data->getKey())
-    temp = temp.next;
-  newNode.next = temp.next;
-  temp.next = newNode;
+  node * temp = head;
+  while(temp->next != tail && newFood->getKey() > temp->data->getKey())
+    temp = temp->next;
+  newNode->next = temp->next;
+  temp->next = newNode;
 }
 
 bool LinkedList::deleteItem(int &id)
 {
   node * temp = head;
   while(temp->next != tail && temp->data->getKey() > id)
-    temp = temp.next;
+    temp = temp->next;
   if(temp->data->getKey() == id)
   {
     temp->back->next = temp->next;
@@ -64,20 +64,20 @@ bool LinkedList::itemExists(int &id)
 {
   node * temp = head;
   while(temp->next != tail && temp->data->getKey() > id)
-    temp = temp.next;
+    temp = temp->next;
   if(temp->data->getKey() == id)
     return true;
   return false;
 }
 
-bool LinkedList::search(int &id, Food &* returnedItem)
+bool LinkedList::search(int &id, Food *& returnedItem)
 {
   node * temp = head;
   while(temp->next != tail && temp->data->getKey() > id)
-    temp = temp.next;
+    temp = temp->next;
   if(temp->data->getKey() == id)
   {
-    returnedItem = temp
+    returnedItem = temp->data;
     return true;
   }
   return false;
