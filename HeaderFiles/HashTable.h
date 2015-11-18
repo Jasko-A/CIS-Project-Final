@@ -15,7 +15,7 @@ class HashTable
 {
     LinkedList * arr;
     int arraySize, filledSlots, collisions, count;
-    int _hash(int & id);
+    int _hash(int id);
 public:
     //Constructor - Destructor
     HashTable(int setSize);
