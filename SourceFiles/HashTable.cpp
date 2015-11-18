@@ -1,6 +1,6 @@
 #include "../HeaderFiles/HashTable.h"
 
-HashTable::HashTable(int & setSize)
+HashTable::HashTable(int setSize)
 {
   arraySize = setSize;
   filledSlots = 0;
@@ -41,7 +41,7 @@ bool HashTable::remove(Food * deletePtr)
   return false;
 }
 
-bool HashTable::search(int & id, Food *& returnedPtr)
+bool HashTable::search(int id, Food *& returnedPtr)
 {
   int hash = id % arraySize;
   if(arr[hash].search(id, returnedPtr))
