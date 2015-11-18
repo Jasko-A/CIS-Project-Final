@@ -19,15 +19,25 @@ void HashTable::addEntry(Food * newEntry)
   int hash = newEntry->getKey() % arraySize;
   if(arr[hash].getCount() > 0)
     collisions++;
+  else
+    filledSlots++;
   arr[hash].addItem(newEntry);
+  count++;
 }
 
 bool HashTable::remove(Food * deletePtr)
 {
   int id = deletePtr->getKey();
   int hash = id % arraySize;
-  if(arr[hash].deleteItem(id)
+  if(arr[hash].deleteItem(id))
+  {
+    if(arr[hash].getCount() > 0)
+      collisions--;
+    else
+      filledSlots--;
+    count--;
     return true;
+  }
   return false;
 }
 
