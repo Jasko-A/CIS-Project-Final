@@ -9,7 +9,7 @@ it's just organized.
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-include "Food.h"
+#include "Food.h"
 
 class LinkedList
 {
@@ -27,8 +27,8 @@ public:
   void addItem(Food * newFood);
   bool deleteItem(int &id);
   bool itemExists(int &id);
-  bool search(int &id, Food &* returnedItem);
+  bool search(int &id, Food *& returnedItem);
   int getCount() const {return count;}
-}
+};
 
 #endif
