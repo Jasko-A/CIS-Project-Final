@@ -18,12 +18,12 @@ class HashTable
     int _hash(int & id);
 public:
     //Constructor - Destructor
-    HashTable(int & setSize);
+    HashTable(int setSize);
     ~HashTable();
     //Mutators and accessors
     void addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
-    bool search(int & id, Food *& returnedPtr);
+    bool search(int id, Food *& returnedPtr);
     //Const accessors
     int getSize() const {return arraySize;}
     int getFilledSlots() const {return filledSlots;}
