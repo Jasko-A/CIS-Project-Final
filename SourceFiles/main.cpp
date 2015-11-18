@@ -4,9 +4,9 @@ Main file
 
 #include <iostream>
 #include <string>
-#include "Food.h"
-#include "BinarySearchTree.h"
-#include "HashTable.h"
+#include "../HeaderFiles/Food.h"
+#include "../HeaderFiles/BinarySearchTree.h"
+#include "../HeaderFiles/HashTable.h"
 
 using namespace std;
 
