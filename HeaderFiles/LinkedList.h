@@ -19,7 +19,7 @@ class LinkedList
     Food * data;
     node * next, * back;
   }
-  node * root, * tail;
+  node * head, * tail;
 public:
   LinkedList();
   ~LinkedList();
