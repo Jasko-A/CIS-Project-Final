@@ -40,15 +40,38 @@ void LinkedList::addItem(Food * newFood)
 
 bool LinkedList::deleteItem(int &id)
 {
-
+  node * temp = head;
+  while(temp->next != tail && temp->data->getKey() > id)
+    temp = temp.next;
+  if(temp->data->getKey() == id)
+  {
+    temp->back->next = temp->next;
+    temp->next->back = temp->back;
+    delete temp;
+    return true;
+  }
+  return false;
 }
 
 bool LinkedList::itemExists(int &id)
 {
-
+  node * temp = head;
+  while(temp->next != tail && temp->data->getKey() > id)
+    temp = temp.next;
+  if(temp->data->getKey() == id)
+    return true;
+  return false;
 }
 
-bool LinkedList::search(int &id, Food * returnedItem)
+bool LinkedList::search(int &id, Food &* returnedItem)
 {
-
+  node * temp = head;
+  while(temp->next != tail && temp->data->getKey() > id)
+    temp = temp.next;
+  if(temp->data->getKey() == id)
+  {
+    returnedItem = temp
+    return true;
+  }
+  return false;
 }
