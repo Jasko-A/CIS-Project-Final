@@ -27,7 +27,7 @@ public:
   void addItem(Food * newFood);
   bool deleteItem(int &id);
   bool itemExists(int &id);
-  bool search(int &id, Food * returnedItem);
+  bool search(int &id, Food &* returnedItem);
   int getCount() const {return count;}
 }
 
