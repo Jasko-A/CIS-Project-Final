@@ -23,12 +23,12 @@ public:
     //Mutators and accessors
     void addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
-    bool search(int & id, Food &* returnedPtr);
+    bool search(int & id, Food *& returnedPtr);
     //Const accessors
     int getSize() const {return arraySize;}
     int getFilledSlots() const {return filledSlots;}
     int getCollisions() const {return collisions;}
     int getCount() const {return count;}
-}
+};
 
 #endif
