@@ -5,6 +5,8 @@ Written by: Austin Bohannon
 Made to work with pointers to objects so that no data has to be copied,
 it's just organized.
 *****/
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
 
 #include "Food.h"
 #include "LinkedList.h"
@@ -21,10 +23,12 @@ public:
     //Mutators and accessors
     void addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
-    bool search(int & id, Food * returnedPtr);
+    bool search(int & id, Food &* returnedPtr);
     //Const accessors
     int getSize() const {return arraySize;}
     int getFilledSlots() const {return filledSlots;}
     int getCollisions() const {return collisions;}
     int getCount() const {return count;}
 }
+
+#endif
