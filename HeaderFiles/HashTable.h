@@ -2,9 +2,10 @@
 HashTable Class
 Written by: Austin Bohannon
 
-Made to work with pointers to objects so that no data has to be copied,
+Made to work with pointers to Food objects so that no data has to be copied,
 it's just organized.
 *****/
+
 #ifndef HASH_TABLE_H
 #define HASH_TABLE_H
 

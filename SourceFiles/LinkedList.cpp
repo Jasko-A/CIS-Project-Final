@@ -8,15 +8,17 @@ Written by: Austin Bohannon
 LinkedList::LinkedList()
 {
   count = 0;
-  
+
+  Food *nullFood = new Food(0, "", 0.0, 0, 0.0, 0.0, 0.0, 0.0);
+
   head = new node;
   tail = new node;
-  
-  head->data = NULL;
+
+  head->data = nullFood;
   head->next = tail;
   head->back = tail;
-  
-  tail->data = NULL;
+
+  tail->data = nullFood;
   tail->next = head;
   tail->back = head;
 }
@@ -37,24 +39,28 @@ void LinkedList::addItem(Food * newFood)
 {
   node * newNode = new node;
   newNode->data = newFood;
-  
+
   node * temp = head;
   while(temp->next != tail && newFood->getKey() > temp->data->getKey())
     temp = temp->next;
+  temp->next->back = newNode;
   newNode->next = temp->next;
   temp->next = newNode;
+  newNode->back = temp;
+  count++;
 }
 
 bool LinkedList::deleteItem(int &id)
 {
   node * temp = head;
-  while(temp->next != tail && temp->data->getKey() > id)
+  while(temp->next != tail && temp->data->getKey() < id)
     temp = temp->next;
   if(temp->data->getKey() == id)
   {
     temp->back->next = temp->next;
     temp->next->back = temp->back;
     delete temp;
+    count--;
     return true;
   }
   return false;
@@ -73,7 +79,7 @@ bool LinkedList::itemExists(int &id)
 bool LinkedList::search(int &id, Food *& returnedItem)
 {
   node * temp = head->next;
-  while(temp != tail && temp->data->getKey() > id)
+  while(temp != tail && temp->data->getKey() < id)
     temp = temp->next;
   if(temp->data->getKey() == id)
   {

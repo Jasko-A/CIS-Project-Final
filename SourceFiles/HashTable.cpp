@@ -16,7 +16,7 @@ HashTable::HashTable(int setSize)
 
 HashTable::~HashTable()
 {
-  delete arr;
+  delete[] arr;
 }
 
 void HashTable::addEntry(Food * newEntry)
@@ -33,7 +33,7 @@ void HashTable::addEntry(Food * newEntry)
 bool HashTable::remove(Food * deletePtr)
 {
   int id = deletePtr->getKey();
-  int hash = id % arraySize;
+  int hash = _hash(id);
   if(arr[hash].deleteItem(id))
   {
     if(arr[hash].getCount() > 0)

@@ -2,7 +2,7 @@
 LinkedList Class
 Written by: Austin Bohannon
 
-Made to work with pointers to objects so that no data has to be copied,
+Made to work with pointers to Food objects so that no data has to be copied,
 it's just organized.
 **/
 
@@ -18,12 +18,12 @@ class LinkedList
   {
     Food * data;
     node * next, * back;
-  }
+  };
   node * head, * tail;
 public:
   LinkedList();
   ~LinkedList();
-  
+
   void addItem(Food * newFood);
   bool deleteItem(int &id);
   bool itemExists(int &id);
