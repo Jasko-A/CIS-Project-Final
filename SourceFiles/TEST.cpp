@@ -14,8 +14,13 @@ int main()
     Food *a = new Food(12345, "Test Item", 1.1, 2, 3.3, 4.4, 5.5, 6.6), *b = new Food(54325, "Test Item 2", 0,0,0,0,0,0), *temp;
     HashTable table(10);
 
+    //Get stats
+    cout << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
     //Add Food to table
     table.addEntry(a);
+
+    //Get stats
+    cout << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
     table.addEntry(b);
 
     //Get stats
