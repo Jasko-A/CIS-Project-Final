@@ -21,10 +21,6 @@ int main()
 
     //Get stats
     cout << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
-    table.addEntry(b);
-
-    //Get stats
-    cout << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
     //Do a search. They are in the same linked list
     if(table.search(b->getKey(), temp))
         cout << "SEARCH SUCCESS, ID: " << temp->getKey() << endl;
