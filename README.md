@@ -10,7 +10,15 @@ Write sources for the header files
  - [ ] Stack.cpp
  - [x] LinkedList.cpp  
   
-- [ ] Write main  
+Write main  
+ - [ ] File input management  
+ - [ ] File output  
+ - [ ] Stdin input management  
+ - [ ] Menu  
+ - [ ] List
+ - [ ] Search
+ - [ ] Statistics
+ Others?  
   
 **Future goals:**
 -----------------
