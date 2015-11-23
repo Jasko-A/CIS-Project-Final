@@ -8,14 +8,22 @@
 
 class BinarySearchTree : public BinaryTree
 {
-private:
-	BinaryNode* insert(BinaryNode* rootPtr, BinaryNode* newNode);
-	BinaryNode* remove(BinaryNode* rootPtr, const Food target);
-	BinaryNode* searchTree(BinaryNode* rootPtr, const Food & target) const;
 protected:
 
 public:
+	// insert a node at the correct location
+	bool insert(const Food & newEntry);
+	// remove a node if found
+	bool remove(const Food anEntry);
+	// find a target node
+	bool search(const Food & target, Food & returnedItem) const;
 
+private:
+	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
+	BinaryNode* _remove(BinaryNode* nodePtr, const Food target, bool & success);
+	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
+	BinaryNode* deleteNode(BinaryNode* nodePtr);
+	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food & successor);
 };
 
 
