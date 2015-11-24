@@ -20,7 +20,7 @@ int main()
 	cout << "\tWelcome to the USDA Nutrition Fact Sorter\tby:\t" << " Jasmin Adzic\n" << setw(81) << "Austin Bohannon\n" << setw(82) << "Brandon Archbold\n" << setw(80) << "Mikhail Smelik\n" << setw(71) << "Ahmed\n";
 
 	fstream inFile;
-	inFile.open("USDA_data_small.txt");	// this is what we are having problems with!!!
+	inFile.open("../ResourceFile/USDA_data_small.txt");
 
 	string buffer;
 	int key;
@@ -139,7 +139,7 @@ void menu()
 	cout << "A - Add New Data\n"
 		<< "D - Delete Data by key number\n"
 		<< "S - Search by unique key or item name through the BST\n"
-		<< "H - search with hash Table\n"
+		<< "H - Search with hash Table\n"
 		<< "P - Special Print\n"
 		<< "W - Write Data to File\n"//not sure what this is for but it is in the requirements list
 		<< "T - Statsitics\n" // not sure what this is for
