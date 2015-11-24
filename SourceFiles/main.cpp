@@ -20,7 +20,7 @@ int main()
 	cout << "\tWelcome to the USDA Nutrition Fact Sorter\tby:\t" << " Jasmin Adzic\n" << setw(81) << "Austin Bohannon\n" << setw(82) << "Brandon Archbold\n" << setw(80) << "Mikhail Smelik\n" << setw(71) << "Ahmed\n";
 
 	fstream inFile;
-	inFile.open("USDA_data_small.txt");
+	inFile.open("USDA_data_small.txt");	// this is what we are having problems with!!!
 
 	string buffer;
 	int key;
