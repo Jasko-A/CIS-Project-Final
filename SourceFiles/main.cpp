@@ -73,6 +73,7 @@ int main()
             case 'w':
                 ofstream outFile;
                 outFile.open("output.txt");
+                outputStack = keyBST->inOrderStack;
                 printToFile(outFile, outputStack);
                 break;
             case 'T': //Statistics
