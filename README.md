@@ -4,8 +4,8 @@
 -----------------
 Write sources for the header files
  - [x] Food.cpp
- - [ ] BinaryTree.cpp
- - [ ] BinarySearchTree.cpp 
+ - [x] BinaryTree.cpp
+ - [x] BinarySearchTree.cpp 
  - [x] HashTable.cpp
  - [ ] Stack.cpp
  - [x] LinkedList.cpp  
