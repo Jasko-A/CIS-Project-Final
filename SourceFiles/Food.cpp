@@ -37,6 +37,19 @@ Food::Food(int _key, string _name, double _water, int _calories, double _protien
 
 }
 
+Food & Food::operator=(const Food & F2)
+{
+	// TODO: insert return statement here
+	 uniqueKey = F2.uniqueKey; 
+	 foodDescription = F2.foodDescription; 
+	 water = F2.water; 
+	 calories = F2.calories; 
+	 protein = F2.protein; 
+	 fat = F2.fat; 
+	 fiber = F2.fiber; 
+	 sugar = F2.sugar;
+}
+
 void Food::setKey(int _key)
 {
 	uniqueKey = _key;

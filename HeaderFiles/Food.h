@@ -26,6 +26,7 @@ public:
 	friend bool operator> (const Food &F1, const Food &F2) {return F1.uniqueKey > F2.uniqueKey;}
 	friend bool operator< (const Food &F1, const Food &F2) {return F1.uniqueKey < F2.uniqueKey;}
 	friend bool operator== (const Food &F1, const Food &F2) {return F1.uniqueKey == F2.uniqueKey;}
+	Food & operator=(const Food &F2);
 
 	int getKey() const { return uniqueKey; }
 	string getName() const { return foodDescription; }
