@@ -197,3 +197,4 @@ FakesAssemblies/
 *.sln
 22C Group Project/22C Group Project.vcxproj.filters
 *.vcxproj
+*.filters

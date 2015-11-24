@@ -1,6 +1,6 @@
 #include "..\HeaderFiles\BinarySearchTree.h"
 
-bool BinarySearchTree::insert(const Food *& newNode)
+bool BinarySearchTree::insert(const Food * newNode)
 {
 	BinaryNode* newFood = new BinaryNode(*newNode);
 	rootPtr = _insert(rootPtr, newFood);
