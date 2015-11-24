@@ -48,6 +48,8 @@ Food & Food::operator=(const Food & F2)
 	 fat = F2.fat; 
 	 fiber = F2.fiber; 
 	 sugar = F2.sugar;
+
+	 return *this;
 }
 
 void Food::setKey(int _key)

@@ -9,7 +9,7 @@
 #include "../HeaderFiles/Food.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/HashTable.h"
-#include "Hash.h"
+#include "HashTable.h"
 #include "BinarySearchTree.h"
 
 using namespace std;

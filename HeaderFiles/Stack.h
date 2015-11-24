@@ -35,7 +35,7 @@ template<class T>
 Stack<T>::~Stack()
 {
   //Create node variables
-  node * temp = head, tempNext;
+  node * temp = head, *tempNext;
   //Delete all nodes
   while(temp)
   {
@@ -49,10 +49,10 @@ template<class T>
 void Stack<T>::push(T * newItem)
 {
   //Create node
-  node newNode = new Node;
-  newNode.data = newItem;
+  node * newNode = new node;
+  newNode->data = newItem;
   //Put node in stack
-  newNode.next = head;
+  newNode->next = head;
   head = newNode;
 }
 
@@ -62,7 +62,7 @@ bool Stack<T>::pop(T *&passedItem)
   if(!head)
     return false;
   //Delete head
-  passedItem = head.data;
+  passedItem = head->data;
   node * temp = head->next;
   delete head;
   head = temp;

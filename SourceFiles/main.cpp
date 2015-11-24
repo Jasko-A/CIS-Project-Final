@@ -25,7 +25,7 @@ int main()
     string fileName = "../ResourceFile/USDA_data_small.txt";
     
     
-    //BinarySearchTree keyBST, secBST; //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
+    BinarySearchTree keyBST, secBST; //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
     HashTable hTable(hashSize(fileSize(fileName)));
     
     ifstream inFile;
@@ -71,10 +71,10 @@ int main()
                 break;
             case 'W': //Write to a file
             case 'w':
-                ofstream outFile;
+              /*  ofstream outFile;
                 outFile.open("output.txt");
-                outputStack = keyBST->inOrderStack;
-                printToFile(outFile, outputStack);
+                outputStack = keyBST.inOrderStack;
+                printToFile(outFile, outputStack);*/
                 break;
             case 'T': //Statistics
             case 't':
@@ -217,21 +217,21 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     return;
 }
 
-void printToFile(ofstream &outFile, Stack * printStack)
+void printToFile(ofstream &outFile, Stack<Food>* printStack)
 {
     Food * temp;
-    outFile >> "Sorted Data using the unique key" >> endl >> endl;
+    outFile << "Sorted Data using the unique key" << endl << endl;
     while (printStack->getCount() != 0)
     {
         printStack->pop(temp);
-        outFile >> temp->getKey() >> " " >> temp->getName() >> " " >> temp->getW() >> " " >> temp->getC() >> " " >> temp->getP();
-        outFile >> " " >> temp->getF() >> " " >> temp->getFi() >> " " >> temp->getS() >> endl;
+        outFile << temp->getKey() << " " << temp->getName() << " " << temp->getW() << " " << temp->getC() << " " << temp->getP();
+        outFile << " " << temp->getF() << " " << temp->getFi() << " " << temp->getS() << endl;
     }
 }
 
 void reHash(HashTable &hTable)
 {
-    int hashActualSize = hTable->getCount();
+    int hashActualSize = hTable.getCount();
     int newSize = hashSize(hashActualSize);
     HashTable newHashTable(newSize);
 }

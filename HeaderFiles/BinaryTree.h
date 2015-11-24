@@ -30,7 +30,7 @@ public:
 	// abstract functions
 	virtual bool insert(const Food *& newItem) = 0;
 	virtual bool remove(const Food *& item) = 0;
-	virtual Food search(const Food *& item) const = 0;
+	virtual bool search(const Food *& target, Food *& returnedItem) const = 0;
 
 private:
 	void destroyTree(BinaryNode* nodePtr);
