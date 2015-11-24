@@ -18,18 +18,66 @@ int main()
 {
 	bool checker = true;  // this is for the do while loop
 	cout << "\tWelcome to the USDA Nutrition Fact Sorter\tby:\t" << " Jasmin Adzic\n" << setw(81) << "Austin Bohannon\n" << setw(82) << "Brandon Archbold\n" << setw(80) << "Mikhail Smelik\n" << setw(71) << "Ahmed\n";
+
 	fstream inFile;
-	string line;
 	inFile.open("USDA_data_small.txt");
+
+	string buffer;
+	int key;
+	int stringLength = 0;
+	int index = 0;
+	int start = 0;
+	char carrot = '^';
+
+
+
 	if (inFile)
 	{
-		while (inFile >> line)
+		while (getline(inFile, buffer))
 		{
+
+			buffer = buffer.substr(1, buffer.length());
+			index = buffer.find(carrot);
+			start = 0;
+			string temp1 = buffer.substr(start, index);
+			key = stoi(temp1);
+			//cout << key << endl;
+			start = index + 1;
+			buffer = buffer.substr(start, buffer.length());
+			index = buffer.find(carrot);
+			start = 0;
+			string name = buffer.substr(start, index);
+			//cout << name << endl;
+
+			start = index + 1;
+			buffer = buffer.substr(start, buffer.length());
+			index = buffer.find(carrot);
+			start = 0;
+			string temp2 = buffer.substr(start, index);
+			double water = stod(temp2);
+			cout << showpoint << fixed << setprecision(2) << water << endl;
+
+			start = index + 1;
+			buffer = buffer.substr(start, buffer.length());
+			index = buffer.find(carrot);
+			start = 0;
+			temp2 = buffer.substr(start, index);
+			int calories = stoi(temp2);
+			cout << calories << endl;
+
+			start = index + 1;
+			buffer = buffer.substr(start, buffer.length());
+			index = buffer.find(carrot);
+			start = 0;
+			temp2 = buffer.substr(start, index);
+			double protein = stod(temp2);
+			cout << showpoint << fixed << setprecision(2) << protein << endl;
+
 			//here we must parse the string into bits of data that we need for the nodes
 		}
-		
-		
-		
+
+
+
 	}
 	char choice;
 
@@ -38,6 +86,7 @@ int main()
 		cout << endl;
 		menu();
 		cout << "\nChoice: ";
+		cin >> choice;
 
 
 		switch (choice)
@@ -54,10 +103,11 @@ int main()
 			cout << "Would you like to seach by unique key (Y/N): ";
 			cin >> answer;
 			if (answer == 'Y' || answer == 'y')
-				//do the function
+				int x = 0;		//temporary
+			//do the function
 			else if (answer == 'N' || answer == 'n')
 				// do the next one
-			break;
+				break;
 		case 'H':
 		case 'h':
 			break;
@@ -72,7 +122,7 @@ int main()
 			break;
 		case 'Q':
 		case 'q':
-			checker == false;
+			checker = false;
 			break;
 
 
@@ -95,3 +145,4 @@ void menu()
 		<< "T - Statsitics\n" // not sure what this is for
 		<< "Q - Quit Program\n";
 }
+
