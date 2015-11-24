@@ -6,6 +6,7 @@
 
 #include "BinaryNode.h"
 #include <iomanip>
+#include "Stack.h"
 
 class BinaryTree
 {
@@ -23,6 +24,7 @@ public:
 	int size() const { return count; }
 	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
+	Stack<Food> inOrderStack();
 
 
 	// abstract functions
@@ -33,6 +35,7 @@ public:
 private:
 	void destroyTree(BinaryNode* nodePtr);
 	void _printIndentedTree(BinaryNode* nodePtr, int level);
+	Stack<Food> _inOrderStack(BinaryNode* nodePtr);
 
 };
 
