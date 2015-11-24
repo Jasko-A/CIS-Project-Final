@@ -1,8 +1,8 @@
 #include "..\HeaderFiles\BinarySearchTree.h"
 
-bool BinarySearchTree::insert(const Food & newNode)
+bool BinarySearchTree::insert(const Food *& newNode)
 {
-	BinaryNode* newFood = new BinaryNode(newNode);
+	BinaryNode* newFood = new BinaryNode(*newNode);
 	rootPtr = _insert(rootPtr, newFood);
 	count++;
 	return true;
@@ -31,23 +31,23 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 	return nodePtr;
 }
 
-bool BinarySearchTree::remove(const Food target)
+bool BinarySearchTree::remove(const Food *& target)
 {
 	bool isSuccessful = false;
 	rootPtr = _remove(rootPtr, target, isSuccessful);
 	return isSuccessful;
 }
 
-BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, const Food target, bool & success)
+BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, const Food *& target, bool & success)
 {
 	if (nodePtr == 0)
 	{
 		success = false;
 		return 0;
 	}
-	if (nodePtr->getItem() > target)
+	if (nodePtr->getItem() > *target)
 		nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
-	else if (nodePtr->getItem() < target)
+	else if (nodePtr->getItem() < *target)
 		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
@@ -103,12 +103,12 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food & suc
 	}
 }
 
-bool BinarySearchTree::search(const Food & target, Food & returnedItem) const
+bool BinarySearchTree::search(const Food *& target, Food *& returnedItem) const
 {
-	BinaryNode* newNodePtr = _search(rootPtr, target);
+	BinaryNode* newNodePtr = _search(rootPtr, *target);
 	if (newNodePtr)
 	{
-		returnedItem = newNodePtr->getItem();
+		returnedItem = &newNodePtr->getItem();
 		return true;
 	}
 	else
