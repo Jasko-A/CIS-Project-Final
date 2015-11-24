@@ -5,6 +5,7 @@
 #define _BINARY_TREE
 
 #include "BinaryNode.h"
+#include <iomanip>
 
 class BinaryTree
 {
@@ -20,9 +21,8 @@ public:
 
 	bool isEmpty() const { return count == 0; }
 	int size() const { return count; }
-	bool clear();
-	void printIndentedTree();
-	void inOrder();
+	bool clear() { destroyTree(); rootPtr = 0; count = 0; return true; }
+	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
 
 
 	// abstract functions
@@ -31,9 +31,8 @@ public:
 	virtual Food search(const Food & item) const = 0;
 
 private:
-	void _inOrder();
-	void _printIndentedTree();
-	void destroyTree();
+	void destroyTree(BinaryNode* nodePtr);
+	void _printIndentedTree(BinaryNode* nodePtr, int level);
 
 };
 
