@@ -208,6 +208,7 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     Food * temp;
     while(temp = fileInput(inFile))
     {
+        //doesnt work because the bst.insert has & and not a *. if that would be switched it should work
         //keyBST.insert(temp); //Currently throws an error because BST does not want pointers
         //secBST.insert(temp); //Currently throws an error because BST does not want pointers
         hTable.addEntry(temp);
