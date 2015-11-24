@@ -8,7 +8,6 @@
 
 class BinarySearchTree : public BinaryTree
 {
-protected:
 
 public:
 	// insert a node at the correct location

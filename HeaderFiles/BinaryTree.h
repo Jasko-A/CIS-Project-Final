@@ -21,7 +21,7 @@ public:
 
 	bool isEmpty() const { return count == 0; }
 	int size() const { return count; }
-	bool clear() { destroyTree(); rootPtr = 0; count = 0; return true; }
+	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
 
 
