@@ -7,14 +7,14 @@ Write sources for the header files
  - [x] BinaryTree.cpp
  - [x] BinarySearchTree.cpp 
  - [x] HashTable.cpp
- - [ ] Stack.cpp
+ - [x] Stack.cpp
  - [x] LinkedList.cpp  
   
 Write main  
- - [ ] File input management  
+ - [x] File input management  
  - [ ] File output  
  - [ ] Stdin input management  
- - [ ] Menu  
+ - [x] Menu  
  - [ ] List
  - [ ] Search
  - [ ] Statistics
