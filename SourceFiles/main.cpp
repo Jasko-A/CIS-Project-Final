@@ -12,92 +12,45 @@ Main file
 
 using namespace std;
 
-void menu();
+int fileSize(string fileName); //To count the lines for the HashTable
+Food* fileInput(ifstream &inFile); //To get the data from the file
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
+void menu(); //Display menu
 
 int main()
 {
-	bool checker = true;  // this is for the do while loop
-	cout << "\tWelcome to the USDA Nutrition Fact Sorter\tby:\t" << " Jasmin Adzic\n" << setw(81) << "Austin Bohannon\n" << setw(82) << "Brandon Archbold\n" << setw(80) << "Mikhail Smelik\n" << setw(71) << "Ahmed\n";
+	cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-	fstream inFile;
-	inFile.open("../ResourceFile/USDA_data_small.txt");
-
-	string buffer;
-	int key;
-	int stringLength = 0;
-	int index = 0;
-	int start = 0;
-	char carrot = '^';
+    string fileName = "../ResourceFile/USDA_data_small.txt";
 
 
+    //BinarySearchTree keyBST, secBST; //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
+    HashTable hTable(fileSize(fileName));
 
-	if (inFile)
-	{
-		while (getline(inFile, buffer))
-		{
+    ifstream inFile;
+    inFile.open(fileName.c_str());
+    //createADTs(inFile, keyBST, secBST, hTable); //Commented out until BSTs work
 
-			buffer = buffer.substr(1, buffer.length());
-			index = buffer.find(carrot);
-			start = 0;
-			string temp1 = buffer.substr(start, index);
-			key = stoi(temp1);
-			//cout << key << endl;
-			start = index + 1;
-			buffer = buffer.substr(start, buffer.length());
-			index = buffer.find(carrot);
-			start = 0;
-			string name = buffer.substr(start, index);
-			//cout << name << endl;
-
-			start = index + 1;
-			buffer = buffer.substr(start, buffer.length());
-			index = buffer.find(carrot);
-			start = 0;
-			string temp2 = buffer.substr(start, index);
-			double water = stod(temp2);
-			cout << showpoint << fixed << setprecision(2) << water << endl;
-
-			start = index + 1;
-			buffer = buffer.substr(start, buffer.length());
-			index = buffer.find(carrot);
-			start = 0;
-			temp2 = buffer.substr(start, index);
-			int calories = stoi(temp2);
-			cout << calories << endl;
-
-			start = index + 1;
-			buffer = buffer.substr(start, buffer.length());
-			index = buffer.find(carrot);
-			start = 0;
-			temp2 = buffer.substr(start, index);
-			double protein = stod(temp2);
-			cout << showpoint << fixed << setprecision(2) << protein << endl;
-
-			//here we must parse the string into bits of data that we need for the nodes
-		}
-
-
-
-	}
+	bool checker = true;  // this is for the while loop
 	char choice;
 
-	do
+	while(checker)
 	{
 		cout << endl;
 		menu();
 		cout << "\nChoice: ";
-		cin >> choice;
+		cin >> choice; //Change this to a better implementation
 
 
 		switch (choice)
 		{
-		case 'A':
+		case 'A': //Add new data
 		case 'a':
 			break;
-		case 'D':
+		case 'D': //Delete data
 		case 'd':
 			break;
-		case 'S':
+		case 'S': //Search
 		case 's':
 			char answer;
 			cout << "Would you like to seach by unique key (Y/N): ";
@@ -108,29 +61,129 @@ int main()
 			else if (answer == 'N' || answer == 'n')
 				// do the next one
 				break;
-		case 'H':
+		case 'H': //Search with hash
 		case 'h':
 			break;
 		case 'P':
 		case 'p':
 			break;
-		case 'W':
+		case 'W': //Write to a file
 		case 'w':
 			break;
-		case 'T':
+		case 'T': //Statistics
 		case 't':
 			break;
-		case 'Q':
+		case 'Q': //Quit
 		case 'q':
 			checker = false;
 			break;
 
 
 		}
-	} while (checker);
+	}
 
 	menu();
 	return 0;
+}
+
+int fileSize(string fileName)
+{
+    ifstream inFile(fileName.c_str());
+    int count = 0;
+    string temp;
+    while(getline(inFile, temp))
+        count++;
+    return count;
+}
+
+Food* fileInput(ifstream &inFile)//For an example of this function in action, run while(fileInput(inFile)); OR while(temp = fileInput(inFile));
+{
+    string buffer;
+    getline(inFile, buffer);
+
+    if (buffer.length()) //Ensures we don't go out of range
+    {
+        int index;
+        int start;
+        static const char carrot = '^'; //Not even really necessary
+
+        int key = stoi(buffer.substr(1, 6));//This will always be the same distance, no need to look for it
+        cout << "KEY: " << key << endl; //This should be deleted before production
+
+        buffer = buffer.substr(7, buffer.length()); // Similar here, although only the starting place
+        index = buffer.find(carrot);
+        string name = buffer.substr(0, index);
+        cout << "NAME: " << name << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot);
+        start = 0;
+        double water = stod(buffer.substr(start, index));
+        cout << "WATER: " << showpoint << fixed << setprecision(2) << water << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot);
+        start = 0;
+        int calories = stoi(buffer.substr(start, index));
+        cout << "CALORIES: " << calories << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot);
+        start = 0;
+        double protein = stod(buffer.substr(start, index));
+        cout << "PROTEIN: " << showpoint << fixed << setprecision(2) << protein << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot);
+        start = 0;
+        double fat = stod(buffer.substr(start, index));
+        cout << "FAT: " << showpoint << fixed << setprecision(2) << fat << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot); //Ash
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot); //Carbohydrates
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot); //Fiber
+        start = 0;
+        double fiber = stod(buffer.substr(start, index));
+        cout << "FIBER: " << showpoint << fixed << setprecision(2) << fiber << endl;
+
+        start = index + 1;
+        buffer = buffer.substr(start, buffer.length());
+        index = buffer.find(carrot); //Fiber
+        start = 0;
+        double sugar = stod(buffer.substr(start, index));
+        cout << "SUGAR: " << showpoint << fixed << setprecision(2) << sugar << endl;
+
+        cout << endl;
+
+        Food * newFood = new Food(key, name, water, calories, protein, fat, fiber, sugar);
+        return newFood;
+    }
+    else
+        return NULL;
+}
+
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
+{
+    Food * temp;
+    while(temp = fileInput(inFile))
+    {
+        //keyBST.insert(temp); //Currently throws an error because BST does not want pointers
+        //secBST.insert(temp); //Currently throws an error because BST does not want pointers
+        hTable.addEntry(temp);
+    }
+    return;
 }
 
 void menu()
