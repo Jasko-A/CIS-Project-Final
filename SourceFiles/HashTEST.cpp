@@ -34,7 +34,7 @@ int main()
         cout << "SEARCH FAILURE, ID: " << b->getKey() << endl;
 
     //Get stats
-    cout << setw(20) << "POST-SEARCH-" << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
+    cout << setw(20) << "POST-SEARCH-" << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << " Number of Linked Lists: " << table.getNumberLL() << " Longest Linked List: " << table.getLongestLL() << " Average Linked List: " << table.getAverageLL() << endl;
     //Attempt to remove
     if(table.remove(a))
         cout << "REMOVE SUCCESS, a\n";
