@@ -10,6 +10,12 @@ using namespace std;
 class Food
 {
 private:
+	struct node
+	{
+		string key;
+		node * next;
+	};
+	node * rootPtr;
 	int uniqueKey;
 	string foodDescription;
 	double water;
@@ -36,6 +42,7 @@ public:
 	double getF() const { return fat; }
 	double getFi() const { return fiber; }
 	double getS() const { return sugar; }
+	bool secondaryKey(string testKey);
 
 	void setKey(int key);
 	void setName(string name);
