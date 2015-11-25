@@ -31,14 +31,17 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 	return nodePtr;
 }
 
-bool BinarySearchTree::remove(const Food *& target)
+bool BinarySearchTree::remove(int key)
 {
+	Food temp;
+	temp.setKey(key);
+	Food * target = &temp;
 	bool isSuccessful = false;
 	rootPtr = _remove(rootPtr, target, isSuccessful);
 	return isSuccessful;
 }
 
-BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, const Food *& target, bool & success)
+BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, Food *& target, bool & success)
 {
 	if (nodePtr == 0)
 	{
@@ -103,16 +106,18 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food & suc
 	}
 }
 
-bool BinarySearchTree::search(const Food *& target, Food *& returnedItem) const
+Food* BinarySearchTree::search(int key) const
 {
+	Food temp;
+	temp.setKey(key);
+	Food * target = &temp;
 	BinaryNode* newNodePtr = _search(rootPtr, *target);
 	if (newNodePtr)
 	{
-		returnedItem = &newNodePtr->getItem();
-		return true;
+		return &newNodePtr->getItem();
 	}
 	else
-		return false;
+		return nullptr;
 }
 
 BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, const Food & target) const

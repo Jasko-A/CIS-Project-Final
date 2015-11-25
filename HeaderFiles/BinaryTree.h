@@ -24,7 +24,7 @@ public:
 	int size() const { return count; }
 	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
-	Stack<Food> inOrderStack();
+	Stack<Food*> inOrderStack();
 
 
 	// abstract functions
@@ -35,7 +35,7 @@ public:
 private:
 	void destroyTree(BinaryNode* nodePtr);
 	void _printIndentedTree(BinaryNode* nodePtr, int level);
-	Stack<Food> _inOrderStack(BinaryNode* nodePtr);
+	Stack<Food*> _inOrderStack(BinaryNode * nodePtr, Stack<Food*> inOrderStack);
 
 };
 
