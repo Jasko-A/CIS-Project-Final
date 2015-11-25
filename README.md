@@ -14,6 +14,15 @@ Write main and other .cpp's
   
 - [x] Make it compile  
 - [ ] Add comments to EVERYTHING
+
+*Use the following style for comments (if possible):*
+
+```C++
+/** =================================== */
+/* <function purpose>
+   <explanation of all input parameters>
+   <explanation of all output actions and return value > */ 
+ ```
   
 **Future goals:**
 -----------------
