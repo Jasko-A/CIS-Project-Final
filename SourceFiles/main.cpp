@@ -38,6 +38,7 @@ int main()
     bool checker = true;  // this is for the while loop
     char choice;
     Stack<Food> * outputStack;
+    Stack<Food *> deleteStack;
     
     while(checker)
     {
@@ -59,8 +60,17 @@ int main()
                 break;
             case 'D': //Delete data
             case 'd':
-				keyBST.remove()
-				enterInt();
+            
+                if (hTable.search(enterInt(), newNode){
+                    deleteStack.push(newNode);
+                    
+                    hTable.remove(newNode);
+                    keyBST.remove(newNode);
+                    secBST.remove(newNode);
+                }
+                else
+                    cout << "Key not found\n";
+                    
                 break;
             case 'S': //Search
             case 's':
@@ -83,6 +93,18 @@ int main()
             case 'P':
 			case 'p': 
 				keyBST.printIndentedTree();
+                break;
+            case 'U':
+            case 'u':
+                if(!deleteStack.isEmpty()){
+                    deleteStack.pop(newNode);
+                    keyBST.insert(newNode);
+                    secBST.insert(newNode);
+                    hTable.addEntry(newNode);
+                }
+                else
+                    cout << "No Previous Deletions\n";
+                
                 break;
             case 'W': //Write to a file
             case 'w':
@@ -286,6 +308,7 @@ void menu()
     << "S - Search by unique key or item name through the BST\n"
     << "H - Search with hash Table\n"
     << "P - Special Print\n"
+    << "U - Undo Delete\n"
     << "W - Write Data to File\n"//not sure what this is for but it is in the requirements list
     << "T - Statsitics\n" // not sure what this is for
     << "Q - Quit Program\n";
