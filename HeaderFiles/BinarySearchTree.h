@@ -11,7 +11,7 @@ class BinarySearchTree : public BinaryTree
 
 public:
 	// insert a node at the correct location
-	bool insert(const Food * newEntry);
+	bool insert(Food * newEntry);
 	// remove a node if found
 	bool remove(int key);
 	// find a target node

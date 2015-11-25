@@ -1,8 +1,8 @@
 #include "..\HeaderFiles\BinarySearchTree.h"
 
-bool BinarySearchTree::insert(const Food * newNode)
+bool BinarySearchTree::insert(Food * newNode)
 {
-	BinaryNode* newFood = new BinaryNode(*newNode);
+	BinaryNode* newFood = new BinaryNode(newNode);
 	rootPtr = _insert(rootPtr, newFood);
 	count++;
 	return true;
@@ -48,9 +48,9 @@ BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, Food *& target, bool 
 		success = false;
 		return 0;
 	}
-	if (nodePtr->getItem() > *target)
+	if (*nodePtr->getItem() > *target)
 		nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
-	else if (nodePtr->getItem() < *target)
+	else if (*nodePtr->getItem() < *target)
 		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
@@ -87,7 +87,7 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 	{
 		Food newNodeValue;
 		nodePtr->setRightPtr(removeLeftmostNode(nodePtr->getRightPtr(), newNodeValue));
-		nodePtr->setItem(newNodeValue);
+		nodePtr->setItem(&newNodeValue);
 		return nodePtr;
 	}
 }
@@ -96,7 +96,7 @@ BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food & suc
 {
 	if (nodePtr->getLeftPtr() == 0)
 	{
-		successor = nodePtr->getItem();
+		successor = *nodePtr->getItem();
 		return deleteNode(nodePtr);
 	}
 	else
@@ -114,7 +114,7 @@ Food* BinarySearchTree::search(int key) const
 	BinaryNode* newNodePtr = _search(rootPtr, *target);
 	if (newNodePtr)
 	{
-		return &newNodePtr->getItem();
+		return newNodePtr->getItem();
 	}
 	else
 		return nullptr;
@@ -124,16 +124,16 @@ BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, const Food & target) 
 {
 	if (!nodePtr)
 		return nullptr;
-	else if (target == nodePtr->getItem())
+	else if (target == *nodePtr->getItem())
 		return nodePtr;
-	else if (target < nodePtr->getItem())
+	else if (target < *nodePtr->getItem())
 	{
 		if (nodePtr->getLeftPtr() == nullptr)
 			return nullptr;
 		else
 			return _search(nodePtr->getLeftPtr(), target);
 	}
-	else if (target > nodePtr->getItem())
+	else if (target > *nodePtr->getItem())
 	{
 		if (nodePtr->getRightPtr())
 			return _search(nodePtr->getRightPtr(), target);
