@@ -1,10 +1,22 @@
 /**
 LinkedList source
 Written by: Austin Bohannon
+
+Made to work with pointers to Food objects so that no data has to be copied,
+it's just organized.
 **/
 
 #include "../HeaderFiles/LinkedList.h"
 
+/***** LinkedList::LinkedList *****
+In:
+Out:
+
+The constructor sets count to zero,
+constructs sentinel nodes with a
+blank Food, and sets up the
+doubly-linked list.
+**********************************/
 LinkedList::LinkedList()
 {
   count = 0;
@@ -23,6 +35,13 @@ LinkedList::LinkedList()
   tail->back = head;
 }
 
+/***** LinkedList::~LinkedList *****
+In:
+Out:
+
+The destructor deletes all of the
+nodes in the linked list.
+***********************************/
 LinkedList::~LinkedList()
 {
   node * temp = head, * tempNext;
@@ -35,6 +54,15 @@ LinkedList::~LinkedList()
   delete tail;
 }
 
+/***** LinkedList::addItem *****
+In: Food *
+Out:
+
+addItem constructs a new node
+with the Food * as data. It
+then inserts it intor the linked
+list in ascending order.
+*******************************/
 void LinkedList::addItem(Food * newFood)
 {
   node * newNode = new node;
@@ -50,6 +78,15 @@ void LinkedList::addItem(Food * newFood)
   count++;
 }
 
+/***** LinkedList::deleteItem *****
+In: int
+Out: bool (returned)
+
+deleteItem takes an id, tries to
+find it, and deletes it if it does,
+returning true, or returning false
+if it cannot find it.
+**********************************/
 bool LinkedList::deleteItem(int &id)
 {
   node * temp = head;
@@ -66,6 +103,15 @@ bool LinkedList::deleteItem(int &id)
   return false;
 }
 
+/***** LinkedList::itemExists *****
+In: int
+Out: bool (returned)
+
+itemExists takes a key and tries
+to find it in the linked list. It
+returns true if it finds it,
+otherwise it returns false.
+**********************************/
 bool LinkedList::itemExists(int &id)
 {
   node * temp = head;
@@ -76,6 +122,17 @@ bool LinkedList::itemExists(int &id)
   return false;
 }
 
+/***** LinkedList::search *****
+In: int, Food *&
+Out: Food *&, bool (returned)
+
+search takes a key, and tries
+to find it in the linked list.
+If it is there, it sets the
+Food *& to the found Food's
+pointer and returns true.
+Otherwise it returns false.
+******************************/
 bool LinkedList::search(int &id, Food *& returnedItem)
 {
   node * temp = head->next;
@@ -89,6 +146,13 @@ bool LinkedList::search(int &id, Food *& returnedItem)
   return false;
 }
 
+/***** LinkedList::visitAll *****
+In: void visit(Food *)
+Out:
+
+visitAll calls visit() on every
+Food in the linked list.
+********************************/
 void LinkedList::visitAll(void visit(Food *))
 {
     node * temp = head->next;
