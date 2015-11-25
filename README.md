@@ -2,6 +2,27 @@
 
 **Current goals:**
 -----------------
+Write main and other .cpp's  
+ - [x] File input management  
+ - [ ] File output  
+ - [ ] Stdin input management  
+ - [x] Menu  
+ - [ ] List
+ - [ ] Search
+ - [ ] Statistics  
+ Others?  
+  
+- [x] Make it compile  
+  
+**Future goals:**
+-----------------
+- [ ] Test with data  
+- [ ] Repeatedly  
+- [ ] Get our presentation sorted out  
+- [ ] Turn it in  
+
+**Past goals**
+--------------
 Write sources for the header files
  - [x] Food.cpp
  - [x] BinaryTree.cpp
@@ -10,26 +31,6 @@ Write sources for the header files
  - [x] Stack.cpp
  - [x] LinkedList.cpp  
   
-Write main  
- - [x] File input management  
- - [ ] File output  
- - [ ] Stdin input management  
- - [x] Menu  
- - [ ] List
- - [ ] Search
- - [ ] Statistics
- Others?  
-  
-**Future goals:**
------------------
-- [ ] Make it compile  
-- [ ] Test with data  
-- [ ] Repeatedly  
-- [ ] Get our presentation sorted out  
-- [ ] Turn it in  
-
-**Past goals**
---------------
 Create header files for:  
  - [x] Food.h
  - [x] BinaryTree.h
