@@ -137,12 +137,12 @@ void InputOutput::createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinaryS
 void InputOutput::printToFile(ofstream &outFile, Stack<Food *> * printStack)
 {
     Food * temp;
-    outFile >> "Sorted Data using the unique key" >> endl >> endl;
+    outFile << "Sorted Data using the unique key" << endl << endl;
     while (printStack->getCount() != 0)
     {
         printStack->pop(temp);
-        outFile >> temp->getKey() >> " " >> temp->getName() >> " " >> temp->getW() >> " " >> temp->getC() >> " " >> temp->getP();
-        outFile >> " " >> temp->getF() >> " " >> temp->getFi() >> " " >> temp->getS() >> endl;
+        outFile << temp->getKey() << " " << temp->getName() << " " << temp->getW() << " " << temp->getC() << " " << temp->getP();
+        outFile << " " << temp->getF() << " " << temp->getFi() << " " << temp->getS() << endl;
     }
 }
 
