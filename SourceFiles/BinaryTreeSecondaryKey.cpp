@@ -1,12 +1,12 @@
-#include "../HeaderFiles/BinaryTree.h"
+#include "../HeaderFiles/BinaryTreeSecondaryKey.h"
 
-Stack<Food*> BinaryTree::inOrderStack()
+Stack<Food*> BinaryTreeSecondaryKey::inOrderStack()
 {
 	Stack<Food*> inOrderStack;
 	return _inOrderStack(rootPtr, inOrderStack);
 }
 
-void BinaryTree::destroyTree(BinaryNode* nodePtr)
+void BinaryTreeSecondaryKey::destroyTree(BinaryNode* nodePtr)
 {
 	if (nodePtr != 0)
 	{
@@ -16,7 +16,7 @@ void BinaryTree::destroyTree(BinaryNode* nodePtr)
 	}
 }
 
-void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
+void BinaryTreeSecondaryKey::_printIndentedTree(BinaryNode * nodePtr, int level)
 {
 	if (nodePtr != 0)//Recursion Terminator Statement
 	{
@@ -26,7 +26,7 @@ void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
 	}
 }
 
-Stack<Food*> BinaryTree::_inOrderStack(BinaryNode * nodePtr, Stack<Food*> inOrderStack)
+Stack<Food*> BinaryTreeSecondaryKey::_inOrderStack(BinaryNode * nodePtr, Stack<Food*> inOrderStack)
 {
 	if (nodePtr != 0)
 	{
