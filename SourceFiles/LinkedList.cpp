@@ -88,3 +88,13 @@ bool LinkedList::search(int &id, Food *& returnedItem)
   }
   return false;
 }
+
+void LinkedList::visitAll(void visit(Food *))
+{
+    node * temp = head->next;
+    while(temp != tail)
+    {
+        visit(temp->data);
+        temp = temp->next;
+    }
+}

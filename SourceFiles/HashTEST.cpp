@@ -9,6 +9,8 @@ DO NOT INCLUDE IN FINAL PROJECT
 
 using namespace std;
 
+void display(Food * a);
+
 int main()
 {
     cout << left;
@@ -27,6 +29,11 @@ int main()
 
     //Get stats
     cout << setw(20) << "ADD b-" << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
+
+    cout << endl;
+    table.visitAll(display);
+    cout << endl;
+
     //Do a search. They are in the same linked list
     if(table.search(b->getKey(), temp))
         cout << "SEARCH SUCCESS, ID: " << temp->getKey() << endl;
@@ -45,4 +52,9 @@ int main()
     cout << setw(20) << "POST-REMOVAL-" << "Collisions: " << table.getCollisions() << " Filled Slots: " << table.getFilledSlots() << " Count: " << table.getCount() << endl;
 
     return 0;
+}
+
+void display(Food * a)
+{
+    cout << a->getName() << endl;
 }

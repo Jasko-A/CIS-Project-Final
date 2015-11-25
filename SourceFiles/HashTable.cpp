@@ -88,3 +88,12 @@ int HashTable::getAverageLL()
     }
     return num/getNumberLL();
 }
+
+void HashTable::visitAll(void visit(Food *))
+{
+    for(int i = 0; i < arraySize; i++)
+    {
+        if(arr[i].getCount())
+            arr[i].visitAll(visit);
+    }
+}

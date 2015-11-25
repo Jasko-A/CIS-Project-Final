@@ -28,6 +28,7 @@ public:
   bool deleteItem(int &id);
   bool itemExists(int &id);
   bool search(int &id, Food *& returnedItem);
+  void visitAll(void visit(Food *));
   int getCount() const {return count;}
 };
 

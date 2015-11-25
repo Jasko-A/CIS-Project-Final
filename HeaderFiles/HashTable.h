@@ -25,14 +25,15 @@ public:
     void addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
     bool search(int id, Food *& returnedPtr);
+    int getNumberLL();
+    int getLongestLL();
+    int getAverageLL();
+    void visitAll(void visit(Food *));
     //Const accessors
     int getSize() const {return arraySize;}
     int getFilledSlots() const {return filledSlots;}
     int getCollisions() const {return collisions;}
     int getCount() const {return count;}
-    int getNumberLL();
-    int getLongestLL();
-    int getAverageLL();
 };
 
 #endif
