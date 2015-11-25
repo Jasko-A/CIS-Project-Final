@@ -61,7 +61,8 @@ int main()
             case 'D': //Delete data
             case 'd':
             
-                if (hTable.search(enterInt(), newNode){
+                if (hTable.search(enterInt(), newNode))
+				{
                     deleteStack.push(newNode);
                     
                     hTable.remove(newNode);
@@ -346,15 +347,15 @@ Food * addNew()				//needs inpu validation
 	return newFood;
 }
 
-//int enterInt()
-//{
-//	int sKey;
-//	bool success;
-//	do {
-//		cout << "Enter a value: ";
-//		success = cin >> sKey;
-//		cin.clear();
-//		cin.ignore(256, '\n');
-//	} while (success);
-//	return sKey;
-//}
+int enterInt()
+{
+	int sKey;
+	bool success;
+	do {
+		cout << "Enter a value: ";
+		success = cin >> sKey;
+		cin.clear();
+		cin.ignore(256, '\n');
+	} while (success);
+	return sKey;
+}

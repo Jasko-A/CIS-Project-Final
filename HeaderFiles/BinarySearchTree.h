@@ -11,15 +11,15 @@ class BinarySearchTree : public BinaryTree
 
 public:
 	// insert a node at the correct location
-	bool insert(const Food * newEntry);
+	bool insert(Food * newEntry);
 	// remove a node if found
-	bool remove(const Food *& anEntry);
+	bool remove(int key);
 	// find a target node
-	bool search(const Food *& target, Food *& returnedItem) const;
+	Food* search(int key) const;
 
 private:
 	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
-	BinaryNode* _remove(BinaryNode* nodePtr, const Food *& target, bool & success);
+	BinaryNode* _remove(BinaryNode* nodePtr, Food *& target, bool & success);
 	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
 	BinaryNode* deleteNode(BinaryNode* nodePtr);
 	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food & successor);

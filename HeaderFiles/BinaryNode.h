@@ -9,21 +9,21 @@
 class BinaryNode
 {   
 private:
-	Food              item;         // Data portion
+	Food*          item;         // Data portion
 	BinaryNode* leftPtr;		// Pointer to left child
 	BinaryNode* rightPtr;		// Pointer to right child
 
 public:
 	// constructors
-	BinaryNode(const Food & anItem)	{item = anItem; leftPtr = 0; rightPtr = 0;}
-	BinaryNode(const Food & anItem, BinaryNode* left, BinaryNode* right) {item = anItem; leftPtr = left; rightPtr = right;}
+	BinaryNode(Food * anItem)	{item = anItem; leftPtr = 0; rightPtr = 0;}
+	BinaryNode(Food * anItem, BinaryNode* left, BinaryNode* right) {item = anItem; leftPtr = left; rightPtr = right;}
 	BinaryNode() { leftPtr = 0; rightPtr = 0; }
 	// accessors
-	void setItem(const Food & anItem) {item = anItem;}
+	void setItem(Food * anItem) {item = anItem;}
 	void setLeftPtr(BinaryNode* left) {leftPtr = left;}
     void setRightPtr(BinaryNode* right) {rightPtr = right;}
 	// mutators
-	Food getItem() const	 {return item;}
+	Food* getItem() const	 {return item;}
 	BinaryNode* getLeftPtr() const  {return leftPtr;}
 	BinaryNode* getRightPtr() const {return rightPtr;}
 
