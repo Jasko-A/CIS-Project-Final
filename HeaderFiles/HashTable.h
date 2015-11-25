@@ -16,7 +16,7 @@ class HashTable
 {
     LinkedList * arr;
     int arraySize, filledSlots, collisions, count;
-    int _hash(int id);
+    int _hash(int id) const;
 public:
     //Constructor - Destructor
     HashTable(int setSize);
@@ -30,6 +30,9 @@ public:
     int getFilledSlots() const {return filledSlots;}
     int getCollisions() const {return collisions;}
     int getCount() const {return count;}
+    int getNumberLL();
+    int getLongestLL();
+    int getAverageLL();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "../HeaderFiles/HashTable.h"
 
-int HashTable::_hash(int id)
+int HashTable::_hash(int id) const
 {
     return id % arraySize;
 }
@@ -52,4 +52,39 @@ bool HashTable::search(int id, Food *& returnedPtr)
   if(arr[hash].search(id, returnedPtr))
     return true;
   return false;
+}
+
+int HashTable::getNumberLL()
+{
+    int num = 0;
+    for(int i = 0; i < arraySize; i++){
+        if(arr[i].getCount() > 1)
+            num++;
+    }
+    return num;
+}
+
+int HashTable::getLongestLL()
+{
+    int k = 0;
+    for(int i = 0; i < arraySize; i++)
+    {
+        if(arr[i].getCount() > k)
+            k = arr[i].getCount();
+    }
+    if(k)
+        return k - 1;
+    else
+        return 0;
+}
+
+int HashTable::getAverageLL()
+{
+    int num = 0;
+    for(int i = 0; i < arraySize; i++)
+    {
+        if(arr[i].getCount() > 1)
+            num += arr[i].getCount() - 1;
+    }
+    return num/getNumberLL();
 }
