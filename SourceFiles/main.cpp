@@ -13,7 +13,7 @@ int hashSize(int fileSize);
 Food* fileInput(ifstream &inFile); //To get the data from the file
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
 void printToFile(ofstream &outFile, Stack<Food> * printStack);
-
+Food * addNew();
 void reHash(HashTable &hTable);
 
 void menu(); //Display menu
@@ -45,11 +45,16 @@ int main()
         cout << "\nChoice: ";
         cin >> choice; //Change this to a better implementation
         
-        
+		Food * newNode;
+
         switch (choice)
         {
             case 'A': //Add new data
             case 'a':
+				newNode = addNew();
+				keyBST.insert(newNode);
+				secBST.insert(newNode);
+				hTable.addEntry(newNode);
                 break;
             case 'D': //Delete data
             case 'd':
@@ -285,4 +290,36 @@ void menu()
     << "W - Write Data to File\n"//not sure what this is for but it is in the requirements list
     << "T - Statsitics\n" // not sure what this is for
     << "Q - Quit Program\n";
+}
+
+Food * addNew()				//needs inpu validation
+{
+	int uKey;
+	string fName;
+	double _water;
+	int _cal;
+	double _protein;
+	double _fat;
+	double _fiber;
+	double _sugar;
+
+	cout << "\nEnter a key: ";
+	cin >> uKey;
+	cout << "\nEnter a food name: ";
+	cin >> fName;
+	cout << "\nEnter water content: ";
+	cin >> _water;
+	cout << "\nEnter calorie content: ";
+	cin >> _cal;
+	cout << "\nEnter protein content: ";
+	cin >> _protein;
+	cout << "\nEnter fat content: ";
+	cin >> _fat;
+	cout << "\nEnter fiber content: ";
+	cin >> _fiber;
+	cout << "\nEnter sugar content: ";
+	cin >> _sugar;
+
+	Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
+	return newFood;
 }
