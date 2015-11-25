@@ -21,10 +21,10 @@ public:
     int hashSize(int fileSize);
     Food* fileInput(ifstream &inFile); //To get the data from the file
     void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
-    void printToFile(ofstream &outFile, Stack * printStack);
-    
+    void printToFile(ofstream &outFile, Stack<Food *> * printStack);
+
     void reHash(HashTable &hTable);
-    
+
 };
 
 #endif /* InputOutput_h */

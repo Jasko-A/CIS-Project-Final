@@ -15,18 +15,18 @@ class Stack
   int count;
   struct node
   {
-    T * data;
+    T data;
     node * next;
   };
   node * head;
 public:
   Stack(){count = 0; head = NULL;}
   ~Stack();
-  
-  void push(T * newItem);
-  bool pop(T *&passedItem);
-  
-  bool getTop(T *&passedItem) const;
+
+  void push(T newItem);
+  bool pop(T &passedItem);
+
+  bool getTop(T &passedItem) const;
   int getCount() const {return count;}
   bool isEmpty() const {return count == 0;}
 };
@@ -46,7 +46,7 @@ Stack<T>::~Stack()
 }
 
 template<class T>
-void Stack<T>::push(T * newItem)
+void Stack<T>::push(T newItem)
 {
   //Create node
   node * newNode = new node;
@@ -57,7 +57,7 @@ void Stack<T>::push(T * newItem)
 }
 
 template<class T>
-bool Stack<T>::pop(T *&passedItem)
+bool Stack<T>::pop(T &passedItem)
 {
   if(!head)
     return false;
@@ -70,7 +70,7 @@ bool Stack<T>::pop(T *&passedItem)
 }
 
 template<class T>
-bool Stack<T>::getTop(T *&passedItem) const
+bool Stack<T>::getTop(T &passedItem) const
 {
   if(!head)
     return false;

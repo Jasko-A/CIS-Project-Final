@@ -1,4 +1,4 @@
-#include "..\HeaderFiles\BinarySearchTree.h"
+#include "../HeaderFiles/BinarySearchTree.h"
 
 bool BinarySearchTree::insert(Food * newNode)
 {

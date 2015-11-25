@@ -24,7 +24,7 @@ int InputOutput::hashSize(int fileSize)
     int number = 0;
     int hashSize = fileSize * 2;
     bool isPrime;
-    
+
     do
     {
         isPrime = true;
@@ -39,81 +39,81 @@ int InputOutput::hashSize(int fileSize)
         hashSize++;
     } while (isPrime == false);
     number = hashSize - 1;
-    
+
     return number;
 }
 
-Food InputOutput::*fileInput(ifstream &inFile)//For an example of this function in action, run while(fileInput(inFile)); OR while(temp = fileInput(inFile));
+Food * InputOutput::fileInput(ifstream &inFile)//For an example of this function in action, run while(fileInput(inFile)); OR while(temp = fileInput(inFile));
 {
     string buffer;
     getline(inFile, buffer);
-    
+
     if (buffer.length()) //Ensures we don't go out of range
     {
         int index;
         int start;
         static const char carrot = '^'; //Not even really necessary
-        
+
         int key = stoi(buffer.substr(1, 6));//This will always be the same distance, no need to look for it
         cout << "KEY: " << key << endl; //This should be deleted before production
-        
+
         buffer = buffer.substr(7, buffer.length()); // Similar here, although only the starting place
         index = buffer.find(carrot);
         string name = buffer.substr(0, index);
         cout << "NAME: " << name << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);
         start = 0;
         double water = stod(buffer.substr(start, index));
         cout << "WATER: " << showpoint << fixed << setprecision(2) << water << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);
         start = 0;
         int calories = stoi(buffer.substr(start, index));
         cout << "CALORIES: " << calories << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);
         start = 0;
         double protein = stod(buffer.substr(start, index));
         cout << "PROTEIN: " << showpoint << fixed << setprecision(2) << protein << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);
         start = 0;
         double fat = stod(buffer.substr(start, index));
         cout << "FAT: " << showpoint << fixed << setprecision(2) << fat << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Ash
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Carbohydrates
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Fiber
         start = 0;
         double fiber = stod(buffer.substr(start, index));
         cout << "FIBER: " << showpoint << fixed << setprecision(2) << fiber << endl;
-        
+
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Fiber
         start = 0;
         double sugar = stod(buffer.substr(start, index));
         cout << "SUGAR: " << showpoint << fixed << setprecision(2) << sugar << endl;
-        
+
         cout << endl;
-        
+
         Food * newFood = new Food(key, name, water, calories, protein, fat, fiber, sugar);
         return newFood;
     }
@@ -134,7 +134,7 @@ void InputOutput::createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinaryS
     return;
 }
 
-void InputOutput::printToFile(ofstream &outFile, Stack * printStack)
+void InputOutput::printToFile(ofstream &outFile, Stack<Food *> * printStack)
 {
     Food * temp;
     outFile >> "Sorted Data using the unique key" >> endl >> endl;
@@ -148,7 +148,7 @@ void InputOutput::printToFile(ofstream &outFile, Stack * printStack)
 
 void InputOutput::reHash(HashTable &hTable)
 {
-    int hashActualSize = hTable->getCount();
+    int hashActualSize = hTable.getCount();
     int newSize = hashSize(hashActualSize);
     HashTable newHashTable(newSize);
 }

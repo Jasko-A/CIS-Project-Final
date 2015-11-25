@@ -1,4 +1,4 @@
-#include "..\HeaderFiles\BinaryTree.h"
+#include "../HeaderFiles/BinaryTree.h"
 
 Stack<Food*> BinaryTree::inOrderStack()
 {
@@ -20,9 +20,9 @@ void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
 {
 	if (nodePtr != 0)//Recursion Terminator Statement
 	{
-		_printIndentedTree(nodePtr->getRightPtr(), level + 1); 
+		_printIndentedTree(nodePtr->getRightPtr(), level + 1);
 		cout << setw(level * 7) << level << ". " << nodePtr->getItem()->getKey() << " " << nodePtr->getItem()->getName() << endl;
-		_printIndentedTree(nodePtr->getLeftPtr(), level + 1); 
+		_printIndentedTree(nodePtr->getLeftPtr(), level + 1);
 	}
 }
 
