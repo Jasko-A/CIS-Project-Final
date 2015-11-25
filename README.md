@@ -13,6 +13,7 @@ Write main and other .cpp's
  Others?  
   
 - [x] Make it compile  
+- [ ] Add comments to EVERYTHING
   
 **Future goals:**
 -----------------
