@@ -15,6 +15,7 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
 void printToFile(ofstream &outFile, Stack<Food> * printStack);
 Food * addNew();
 void reHash(HashTable &hTable);
+int enterInt();
 
 void menu(); //Display menu
 
@@ -58,6 +59,8 @@ int main()
                 break;
             case 'D': //Delete data
             case 'd':
+				keyBST.remove()
+				enterInt();
                 break;
             case 'S': //Search
             case 's':
@@ -72,12 +75,8 @@ int main()
                     break;
             case 'H': //Search with hash
             case 'h':
-				cout << "Enter key: ";
-				int sKey;
-				Food * newFood;
-				cin >> sKey;
-				if (hTable.search(sKey, newFood))
-					cout << newFood->getName() << endl;
+				if (hTable.search(enterInt(), newNode))
+					cout << newNode->getName() << endl;
 				else
 					cout << "Key not found\n";
                 break;
@@ -323,3 +322,16 @@ Food * addNew()				//needs inpu validation
 	Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
 	return newFood;
 }
+
+//int enterInt()
+//{
+//	int sKey;
+//	bool success;
+//	do {
+//		cout << "Enter a value: ";
+//		success = cin >> sKey;
+//		cin.clear();
+//		cin.ignore(256, '\n');
+//	} while (success);
+//	return sKey;
+//}
