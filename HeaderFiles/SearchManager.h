@@ -16,8 +16,6 @@ private:
     bool found;
     int key;
     string name;
-    ItemType tempFoodItem;
-    ItemType searchedFoodItem;
 public:
     SearchManager(){found = false; key = 0; name = "";}
     void PrimaryKeySearchManager(BinarySearchTree<ItemType> * primaryTree, BinarySearchTree<ItemType> * secondaryTree);
@@ -29,20 +27,30 @@ public:
 template<class ItemType>
 void SearchManager<ItemType>::PrimaryKeySearchManager(BinarySearchTree<ItemType> * primaryTree, BinarySearchTree<ItemType> * secondaryTree)
 {
+    ItemType tempFoodItem;
+    ItemType searchedFoodItem;
+    
     //Have the user enter the ID number
     cout << "Please enter the USDA identification number: ";
     cin >> key;
     
     //Set the temporary Food object's ID to the entered ID
-    tempFoodItem.setNDBNumber(key);
+    tempFoodItem.setKey(key);
     
     //Check if the Food is in the tree
     found = primaryTree->getEntry(tempFoodItem, searchedFoodItem);
     
     //Display the item if it's found
-    if(found)
-        searchedFoodItem.displayFoodData();
-    else
+    if(found){
+        cout << searchedFoodItem.getKey() << " found.\n";
+        cout << "\tFood Name: " << searchedFoodItem.getName() << endl;
+        cout << "\tWater    : " << searchedFoodItem.getW() << endl;
+        cout << "\tCalories : " << searchedFoodItem.getC() << endl;
+        cout << "\tProtein  : " << searchedFoodItem.getP() << endl;
+        cout << "\tFat      : " << searchedFoodItem.getF() << endl;
+        cout << "\tFiber    : " << searchedFoodItem.getFi() << endl;
+        cout << "\tSugar    : " << searchedFoodItem.getS() << endl;
+    }else
         cout << key << " was not found in the USDA Nutritional Database.\n";
 }
 
@@ -60,8 +68,16 @@ void SearchManager<ItemType>::SecondaryKeySearchManager(BinarySearchTree<ItemTyp
     found = secondaryTree->getEntry(tempFoodItem, searchedFoodItem);
     
     //Display the item if it's found
-    if(found)
-        searchedFoodItem.displayFoodData();
+    if(found){
+        cout << searchedFoodItem.getName() << " found.\n";
+        cout << "\tFood Key : " << searchedFoodItem.getKey() << endl;
+        cout << "\tWater    : " << searchedFoodItem.getW() << endl;
+        cout << "\tCalories : " << searchedFoodItem.getC() << endl;
+        cout << "\tProtein  : " << searchedFoodItem.getP() << endl;
+        cout << "\tFat      : " << searchedFoodItem.getF() << endl;
+        cout << "\tFiber    : " << searchedFoodItem.getFi() << endl;
+        cout << "\tSugar    : " << searchedFoodItem.getS() << endl;
+    }
     else
         cout << name << " was not found in the USDA Nutritional Database.\n";
 }
