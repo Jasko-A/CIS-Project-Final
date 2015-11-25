@@ -109,6 +109,8 @@ int main()
                 break;
             case 'W': //Write to a file
             case 'w':
+                while(!deleteStack.isEmpty())
+                    deleteStack.pop(newNode);
               /*  ofstream outFile;
                 outFile.open("output.txt");
                 outputStack = keyBST.inOrderStack;
