@@ -7,7 +7,10 @@ The function inserts the item into the tree and then returns true to signify com
 bool BinarySearchTree::insert(Food * newNode)
 {
 	BinaryNode* newFood = new BinaryNode(newNode);
-	rootPtr = _insert(rootPtr, newFood);
+	if (sortedKey)
+		rootPtr = _insert(rootPtr, newFood);
+	else
+		rootPtr = _insertName(rootPtr, newFood);
 	count++;
 	return true;
 }
@@ -179,18 +182,6 @@ BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, const Food & target) 
 
 
 // Sorting the BST by NAME
-/** =================================== */
-/* This is the public function which calls _insert to insert a new value in the BST.
-insert takes a pointer to a Food obeject to be inserted into the tree.
-The function inserts the item into the tree and then returns true to signify completion. */
-bool BinarySearchTree::insertName(Food * newNode)
-{
-	BinaryNode* newFood = new BinaryNode(newNode);
-	rootPtr = _insertName(rootPtr, newFood);
-	count++;
-	return true;
-}
-
 /** =================================== */
 /* This is the privite member function called by insert to access
 private member data recursively and insert a new node into the BST.

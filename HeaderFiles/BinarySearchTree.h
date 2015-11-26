@@ -10,9 +10,10 @@ class BinarySearchTree : public BinaryTree
 {
 
 public:
+	BinarySearchTree(bool sortedByKey) { rootPtr = 0; count = 0; sortedKey = sortedByKey; }		// If true it is sorted by key, if false it is sorted by name.
+
 	// insert a node at the correct location
 	bool insert(Food * newEntry);			//BST sorted by ID
-	bool insertName(Food * newEntry);		//BST sorted by name
 	// remove a node if found
 	bool remove(int key);					//remove by key
 	bool remove(string name);				//remove by Name
@@ -21,6 +22,7 @@ public:
 	Food* search(string name) const;		//Search by name
 
 private:
+	bool sortedKey;
 	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _insertName(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _remove(BinaryNode* nodePtr, Food *& target, bool & success);

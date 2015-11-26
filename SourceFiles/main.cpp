@@ -26,7 +26,8 @@ int main()
     string fileName = "../ResourceFile/USDA_data_big.txt";
 
 
-    BinarySearchTree keyBST, secBST; //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
+	BinarySearchTree keyBST(true);
+	BinarySearchTree secBST(false); //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
     HashTable hTable(hashSize(fileSize(fileName)));
 
     ifstream inFile;

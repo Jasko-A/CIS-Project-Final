@@ -16,7 +16,7 @@ protected:
 	
 public:
 
-	BinaryTree() { rootPtr = 0; count = 0; }
+	BinaryTree() { rootPtr = 0; count = 0; }		// If true it is sorted by key, if false it is sorted by name.
 	virtual ~BinaryTree() { }
 	
 
