@@ -27,7 +27,7 @@ public:
     bool search(int id, Food *& returnedPtr);
     int getNumberLL();
     int getLongestLL();
-    int getAverageLL();
+    double getAverageLL();
     void visitAll(void visit(Food *));
     //Const accessors
     int getSize() const {return arraySize;}

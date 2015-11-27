@@ -169,7 +169,7 @@ by the number of LinkedLists. Again,
 LinkedLists of length 1 are not
 counted.
 ***********************************/
-int HashTable::getAverageLL()
+double HashTable::getAverageLL()
 {
     int num = 0;
     for(int i = 0; i < arraySize; i++)
@@ -177,12 +177,12 @@ int HashTable::getAverageLL()
         if(arr[i].getCount() > 1)
             num += arr[i].getCount() - 1;
     }
-    return num/getNumberLL();
+    return static_cast<double>(num)/getNumberLL();
 }
 
 /***** HashTable::visitAll *****
 In: void visit(Food *)
-Out: 
+Out:
 
 visitAll takes a visit function
 and passes it to all of the

@@ -16,6 +16,7 @@ void printToFile(ofstream &outFile, Stack<Food> * printStack);
 Food * addNew();
 void reHash(HashTable &hTable);
 int enterInt();
+string enterStr();
 
 void menu(); //Display menu
 
@@ -23,17 +24,24 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_big.txt";
-
-
-	BinarySearchTree keyBST(true);
-	BinarySearchTree secBST(false); //Cannot declare because remove and search are still virtual, also, we'll need separate BST classes
-    HashTable hTable(hashSize(fileSize(fileName)));
+    string fileName = "../ResourceFile/USDA_data_big.txt"; //Comment for production
 
     ifstream inFile;
-	inFile.open(fileName.c_str());
-		if (!inFile)
-			cout << "FILE DOESN'T EXIST\n";
+    /*string fileName; // Uncomment for production
+    do{
+        cout << "Enter file name: ";
+        cin >> fileName;*/
+
+        inFile.open(fileName.c_str());
+            if (!inFile)
+                cout << "FILE DOESN'T EXIST\n";
+/*
+    }while(!inFile);*/ //Uncomment for production
+
+	BinarySearchTree keyBST(true); //true means sort by unique key
+	BinarySearchTree secBST(false); //false means sort by non unique key
+    HashTable hTable(hashSize(fileSize(fileName)));
+
     createADTs(inFile, keyBST, secBST, hTable); //Commented out until BSTs work
 
     bool checker = true;  // this is for the while loop
@@ -43,10 +51,10 @@ int main()
 
     while(checker)
     {
-        cout << endl;
         menu();
         cout << "\nChoice: ";
-        cin >> choice; //Change this to a better implementation
+        cin.get(choice);
+        cin.ignore(256,'\n');
 
 		Food * newNode;
 
@@ -80,17 +88,19 @@ int main()
                 cout << "Would you like to seach by unique key (Y/N): ";
                 cin >> answer;
                 if (answer == 'Y' || answer == 'y')
-                    int x = 0;		//temporary
-                //do the function
+                {
+                    if (hTable.search(enterInt(), newNode))
+                        cout << newNode->getName() << endl;
+                    else
+                        cout << "Key not found\n";
+                }
                 else if (answer == 'N' || answer == 'n')
-                    // do the next one
-                    break;
-            case 'H': //Search with hash
-            case 'h':
-				if (hTable.search(enterInt(), newNode))
-					cout << newNode->getName() << endl;
-				else
-					cout << "Key not found\n";
+                {
+                    if(newNode = secBST.search(enterStr())) //Doesn't seem to work?
+                        cout << newNode->getName() << endl;
+                    else
+                        cout << "Key not found\n";
+                }
                 break;
             case 'P':
 			case 'p':
@@ -119,7 +129,15 @@ int main()
                 break;
             case 'T': //Statistics
             case 't':
-				cout << "Count: " << hTable.getCount() << "\nSize: " << hTable.getSize() << "\nFilled Slots: " << hTable.getFilledSlots() << "\nCollisions: " << hTable.getCollisions() << "\nLoad Factor: " << (static_cast<double>(hTable.getFilledSlots()) / hTable.getSize()) << endl;
+				cout << "\nSize of Array: " << hTable.getSize()
+				<< "\nCount: " << hTable.getCount()
+				<< "\nFilled Slots: " << hTable.getFilledSlots()
+				<< "\nCollisions: " << hTable.getCollisions()
+				<< "\nNumber of Linked Lists: " << hTable.getNumberLL()
+				<< "\nLongest Linked List: " << hTable.getLongestLL()
+				<< "\nAverage Linked List: " << hTable.getAverageLL()
+				<< "\nLoad Factor: " << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
+				<< endl;
                 break;
             case 'Q': //Quit
             case 'q':
@@ -306,11 +324,10 @@ void reHash(HashTable &hTable)
 
 void menu()
 {
-    cout << "\n\nList of Menu options\n\n";
+    cout << "\nList of Menu options\n\n";
     cout << "A - Add New Data\n"
     << "D - Delete Data by key number\n"
-    << "S - Search by unique key or item name through the BST\n"
-    << "H - Search with hash Table\n"
+    << "S - Search by unique key or item name\n"
     << "P - Special Print\n"
     << "U - Undo Delete\n"
     << "W - Write Data to File\n"//not sure what this is for but it is in the requirements list
@@ -361,4 +378,12 @@ int enterInt()
 		cin.ignore(256, '\n');
 	} while (!success);
 	return sKey;
+}
+
+string enterStr()
+{
+    string str;
+    cout << "Enter a string: ";
+    cin >> str;
+    return str;
 }
