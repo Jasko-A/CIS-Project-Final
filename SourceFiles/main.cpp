@@ -24,7 +24,7 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_big.txt"; //Comment for production
+    string fileName = "../ResourceFile/USDA_data_small.txt"; //Comment for production
 
     ifstream inFile;
     /*string fileName; // Uncomment for production
@@ -76,7 +76,7 @@ int main()
 
                     hTable.remove(newNode);
                     keyBST.remove(newNode->getKey());
-                    secBST.remove(newNode->getKey());
+                    secBST.remove(newNode->getName());
                 }
                 else
                     cout << "Key not found\n";

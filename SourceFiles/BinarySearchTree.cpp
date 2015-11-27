@@ -257,7 +257,7 @@ Food* BinarySearchTree::search(string name) const
 	Food temp;
 	temp.setName(name);
 	Food * target = &temp;
-	BinaryNode* newNodePtr = _search(rootPtr, *target);
+	BinaryNode* newNodePtr = _searchName(rootPtr, *target);
 	if (newNodePtr)
 	{
 		return newNodePtr->getItem();
@@ -281,12 +281,12 @@ BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & targ
 		if (nodePtr->getLeftPtr() == nullptr)
 			return nullptr;
 		else
-			return _search(nodePtr->getLeftPtr(), target);
+			return _searchName(nodePtr->getLeftPtr(), target);
 	}
 	else if (target.getName() > nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getRightPtr())
-			return _search(nodePtr->getRightPtr(), target);
+			return _searchName(nodePtr->getRightPtr(), target);
 		else
 			return nullptr;
 
