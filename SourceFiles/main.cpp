@@ -24,7 +24,7 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_small.txt"; //Comment for production
+    string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
 
     ifstream inFile;
     /*string fileName; // Uncomment for production
@@ -62,18 +62,17 @@ int main()
         {
             case 'A': //Add new data
             case 'a':
-				newNode = addNew();
-				keyBST.insert(newNode);
-				secBST.insert(newNode);
-				hTable.addEntry(newNode);
+		newNode = addNew();
+		keyBST.insert(newNode);
+		secBST.insert(newNode);
+		hTable.addEntry(newNode);
                 break;
             case 'D': //Delete data
             case 'd':
 
                 if (hTable.search(enterInt(), newNode))
-				{
+		{
                     deleteStack.push(newNode);
-
                     hTable.remove(newNode);
                     keyBST.remove(newNode->getKey());
                     secBST.remove(newNode->getName());
@@ -103,8 +102,8 @@ int main()
                 }
                 break;
             case 'P':
-			case 'p':
-				keyBST.printIndentedTree();
+	    case 'p':
+		keyBST.printIndentedTree();
                 break;
             case 'U':
             case 'u':
@@ -143,8 +142,8 @@ int main()
             case 'q':
                 checker = false;
                 break;
-
-
+	    default:
+		cout << "Unrecognized command\n";
         }
     }
 
@@ -386,5 +385,6 @@ string enterStr()
     string str;
     cout << "Enter a string: ";
     cin >> str;
+    cin.ignore(256, '\n');
     return str;
 }

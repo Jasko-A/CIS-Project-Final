@@ -54,6 +54,8 @@ void Stack<T>::push(T newItem)
   //Put node in stack
   newNode->next = head;
   head = newNode;
+  //Increase count
+  count++;
 }
 
 template<class T>
@@ -66,6 +68,8 @@ bool Stack<T>::pop(T &passedItem)
   node * temp = head->next;
   delete head;
   head = temp;
+  //decrease count
+  count--;
   return true;
 }
 
