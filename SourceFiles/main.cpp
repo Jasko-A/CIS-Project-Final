@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <cmath>
 #include "../HeaderFiles/Food.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/HashTable.h"
@@ -9,15 +10,14 @@
 using namespace std;
 
 int fileSize(string fileName); //To count the lines for the HashTable
-int hashSize(int fileSize);
+int hashSize(int fileSize); //To calculate hash size from number of lines
 Food* fileInput(ifstream &inFile); //To get the data from the file
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
-void printToFile(ofstream &outFile, Stack<Food> * printStack);
-Food * addNew();
+void printToFile(ofstream &outFile, Stack<Food> * printStack); //To print everything out
+Food * addNew(); //To add a new Food object to all of the ADTs from stdin
 void reHash(HashTable &hTable);
-int enterInt();
-string enterStr();
-
+int enterInt(); //Input validation for an int
+string enterStr(); //Input validation for a string
 void menu(); //Display menu
 
 int main()
@@ -42,7 +42,9 @@ int main()
 	BinarySearchTree secBST(false); //false means sort by non unique key
     HashTable hTable(hashSize(fileSize(fileName)));
 
-    createADTs(inFile, keyBST, secBST, hTable); //Commented out until BSTs work
+    createADTs(inFile, keyBST, secBST, hTable);
+
+    inFile.close();
 
     bool checker = true;  // this is for the while loop
     char choice;
@@ -146,8 +148,6 @@ int main()
 		cout << "Unrecognized command\n";
         }
     }
-
-    menu();
     return 0;
 }
 
@@ -165,12 +165,14 @@ int hashSize(int fileSize)
 {
     int number = 0;
     int hashSize = fileSize * 2;
+    int sqrtHashSize;
     bool isPrime;
 
     do
     {
+	sqrtHashSize = sqrt(hashSize);
         isPrime = true;
-        for (int i = 2; i < hashSize; i++)
+        for (int i = 2; i < sqrtHashSize; i++)
         {
             if (hashSize % i == 0)
             {
@@ -203,53 +205,47 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 		double fiber;
 		double sugar;
 
-        int key = stoi(buffer.substr(1, 6));//This will always be the same distance, no need to look for it
-        //cout << "KEY: " << key << endl; //This should be deleted before production
+        int key = stoi(buffer.substr(1, 6));//Key
 
-        buffer = buffer.substr(9, buffer.length()); // Similar here, although only the starting place
+        buffer = buffer.substr(9, buffer.length());
         index = buffer.find(carrot);
-        string name = buffer.substr(0, index-1);
-        //cout << "NAME: " << name << endl;
+        string name = buffer.substr(0, index-1);//Name
 
         start = index + 2;
         buffer = buffer.substr(start, buffer.length());
-        index = buffer.find(carrot);
+        index = buffer.find(carrot);//Water
         start = 0;
 		if ((buffer.substr(start, index)).length())
 			water = stod(buffer.substr(start, index));
 		else
 			water = 0;
-        //cout << "WATER: " << showpoint << fixed << setprecision(2) << water << endl;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
-        index = buffer.find(carrot);
+        index = buffer.find(carrot);//Calories
         start = 0;
 		if ((buffer.substr(start, index)).length())
 			calories = stoi(buffer.substr(start, index));
 		else
 			calories = 0;
-        //cout << "CALORIES: " << calories << endl;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
-        index = buffer.find(carrot);
+        index = buffer.find(carrot);//Protein
         start = 0;
 		if ((buffer.substr(start, index)).length())
 			protein = stod(buffer.substr(start, index));
 		else
 			protein = 0;
-        //cout << "PROTEIN: " << showpoint << fixed << setprecision(2) << protein << endl;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
-        index = buffer.find(carrot);
+        index = buffer.find(carrot);//Fat
         start = 0;
 		if ((buffer.substr(start, index)).length())
 			fat = stod(buffer.substr(start, index));
 		else
 			fat = 0;
-        //cout << "FAT: " << showpoint << fixed << setprecision(2) << fat << endl;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -267,7 +263,6 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 			fiber = stod(buffer.substr(start, index));
 		else
 			fiber = 0;
-        //cout << "FIBER: " << showpoint << fixed << setprecision(2) << fiber << endl;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -277,9 +272,6 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 			sugar = stod(buffer.substr(start, index));
 		else
 			sugar = 0;
-        //cout << "SUGAR: " << showpoint << fixed << setprecision(2) << sugar << endl;
-
-        //cout << endl;
 
         Food * newFood = new Food(key, name, water, calories, protein, fat, fiber, sugar);
         return newFood;
@@ -293,9 +285,8 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     Food * temp;
     while(temp = fileInput(inFile))
     {
-        //doesnt work because the bst.insert has & and not a *. if that would be switched it should work
-        keyBST.insert(temp); //Currently throws an error because BST does not want pointers
-        secBST.insert(temp); //Currently throws an error because BST does not want pointers
+        keyBST.insert(temp);
+        secBST.insert(temp);
         hTable.addEntry(temp);
     }
     return;
@@ -329,12 +320,12 @@ void menu()
     << "S - Search by unique key or item name\n"
     << "P - Special Print\n"
     << "U - Undo Delete\n"
-    << "W - Write Data to File\n"//not sure what this is for but it is in the requirements list
-    << "T - Statsitics\n" // not sure what this is for
+    << "W - Write Data to File\n"
+    << "T - Statsitics\n"
     << "Q - Quit Program\n";
 }
 
-Food * addNew()				//needs inpu validation
+Food * addNew()				//needs input validation
 {
 	int uKey;
 	string fName;
