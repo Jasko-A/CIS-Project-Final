@@ -177,7 +177,10 @@ double HashTable::getAverageLL()
         if(arr[i].getCount() > 1)
             num += arr[i].getCount() - 1;
     }
-    return static_cast<double>(num)/getNumberLL();
+    if(getNumberLL())
+        return static_cast<double>(num)/getNumberLL();
+    else
+        return 0;
 }
 
 /***** HashTable::visitAll *****

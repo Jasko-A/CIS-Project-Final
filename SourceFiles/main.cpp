@@ -362,6 +362,7 @@ Food * addNew()				//needs inpu validation
 	cin >> _fiber;
 	cout << "\nEnter sugar content: ";
 	cin >> _sugar;
+	cin.ignore(256, '\n');
 
 	Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
 	return newFood;

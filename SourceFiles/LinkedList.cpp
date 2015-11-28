@@ -69,7 +69,7 @@ void LinkedList::addItem(Food * newFood)
   newNode->data = newFood;
 
   node * temp = head;
-  while(temp->next != tail && newFood->getKey() > temp->data->getKey())
+  while(temp->next != tail && newFood->getKey() > temp->next->data->getKey())
     temp = temp->next;
   temp->next->back = newNode;
   newNode->next = temp->next;
