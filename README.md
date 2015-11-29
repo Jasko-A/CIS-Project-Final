@@ -5,11 +5,11 @@
 Write main and other .cpp's  
  - [x] File input management  
  - [ ] File output  
- - [ ] Stdin input management  
+ - [ ] Stdin input management (Mostly there)  
  - [x] Menu  
- - [ ] List
- - [ ] Search
- - [ ] Statistics  
+ - [ ] List  
+ - [ ] Search (Mostly there)  
+ - [x] Statistics  
  Others?  
   
 - [x] Make it compile  

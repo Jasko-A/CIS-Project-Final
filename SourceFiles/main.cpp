@@ -16,7 +16,7 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To clear the data in the ADTs
 void printToFile(ofstream &outFile, Stack<Food> * printStack); //To print everything out
 Food * addNew(); //To add a new Food object to all of the ADTs from stdin
-void reHash(HashTable &hTable);
+//void reHash(HashTable &hTable); //Unnecessary
 int enterInt(); //Input validation for an int
 string enterStr(); //Input validation for a string
 void menu(); //Display menu
@@ -104,11 +104,11 @@ int main()
                         cout << "Key not found\n";
                 }
                 break;
-            case 'P':
+            case 'P': //Print the tree
 	    case 'p':
 		keyBST.printIndentedTree();
                 break;
-            case 'U':
+            case 'U': //Undo delete
             case 'u':
                 if(!deleteStack.isEmpty()){
                     deleteStack.pop(newNode);
@@ -121,16 +121,17 @@ int main()
 
                 break;
 	    case 'O': //Open a file
-	    case 'o':
+	    case 'o': //Currently only works for HashTable
 		do{
         	    cout << "Enter file name: ";
        		    cin >> fileName;
         	    inFile.open(fileName.c_str());
             		if (!inFile)
                	    cout << "FILE DOESN'T EXIST\n";
-    		}while(!inFile); //Uncomment for production
+    		}while(!inFile);
 		emptyADTs(fileName, keyBST, secBST, hTable);
 		createADTs(inFile, keyBST, secBST, hTable);
+		inFile.close();
 		cin.ignore();
             case 'W': //Write to a file
             case 'w':
@@ -305,7 +306,7 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     return;
 }
 
-void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
+void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable) //Needs the BSTs
 {
     hTable.rehash(hashSize(fileSize(fileName)));
 }
@@ -322,12 +323,12 @@ void printToFile(ofstream &outFile, Stack<Food*>* printStack)
     }
 }
 
-void reHash(HashTable &hTable)
+/*void reHash(HashTable &hTable) //Unnecessary
 {
     int hashActualSize = hTable.getCount();
     int newSize = hashSize(hashActualSize);
     HashTable newHashTable(newSize);
-}
+}*/
 
 
 void menu()
