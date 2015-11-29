@@ -25,6 +25,7 @@ public:
     void addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
     bool search(int id, Food *& returnedPtr);
+    void rehash(int setSize);
     int getNumberLL();
     int getLongestLL();
     double getAverageLL();

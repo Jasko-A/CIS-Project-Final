@@ -119,6 +119,16 @@ bool HashTable::search(int id, Food *& returnedPtr)
   return false;
 }
 
+void HashTable::rehash(int setSize)
+{
+  arraySize = setSize;
+  filledSlots = 0;
+  collisions = 0;
+  count = 0;
+  delete[] arr;
+  arr = new LinkedList [arraySize];
+}
+
 /***** HashTable::getNumberLL *****
 In:
 Out: Int (returned)

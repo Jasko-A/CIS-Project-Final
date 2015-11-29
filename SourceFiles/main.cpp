@@ -13,6 +13,7 @@ int fileSize(string fileName); //To count the lines for the HashTable
 int hashSize(int fileSize); //To calculate hash size from number of lines
 Food* fileInput(ifstream &inFile); //To get the data from the file
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
+void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To clear the data in the ADTs
 void printToFile(ofstream &outFile, Stack<Food> * printStack); //To print everything out
 Food * addNew(); //To add a new Food object to all of the ADTs from stdin
 void reHash(HashTable &hTable);
@@ -119,6 +120,18 @@ int main()
                     cout << "No Previous Deletions\n";
 
                 break;
+	    case 'O': //Open a file
+	    case 'o':
+		do{
+        	    cout << "Enter file name: ";
+       		    cin >> fileName;
+        	    inFile.open(fileName.c_str());
+            		if (!inFile)
+               	    cout << "FILE DOESN'T EXIST\n";
+    		}while(!inFile); //Uncomment for production
+		emptyADTs(fileName, keyBST, secBST, hTable);
+		createADTs(inFile, keyBST, secBST, hTable);
+		cin.ignore();
             case 'W': //Write to a file
             case 'w':
                 while(!deleteStack.isEmpty())
@@ -292,6 +305,11 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     return;
 }
 
+void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
+{
+    hTable.rehash(hashSize(fileSize(fileName)));
+}
+
 void printToFile(ofstream &outFile, Stack<Food*>* printStack)
 {
     Food * temp;
@@ -320,6 +338,7 @@ void menu()
     << "S - Search by unique key or item name\n"
     << "P - Special Print\n"
     << "U - Undo Delete\n"
+    << "O - Open a Data File\n"
     << "W - Write Data to File\n"
     << "T - Statsitics\n"
     << "Q - Quit Program\n";
