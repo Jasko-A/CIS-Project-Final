@@ -326,8 +326,8 @@ void printToFile(ofstream &outFile, Stack<Food*>* printStack)
     while (printStack->getCount() != 0)
     {
         printStack->pop(temp);
-        outFile << temp->getKey() << " " << temp->getName() << " " << temp->getW() << " " << temp->getC() << " " << temp->getP();
-        outFile << " " << temp->getF() << " " << temp->getFi() << " " << temp->getS() << endl;
+        outFile <<"~" << temp->getKey() << "~^~" << temp->getName() << "~^" << temp->getW() << "^" << temp->getC() << "^" << temp->getP();
+        outFile << "^" << temp->getF() << "^" << temp->getFi() << "^" << temp->getS() << "^"<< endl;
     }
 }
 
