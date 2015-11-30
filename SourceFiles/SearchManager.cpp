@@ -19,7 +19,7 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
     cout << "P) Search by USDA identification number\n";
     cout << "S) Search by food name\n";
     cout << "M) Show Menu\n";
-    cout << "Q) Quit\n\n";
+    cout << "Q) Quit Search Manager\n\n";
 
 
     //Loop while the user has not entered the quit command (quit = 'q')
@@ -53,7 +53,7 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
                 cout << "P) Search by USDA identification number\n";
                 cout << "S) Search by food name\n";
                 cout << "M) Show Menu\n";
-                cout << "Q) Quit\n\n";
+                cout << "Q) Quit Search Manager\n";
                 break;
 
                 //Quit out of the sub menu.

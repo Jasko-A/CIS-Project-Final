@@ -127,13 +127,7 @@ int main()
             case 'l':
                 listManager(&keyBST, &secBST, &hTable);
                 break;
-            case 'P': //Print the tree
-            case 'p':
-		cout << "Sorted by key:\n";
-		keyBST.printIndentedTree();
-		cout << "Sorted by name:\n";
-		secBST.printIndentedTree();
-                break;
+
             case 'U': //Undo delete
             case 'u':
                 if(!deleteStack.isEmpty()){
@@ -364,7 +358,6 @@ void menu()
     << "D - Delete Data by key number\n"
     << "S - Search Manager\n"
     << "L - List Manager\n"
-    << "P - Special Print\n"
     << "U - Undo Delete\n"
     << "O - Open a Data File\n"
     << "W - Write Data to File\n"

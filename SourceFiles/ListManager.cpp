@@ -20,8 +20,9 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
     cout << "U) List unsorted data according to hash table\n";
     cout << "P) List by USDA identification number\n";
     cout << "S) List by food name\n";
+    cout << "I) Print as an indented list\n";
     cout << "M) Show Menu\n";
-    cout << "Q) Quit\n\n";
+    cout << "Q) Quit List Manager\n\n";
 
 
     //Loop while the user has not entered the quit command (quit = 'q')
@@ -39,18 +40,30 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
         switch(command){
 
                  //Option to list unsorted data in hash table sequence
-            case 'H':
+            case 'U':
                 unsortedList(hashTable);
                 break;
 
                  //Option to list by a unique key, which is the USDA identification number
             case 'P':
+                cout << "Listing by the USDA identification number: \n";
                 treeList(primaryTree);
                 break;
 
                 //Option to list by a secondary key, which is the food name
             case 'S':
+                cout << "Listing alphabetically by the foods name: \n";
                 treeList(secondaryTree);
+                break;
+
+            case 'I':
+                cout << "Printing the indented trees: \n\n";
+
+                cout << "Sorted by USDA number:\n";
+                primaryTree->printIndentedTree();
+
+                cout << "Sorted by the food's name:\n";
+                secondaryTree->printIndentedTree();
                 break;
 
                 //Display the menu
@@ -60,8 +73,9 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
                 cout << "U) List unsorted data according to hash table\n";
                 cout << "P) List by USDA identification number\n";
                 cout << "S) List by food name\n";
+                cout << "I) Print as an indented list\n";
                 cout << "M) Show Menu\n";
-                cout << "Q) Quit\n\n";
+                cout << "Q) Quit List Manager\n";
 
                 break;
 
@@ -90,8 +104,6 @@ void unsortedList(HashTable * hashTable)
 
 void treeList(BinarySearchTree * tree)
 {
-    cout << "Listing by the USDA identification number: \n";
-
     Food * food;
     Stack<Food *> tempStack = tree->inOrderStack();
 
