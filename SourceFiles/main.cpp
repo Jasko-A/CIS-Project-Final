@@ -5,7 +5,7 @@ by: Austin Bohannon, Brandon Archbold, Ahmed Shalan, Mikhail Smelik, Jasmin Adzi
 
 The purpose of this function is to sort data from a file, put that data into objects
 in which they will be stored into a hash table, binary search tree ,and a stack.
-The program, upon choice, will later print the indented tree, print the sorted data, 
+The program, upon choice, will later print the indented tree, print the sorted data,
 delete a certain object, add an object, update the tree/hash table, and show the
 statisics of the hash table.
 
@@ -102,8 +102,9 @@ int main()
                 break;
             case 'S': //Search Manager
             case 's':
-                //searchManager(keyBST, secBST);
+                searchManager(&keyBST, &secBST);
 
+                /*
                 char answer;
                 cout << "Would you like to seach by unique key (Y/N): ";
                 cin >> answer;
@@ -120,11 +121,11 @@ int main()
                         cout << newNode->getKey() << " " << newNode->getName() << endl;
                     else
                         cout << "Key not found\n";
-                }
+                }*/
                 break;
             case 'L': //List Manager
             case 'l':
-                //listManager(keyBST, secBST, hTable);
+                listManager(&keyBST, &secBST, &hTable);
                 break;
             case 'P': //Print the tree
             case 'p':
@@ -361,7 +362,8 @@ void menu()
     cout << "\nList of Menu options\n\n";
     cout << "A - Add New Data\n"
     << "D - Delete Data by key number\n"
-    << "S - Search by unique key or item name\n"
+    << "S - Search Manager\n"
+    << "L - List Manager\n"
     << "P - Special Print\n"
     << "U - Undo Delete\n"
     << "O - Open a Data File\n"
