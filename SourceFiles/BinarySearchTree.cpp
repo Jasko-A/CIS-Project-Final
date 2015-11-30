@@ -6,13 +6,13 @@ insert takes a pointer to a Food obeject to be inserted into the tree.
 The function inserts the item into the tree and then returns true to signify completion. */
 bool BinarySearchTree::insert(Food * newNode)
 {
-	BinaryNode* newFood = new BinaryNode(newNode);
-	if (sortedKey)
-		rootPtr = _insert(rootPtr, newFood);
-	else
-		rootPtr = _insertName(rootPtr, newFood);
-	count++;
-	return true;
+		BinaryNode* newFood = new BinaryNode(newNode);
+		if (sortedKey)
+			rootPtr = _insert(rootPtr, newFood);
+		else
+			rootPtr = _insertName(rootPtr, newFood);
+		count++;
+		return true;
 }
 
 /** =================================== */
@@ -49,12 +49,20 @@ Accepts the unique key of the item to be removed.
 If the key is found the item is removed and true is returned. If not false is returned. */
 bool BinarySearchTree::remove(int key)
 {
-	Food temp;
-	temp.setKey(key);
-	Food * target = &temp;
-	bool isSuccessful = false;
-	rootPtr = _remove(rootPtr, target, isSuccessful);
-	return isSuccessful;
+	if (sortedKey)
+	{
+		Food temp;
+		temp.setKey(key);
+		Food * target = &temp;
+		bool isSuccessful = false;
+		rootPtr = _remove(rootPtr, target, isSuccessful);
+		return isSuccessful;
+	}
+	else
+	{
+		cout << "ITEM NOT REMOVED! TREE SORTED BY NAME!\n";
+		return false;
+	}
 }
 
 /** =================================== */
@@ -140,16 +148,24 @@ Accepts a int key for the item to be searched in the BST.
 This function returns a pointer to the Food object if found, else null is returned. */
 Food* BinarySearchTree::search(int key) const
 {
-	Food temp;
-	temp.setKey(key);
-	Food * target = &temp;
-	BinaryNode* newNodePtr = _search(rootPtr, *target);
-	if (newNodePtr)
+	if (sortedKey)
 	{
-		return newNodePtr->getItem();
+		Food temp;
+		temp.setKey(key);
+		Food * target = &temp;
+		BinaryNode* newNodePtr = _search(rootPtr, *target);
+		if (newNodePtr)
+		{
+			return newNodePtr->getItem();
+		}
+		else
+			return nullptr;
 	}
 	else
+	{
+		cout << "Cannot search this tree by key, it is sorted by name!\n";
 		return nullptr;
+	}
 }
 
 /** =================================== */
@@ -216,12 +232,20 @@ Accepts the name of the item to be removed.
 If the name is found the item is removed and true is returned. If not false is returned. */
 bool BinarySearchTree::remove(string name)
 {
-	Food temp;
-	temp.setName(name);
-	Food * target = &temp;
-	bool isSuccessful = false;
-	rootPtr = _remove(rootPtr, target, isSuccessful);
-	return isSuccessful;
+	if (!sortedKey)
+	{
+		Food temp;
+		temp.setName(name);
+		Food * target = &temp;
+		bool isSuccessful = false;
+		rootPtr = _remove(rootPtr, target, isSuccessful);
+		return isSuccessful;
+	}
+	else
+	{
+		cout << "ITEM NOT REMOVED! THIS TREE IS SORTED BY NAME, NOT KEY!\n";
+		return false;
+	}
 }
 
 /** =================================== */
@@ -254,16 +278,24 @@ Accepts a int key for the item to be searched in the BST.
 This function returns a pointer to the Food object if found, else null is returned. */
 Food* BinarySearchTree::search(string name) const
 {
-	Food temp;
-	temp.setName(name);
-	Food * target = &temp;
-	BinaryNode* newNodePtr = _searchName(rootPtr, *target);
-	if (newNodePtr)
+	if (!sortedKey)
 	{
-		return newNodePtr->getItem();
+		Food temp;
+		temp.setName(name);
+		Food * target = &temp;
+		BinaryNode* newNodePtr = _searchName(rootPtr, *target);
+		if (newNodePtr)
+		{
+			return newNodePtr->getItem();
+		}
+		else
+			return nullptr;
 	}
 	else
+	{
+		cout << "Cannot search this tree by name, it is sorted by key!\n";
 		return nullptr;
+	}
 }
 
 /** =================================== */
