@@ -6,6 +6,8 @@
 #include "../HeaderFiles/Food.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/HashTable.h"
+#include "../HeaderFiles/SearchManager.h"
+#include "../HeaderFiles/ListManager.h"
 
 using namespace std;
 
@@ -84,8 +86,10 @@ int main()
                     cout << "Key not found\n";
 
                 break;
-            case 'S': //Search
+            case 'S': //Search Manager
             case 's':
+                //searchManager(keyBST, secBST);
+
                 char answer;
                 cout << "Would you like to seach by unique key (Y/N): ";
                 cin >> answer;
@@ -104,8 +108,12 @@ int main()
                         cout << "Key not found\n";
                 }
                 break;
+            case 'L': //List Manager
+            case 'l':
+                //listManager(keyBST, secBST, hTable);
+                break;
             case 'P': //Print the tree
-	    case 'p':
+            case 'p':
 		keyBST.printIndentedTree();
                 break;
             case 'U': //Undo delete

@@ -78,7 +78,7 @@ bool Stack<T>::getTop(T &passedItem) const
 {
   if(!head)
     return false;
-  passedItem = head.data;
+  passedItem = head->data;
   return true;
 }
 
