@@ -1,3 +1,5 @@
+//Created by: Jasmin Adzic
+
 #include "../HeaderFiles/Food.h"
 /** =========================*/
 /*This is the food object constructor
