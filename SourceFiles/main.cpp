@@ -1,3 +1,16 @@
+/**===================================*/
+/*CIS 22C Team Project
+Team 8: USDA Nutritional Facts Sorter and Filer
+by: Austin Bohannon, Brandon Archbold, Ahmed Shalan, Mikhail Smelik, Jasmin Adzic
+
+The purpose of this function is to sort data from a file, put that data into objects
+in which they will be stored into a hash table, binary search tree ,and a stack.
+The program, upon choice, will later print the indented tree, print the sorted data, 
+delete a certain object, add an object, update the tree/hash table, and show the
+statisics of the hash table.
+
+*/
+
 #include <iostream>
 #include <string>
 #include <fstream>
