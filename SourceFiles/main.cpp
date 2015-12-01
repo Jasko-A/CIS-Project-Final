@@ -49,7 +49,7 @@ int main()
         cout << "Enter file name: ";
         cin >> fileName;*/
 
-        inFile.open(fileName.c_str());
+	inFile.open("../ResourceFile/USDA_data_small.txt");
             if (!inFile)
                 cout << "FILE DOESN'T EXIST\n";
 /*
@@ -405,6 +405,8 @@ int enterInt()
 	do {
 		cout << "Enter a value: ";
 		//success = cin >> sKey;
+		cin >> sKey;
+		success = sKey;
 		cin.clear();
 		cin.ignore(256, '\n');
 	} while (!success);
