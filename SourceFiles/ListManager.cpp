@@ -104,13 +104,7 @@ void unsortedList(HashTable * hashTable)
 
 void treeList(BinarySearchTree * tree)
 {
-    Food * food;
-    Stack<Food *> tempStack = tree->inOrderStack();
-
-    while(!tempStack.isEmpty()){
-        tempStack.pop(food);
-        displayItem(food);
-    }
+    tree->inOrderPrint();
 }
 
 

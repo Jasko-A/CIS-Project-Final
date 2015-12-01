@@ -32,23 +32,21 @@ void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
 /* Public member function to place all items in the tree into a Stack inOrder.
 No input paramerters.
 Returns the Stack of Food pointers from the inOrder traversal. */
-Stack<Food*> BinaryTree::inOrderStack()
+void BinaryTree::inOrderPrint()
 {
-	Stack<Food*> inOrderStack;
-	return _inOrderStack(rootPtr, inOrderStack);
+	_inOrderPrint(rootPtr);
 }
 
 /** =================================== */
 /* Private member function called by inOrderStack to make an inOrder Stack.
 Recieves the root of the tree as well as the Stack.
 Returns the stack of Food pointers. */
-Stack<Food*> BinaryTree::_inOrderStack(BinaryNode * nodePtr, Stack<Food*> inOrderStack)
+void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
 {
 	if (nodePtr != 0)
 	{
-		_inOrderStack(nodePtr->getRightPtr(), inOrderStack);
-		inOrderStack.push(nodePtr->getItem());
-		_inOrderStack(nodePtr->getLeftPtr(), inOrderStack);
+		_inOrderPrint(nodePtr->getLeftPtr());
+		cout << "\nKey: " << nodePtr->getItem()->getKey();
+		_inOrderPrint(nodePtr->getRightPtr());
 	}
-	return inOrderStack;
 }

@@ -26,7 +26,7 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 	{
 		nodePtr = newNodePtr;
 	}
-	else if (newNodePtr->getItem() < nodePtr->getItem())
+	else if (newNodePtr->getItem()->getKey() < nodePtr->getItem()->getKey())
 	{
 		if (nodePtr->getLeftPtr())
 			_insert(nodePtr->getLeftPtr(), newNodePtr);
