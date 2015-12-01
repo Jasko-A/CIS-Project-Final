@@ -3,7 +3,12 @@
 
 #include "../HeaderFiles/SearchManager.h"
 
-
+/*
+Purpose of the seachManager is to display menu where the user will enter one of few choices.
+If the user wants to search by key it will go to the appropriate functions,
+same for food name.
+nothing is returned.
+*/
 void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTree){
     cout << "Search option selected\n";
     cout << "Now displaying the search menu\n\n";
@@ -72,7 +77,9 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
     }
 }
 
-
+/*
+Purpose of this function is to search by a unique key through the hash table
+*/
 
 void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
 {
@@ -93,7 +100,9 @@ void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
     }else
         cout << key << " was not found in the USDA Nutritional Database.\n";
 }
-
+/*
+Purpose of this function is to search the hash table by food name
+*/
 void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
 {
     string name;
@@ -113,7 +122,11 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     }else
         cout << name << " was not found in the USDA Nutritional Database.\n";
 }
-
+/*
+The purpose of this function is to, display the contents of the food object
+that was searched by the above functions
+Shows everthing in the object form the name to the nutrtional facts
+*/
 void displayFoodData(Food * searchedFoodItem){
         cout << "\tFood Key  : " << searchedFoodItem->getKey() << endl;
         cout << "\tFood Name : " << searchedFoodItem->getName() << endl;
