@@ -7,12 +7,14 @@
 #include "BinaryNode.h"
 #include <iomanip>
 #include "Stack.h"
+#include "LinkedList.h"
 
 class BinaryTree
 {
 protected:
 	BinaryNode* rootPtr;
 	int count;
+	bool sortedKey;
 	
 public:
 
@@ -25,6 +27,8 @@ public:
 	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
 	void inOrderPrint();
+	Food* inOrderArr(Food arr[]);
+	LinkedList inOrderLL();
 
 
 	// abstract functions
@@ -36,6 +40,8 @@ private:
 	void destroyTree(BinaryNode* nodePtr);
 	void _printIndentedTree(BinaryNode* nodePtr, int level);
 	void _inOrderPrint(BinaryNode * nodePtr);
+	Food* _inOrderArr(BinaryNode * nodePtr, Food arr[]);
+	LinkedList _inOrderLL(BinaryNode * nodePtr, LinkedList list);
 
 };
 

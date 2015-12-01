@@ -25,17 +25,17 @@ statisics of the hash table.
 
 using namespace std;
 
-int fileSize(string fileName); //To count the lines for the HashTable
-int hashSize(int fileSize); //To calculate hash size from number of lines
-Food* fileInput(ifstream &inFile); //To get the data from the file
-void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To put the data in the ADTs
-void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable); //To clear the data in the ADTs
-void printToFile(ofstream &outFile, Stack<Food> * printStack); //To print everything out
-Food * addNew(); //To add a new Food object to all of the ADTs from stdin
+int fileSize(string fileName);																					//To count the lines for the HashTable
+int hashSize(int fileSize);																						//To calculate hash size from number of lines
+Food* fileInput(ifstream &inFile);																				//To get the data from the file
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
+void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
+void printToFile(ofstream &outFile, Stack<Food> * printStack);													//To print everything out
+Food * addNew();																								//To add a new Food object to all of the ADTs from stdin
 //void reHash(HashTable &hTable); //Unnecessary
-int enterInt(); //Input validation for an int
-string enterStr(); //Input validation for a string
-void menu(); //Display menu
+int enterInt();																									//Input validation for an int
+string enterStr();																								//Input validation for a string
+void menu();																									//Display menu
 
 int main()
 {
@@ -67,6 +67,16 @@ int main()
     char choice;
     Stack<Food> * outputStack;
     Stack<Food *> deleteStack;
+
+	//// For testing purposes
+	//Food * arr = new Food[keyBST.size()];
+	//keyBST.inOrderArr(arr);
+	//for (int i = 0; i < keyBST.size(); i++)
+	//	cout << arr[i].getKey() << endl;
+
+	//LinkedList list = keyBST.inOrderLL();
+	//list.printAll();
+		
 
     while(checker)
     {

@@ -162,3 +162,13 @@ void LinkedList::visitAll(void visit(Food *))
         temp = temp->next;
     }
 }
+
+void LinkedList::printAll()
+{
+	node * temp = head->next;
+	while (temp != tail)
+	{
+		cout << temp->data->getKey() << endl;
+		temp = temp->next;
+	}
+}

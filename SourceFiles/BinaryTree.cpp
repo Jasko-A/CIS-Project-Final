@@ -31,7 +31,7 @@ void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
 /** =================================== */
 /* Public member function to place all items in the tree into a Stack inOrder.
 No input paramerters.
-Returns the Stack of Food pointers from the inOrder traversal. */
+No return value. */
 void BinaryTree::inOrderPrint()
 {
 	_inOrderPrint(rootPtr);
@@ -39,14 +39,71 @@ void BinaryTree::inOrderPrint()
 
 /** =================================== */
 /* Private member function called by inOrderStack to make an inOrder Stack.
-Recieves the root of the tree as well as the Stack.
-Returns the stack of Food pointers. */
+Recieves the root of the tree.
+No return value. Output's an inOrder of the BT. */
 void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
+{
+	if (sortedKey)
+	{
+		if (nodePtr != 0)
+		{
+			_inOrderPrint(nodePtr->getLeftPtr());
+			cout << "\nKey: " << nodePtr->getItem()->getKey();
+			_inOrderPrint(nodePtr->getRightPtr());
+		}
+	}
+	else
+	{
+		if (nodePtr != 0)
+		{
+			_inOrderPrint(nodePtr->getLeftPtr());
+			cout << "\nName: " << nodePtr->getItem()->getName();
+			_inOrderPrint(nodePtr->getRightPtr());
+		}
+	}
+}
+
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
+Food * BinaryTree::inOrderArr(Food arr[])
+{
+	return _inOrderArr(rootPtr, arr);
+}
+
+
+
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
+Food * BinaryTree::_inOrderArr(BinaryNode * nodePtr, Food arr[])
+{
+	int i = 0;
+	if (nodePtr != 0)
+	{
+		_inOrderArr(nodePtr->getLeftPtr(), arr);
+		arr[i] = *nodePtr->getItem();
+		i++;
+		_inOrderArr(nodePtr->getRightPtr(), arr);
+	}
+	return arr;
+}
+
+LinkedList BinaryTree::inOrderLL()
+{
+	LinkedList list;
+	return _inOrderLL(rootPtr, list);
+}
+
+LinkedList BinaryTree::_inOrderLL(BinaryNode * nodePtr, LinkedList list)
 {
 	if (nodePtr != 0)
 	{
-		_inOrderPrint(nodePtr->getLeftPtr());
-		cout << "\nKey: " << nodePtr->getItem()->getKey();
-		_inOrderPrint(nodePtr->getRightPtr());
+		_inOrderLL(nodePtr->getLeftPtr(), list);
+		list.addItem(nodePtr->getItem());
+		_inOrderLL(nodePtr->getRightPtr(), list);
 	}
+	return LinkedList();
 }

@@ -22,7 +22,6 @@ public:
 	Food* search(string name) const;		//Search by name
 
 private:
-	bool sortedKey;
 	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _insertName(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _remove(BinaryNode* nodePtr, Food *& target, bool & success);

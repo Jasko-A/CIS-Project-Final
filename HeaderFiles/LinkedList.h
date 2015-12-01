@@ -29,6 +29,7 @@ public:
   bool itemExists(int &id);
   bool search(int &id, Food *& returnedItem);
   void visitAll(void visit(Food *));
+  void printAll();
   int getCount() const {return count;}
 };
 
