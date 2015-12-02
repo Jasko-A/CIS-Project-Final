@@ -385,7 +385,10 @@ BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & targ
 	return nodePtr;
 }
 
-
+/** =================================== */
+/* Find the left most node in the tree
+Recieves the root of the tree.
+Returns a pointer to the left most node in the tree. */
 BinaryNode* BinarySearchTree::findLeftmostNode(BinaryNode* nodePtr)
 {
 	while (nodePtr->getLeftPtr() != NULL) nodePtr = nodePtr->getLeftPtr();
