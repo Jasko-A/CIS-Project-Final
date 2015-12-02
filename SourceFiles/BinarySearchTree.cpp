@@ -291,15 +291,40 @@ BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food *& target, b
 	if (nodePtr == 0)
 	{
 		success = false;
-		return 0;
+		return nullptr;
 	}
 	if (nodePtr->getItem()->getName() > target->getName())
-		nodePtr->setLeftPtr(_removeName(nodePtr->getLeftPtr(), target, success));
+		nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
 	else if (nodePtr->getItem()->getName() < target->getName())
-		nodePtr->setRightPtr(_removeName(nodePtr->getRightPtr(), target, success));
+		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
-		nodePtr = deleteNode(nodePtr);
+		if (nodePtr->getLeftPtr() == NULL && nodePtr->getRightPtr() == NULL)
+		{
+			deleteNode(nodePtr);
+			nodePtr = NULL;
+		}
+		else if (nodePtr->getRightPtr() == NULL)
+		{
+			BinaryNode *temp = nodePtr->getLeftPtr();
+			deleteNode(nodePtr);
+			nodePtr = temp;
+		}
+		else if (nodePtr->getLeftPtr() == NULL)
+		{
+			BinaryNode *temp = nodePtr->getRightPtr();
+			deleteNode(nodePtr);
+			nodePtr = temp;
+		}
+		else
+		{
+
+			BinaryNode *temp = findLeftmostNode(nodePtr->getRightPtr());
+
+			nodePtr->setItem(temp->getItem());
+
+			nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), temp->getItem(), success));
+		}
 		success = true;
 		count--;
 	}
@@ -340,7 +365,7 @@ BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & targ
 {
 	if (!nodePtr)
 		return nullptr;
-	else if (target.getName() == nodePtr->getItem()->getName())
+	else if (target.getName().substr(0,target.getName().length()) == nodePtr->getItem()->getName().substr(0, nodePtr->getItem()->getName().length()))
 		return nodePtr;
 	else if (target.getName() < nodePtr->getItem()->getName())
 	{
