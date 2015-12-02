@@ -212,14 +212,14 @@ BinaryNode* BinarySearchTree::_insertName(BinaryNode* nodePtr, BinaryNode* newNo
 	else if (newNodePtr->getItem()->getName() < nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getLeftPtr())
-			_insert(nodePtr->getLeftPtr(), newNodePtr);
+			_insertName(nodePtr->getLeftPtr(), newNodePtr);
 		else
 			nodePtr->setLeftPtr(newNodePtr);
 	}
 	else
 	{
 		if (nodePtr->getRightPtr())
-			_insert(nodePtr->getRightPtr(), newNodePtr);
+			_insertName(nodePtr->getRightPtr(), newNodePtr);
 		else
 			nodePtr->setRightPtr(newNodePtr);
 	}

@@ -67,9 +67,11 @@ void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
 /* <function purpose>
 <explanation of all input parameters>
 <explanation of all output actions and return value > */
-Food * BinaryTree::inOrderArr(Food arr[])
+void BinaryTree::inOrderArr(Food arr[])
 {
-	return _inOrderArr(rootPtr, arr);
+	int *i = new int;
+	*i = 0;
+	_inOrderArr(rootPtr, arr, i);
 }
 
 
@@ -78,32 +80,13 @@ Food * BinaryTree::inOrderArr(Food arr[])
 /* <function purpose>
 <explanation of all input parameters>
 <explanation of all output actions and return value > */
-Food * BinaryTree::_inOrderArr(BinaryNode * nodePtr, Food arr[])
-{
-	int i = 0;
-	if (nodePtr != 0)
-	{
-		_inOrderArr(nodePtr->getLeftPtr(), arr);
-		arr[i] = *nodePtr->getItem();
-		i++;
-		_inOrderArr(nodePtr->getRightPtr(), arr);
-	}
-	return arr;
-}
-
-LinkedList BinaryTree::inOrderLL()
-{
-	LinkedList list;
-	return _inOrderLL(rootPtr, list);
-}
-
-LinkedList BinaryTree::_inOrderLL(BinaryNode * nodePtr, LinkedList list)
+void BinaryTree::_inOrderArr(BinaryNode * nodePtr, Food arr[], int * i)
 {
 	if (nodePtr != 0)
 	{
-		_inOrderLL(nodePtr->getLeftPtr(), list);
-		list.addItem(nodePtr->getItem());
-		_inOrderLL(nodePtr->getRightPtr(), list);
+		_inOrderArr(nodePtr->getLeftPtr(), arr, i);
+		arr[*i] = *nodePtr->getItem();
+		(*i)++;
+		_inOrderArr(nodePtr->getRightPtr(), arr, i);
 	}
-	return LinkedList();
 }

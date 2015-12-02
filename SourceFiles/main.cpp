@@ -68,16 +68,12 @@ int main()
     Stack<Food> * outputStack;
     Stack<Food *> deleteStack;
 
-	//// For testing purposes
-	//Food * arr = new Food[keyBST.size()];
-	//keyBST.inOrderArr(arr);
-	//for (int i = 0; i < keyBST.size(); i++)
-	//	cout << arr[i].getKey() << endl;
-
-	//LinkedList list = keyBST.inOrderLL();
-	//list.printAll();
+	// For testing purposes
+	Food * arr = new Food[keyBST.size()];
+	keyBST.inOrderArr(arr);
+	for (int i = 0; i < keyBST.size(); i++)
+		cout << arr[i].getKey() << endl;
 		
-
     while(checker)
     {
         menu();
@@ -415,8 +411,6 @@ int enterInt()
 	do {
 		cout << "Enter a value: ";
 		//success = cin >> sKey;
-		cin >> sKey;
-		success = sKey;
 		cin.clear();
 		cin.ignore(256, '\n');
 	} while (!success);
