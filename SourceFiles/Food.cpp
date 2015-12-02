@@ -26,7 +26,7 @@ Food::Food(int _key, string _name, double _water, int _calories, double _protien
 {
 	uniqueKey = _key;
 	foodDescription = _name;
-	water = water;
+	water = _water;
 	calories = _calories;
 	protein = _protien;
 	fat = _fat;

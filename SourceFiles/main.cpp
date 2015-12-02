@@ -44,6 +44,7 @@ int main()
     
     string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
     
+	ofstream outFile;
     ifstream inFile;
     /*string fileName; // Uncomment for production
      do{
@@ -158,10 +159,9 @@ int main()
             case 'w':
                 while(!deleteStack.isEmpty())
                     deleteStack.pop(newNode);
-                /*  ofstream outFile;
-                 outFile.open("output.txt");
-                 outputStack = keyBST.inOrderStack;
-                 printToFile(outFile, outputStack);*/
+               
+                outFile.open("output.txt");
+				printToFile(outFile, keyBST);
                 break;
             case 'T': //Statistics
             case 't':
@@ -334,14 +334,13 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
 
 void printToFile(ofstream &outFile, BinarySearchTree &BST)
 {
-    Food * arr = new Food[BST.size()];
+	const int size = BST.size();
+    Food *arr = new Food[size];
     toArray(BST, arr);
-    outFile << "Sorted Data using the unique key" << endl << endl;
-    
     for (int i = 0; i < BST.size(); i++)
     {
-        outFile <<"~" << arr[i]->getKey() << "~^~" << arr[i]->getName() << "~^" << arr[i]->getW() << "^" << arr[i]->getC() << "^" << arr[i]->getP();
-        outFile << "^" << arr[i]->getF() << "^" << arr[i]->getFi() << "^" << arr[i]->getS() << "^"<< endl;
+        outFile <<"~" << arr[i].getKey() << "~^~" << arr[i].getName() << "~^" << arr[i].getW() << "^" << arr[i].getC() << "^" << arr[i].getP();
+        outFile << "^" << arr[i].getF() << "^" << arr[i].getFi() << "^" << arr[i].getS() << "^"<< endl;
     }
 }
 

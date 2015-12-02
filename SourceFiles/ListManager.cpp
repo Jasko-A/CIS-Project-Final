@@ -109,8 +109,8 @@ void treeList(BinarySearchTree * tree)
 
 
 void displayItem(Food * foodItem){
-        cout << "\tFood Key  : " << foodItem->getKey() << endl;
-        cout << "\tFood Name : " << foodItem->getName() << endl;
+        cout << "\nFood Key  : " << foodItem->getKey() << endl;
+        cout << "Food Name : " << foodItem->getName() << endl;
         cout << "\tWater     : " << foodItem->getW() << endl;
         cout << "\tCalories  : " << foodItem->getC() << endl;
         cout << "\tProtein   : " << foodItem->getP() << endl;
