@@ -332,7 +332,7 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
     hTable.rehash(hashSize(fileSize(fileName)));
 }
 
-void printToFile(ofstream &outFile, Stack<Food*>* printStack)
+void printToFile(ofstream &outFile, BinarySearchTree &BST)
 {
     Food * arr = new Food[BST.size()];
     toArray(BST, arr);
