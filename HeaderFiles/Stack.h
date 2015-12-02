@@ -39,7 +39,7 @@ Stack<T>::~Stack()
   //Delete all nodes
   while(temp)
   {
-    tempNext = temp;
+    tempNext = temp->next;
     delete temp;
     temp = tempNext;
   }

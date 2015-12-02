@@ -411,6 +411,8 @@ int enterInt()
 	do {
 		cout << "Enter a value: ";
 		//success = cin >> sKey;
+		cin >> sKey;
+		success = true;
 		cin.clear();
 		cin.ignore(256, '\n');
 	} while (!success);
