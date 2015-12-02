@@ -28,7 +28,7 @@ using namespace std;
 int fileSize(string fileName);																					//To count the lines for the HashTable
 int hashSize(int fileSize);																						//To calculate hash size from number of lines
 Food* fileInput(ifstream &inFile);																				//To get the data from the file
-void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable, Food *arr);		//To put the data in the ADTs
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
 void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To print everything out
 Food * addNew();																								//To add a new Food object to all of the ADTs from stdin
@@ -61,14 +61,14 @@ int main()
     BinarySearchTree secBST(false); //false means sort by non unique key
     HashTable hTable(hashSize(fileSize(fileName)));
     
-    createADTs(inFile, keyBST, secBST, hTable);
+    Food *unsortedArr = new Food(filesize(fileName));
+    
+    createADTs(inFile, keyBST, secBST, hTable, unsortedArr);
     
     inFile.close();
     
     bool checker = true;  // this is for the while loop
     char choice;
-    Stack<Food> * outputStack;
-    Stack<Food *> deleteStack;
     
     while(checker)
     {
@@ -315,14 +315,17 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         return NULL;
 }
 
-void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable, Food *arr)
 {
     Food * temp;
+    int i = 0;
     while(temp = fileInput(inFile))
     {
         keyBST.insert(temp);
         secBST.insert(temp);
         hTable.addEntry(temp);
+        arr[i] = temp;
+        i++;
     }
     return;
 }
