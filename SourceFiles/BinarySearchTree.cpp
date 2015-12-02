@@ -34,14 +34,20 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 		if (nodePtr->getLeftPtr())
 			_insert(nodePtr->getLeftPtr(), newNodePtr);
 		else
-			nodePtr->setLeftPtr(newNodePtr);
+			if (newNodePtr->getItem()->getKey != nodePtr->getItem()->getKey())
+				nodePtr->setLeftPtr(newNodePtr);
+			else
+				cout << "Cannot insert duplicate key!\n";
 	}
 	else
 	{
 		if (nodePtr->getRightPtr())
 			_insert(nodePtr->getRightPtr(), newNodePtr);
 		else
-			nodePtr->setRightPtr(newNodePtr);
+			if (newNodePtr->getItem()->getKey != nodePtr->getItem()->getKey())
+				nodePtr->setRightPtr(newNodePtr);
+			else
+				cout << "Cannot insert duplicate key!\n";
 	}
 	return nodePtr;
 }
@@ -85,7 +91,7 @@ BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, Food *& target, bool 
 		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
-		nodePtr = deleteNode(nodePtr);
+		this->rootPtr = deleteNode(nodePtr);
 		success = true;
 		count--;
 	}

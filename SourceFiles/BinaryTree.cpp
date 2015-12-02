@@ -51,7 +51,7 @@ void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
 		if (nodePtr != 0)
 		{
 			_inOrderPrint(nodePtr->getLeftPtr());
-			cout << "\nKey: " << nodePtr->getItem()->getKey();
+			cout << "\nKey: " << nodePtr->getItem()->getKey() << " Name: " << nodePtr->getItem()->getName();
 			_inOrderPrint(nodePtr->getRightPtr());
 		}
 	}
@@ -60,7 +60,7 @@ void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
 		if (nodePtr != 0)
 		{
 			_inOrderPrint(nodePtr->getLeftPtr());
-			cout << "\nName: " << nodePtr->getItem()->getName();
+			cout << "\nKey: " << nodePtr->getItem()->getKey() << " Name: " << nodePtr->getItem()->getName();
 			_inOrderPrint(nodePtr->getRightPtr());
 		}
 	}
