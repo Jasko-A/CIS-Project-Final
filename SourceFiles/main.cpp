@@ -69,6 +69,7 @@ int main()
     
     bool checker = true;  // this is for the while loop
     char choice;
+    Stack<Food *> deleteStack;
     
     while(checker)
     {
