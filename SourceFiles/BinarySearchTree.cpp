@@ -34,7 +34,7 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 		if (nodePtr->getLeftPtr())
 			_insert(nodePtr->getLeftPtr(), newNodePtr);
 		else
-			if (newNodePtr->getItem()->getKey != nodePtr->getItem()->getKey())
+			if (newNodePtr->getItem()->getKey() != nodePtr->getItem()->getKey())
 				nodePtr->setLeftPtr(newNodePtr);
 			else
 				cout << "Cannot insert duplicate key!\n";
@@ -44,7 +44,7 @@ BinaryNode* BinarySearchTree::_insert(BinaryNode* nodePtr, BinaryNode* newNodePt
 		if (nodePtr->getRightPtr())
 			_insert(nodePtr->getRightPtr(), newNodePtr);
 		else
-			if (newNodePtr->getItem()->getKey != nodePtr->getItem()->getKey())
+			if (newNodePtr->getItem()->getKey() != nodePtr->getItem()->getKey())
 				nodePtr->setRightPtr(newNodePtr);
 			else
 				cout << "Cannot insert duplicate key!\n";

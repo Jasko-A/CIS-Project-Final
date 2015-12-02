@@ -61,7 +61,7 @@ int main()
     BinarySearchTree secBST(false); //false means sort by non unique key
     HashTable hTable(hashSize(fileSize(fileName)));
     
-    Food *unsortedArr = new Food(filesize(fileName));
+    Food *unsortedArr = new Food[fileSize(fileName)];
     
     createADTs(inFile, keyBST, secBST, hTable, unsortedArr);
     
@@ -153,7 +153,7 @@ int main()
                         cout << "FILE DOESN'T EXIST\n";
                 }while(!inFile);
                 emptyADTs(fileName, keyBST, secBST, hTable);
-                createADTs(inFile, keyBST, secBST, hTable);
+                createADTs(inFile, keyBST, secBST, hTable, unsortedArr);
                 inFile.close();
                 cin.ignore();
             case 'W': //Write to a file
@@ -325,7 +325,7 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
         keyBST.insert(temp);
         secBST.insert(temp);
         hTable.addEntry(temp);
-        arr[i] = temp;
+        arr[i] = *temp;
         i++;
     }
     return;
