@@ -33,18 +33,6 @@ Food::Food(int _key, string _name, double _water, int _calories, double _protien
 	fiber = _fiber;
 	sugar = _sugar;
 
-	/*
-	setKey(_key);
-	setName(_name);
-	setW(_water);
-	setC(_calories);
-	setP(_protien);
-	setF(_fat);
-	setFi(_fiber);
-	setS(_sugar);
-
-	*/
-
 }
 /** ============================*/
 /*Operator equal puropose is to overload the value in refernce to the object.

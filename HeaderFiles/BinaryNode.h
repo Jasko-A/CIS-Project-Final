@@ -1,4 +1,5 @@
-// Node for a binary tree
+// Node for a binary tree header file
+// Brandon Archbold
 
  
 #ifndef _BINARY_NODE

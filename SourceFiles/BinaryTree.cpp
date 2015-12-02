@@ -1,3 +1,6 @@
+// BinaryTree.cpp implementation file to manage the BT.
+// Brandon Archbold
+
 #include "../HeaderFiles/BinaryTree.h"
 
 /** =================================== */
@@ -64,9 +67,9 @@ void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* Fills an array with Food objects inorder
+Accepts the Food array to be filled.
+No return value. */
 void BinaryTree::inOrderArr(Food arr[])
 {
 	int *i = new int;
@@ -77,9 +80,9 @@ void BinaryTree::inOrderArr(Food arr[])
 
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* Fills an array with Food objects inorder.
+Accepts the root of the tree, the array, and the value of the array to be filled.
+No return value. */
 void BinaryTree::_inOrderArr(BinaryNode * nodePtr, Food arr[], int * i)
 {
 	if (nodePtr != 0)

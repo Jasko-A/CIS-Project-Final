@@ -1,3 +1,6 @@
+// BinarySearchTree.cpp implementation file to manage the BST.
+// Brandon Archbold
+
 #include "../HeaderFiles/BinarySearchTree.h"
 
 /** =================================== */
