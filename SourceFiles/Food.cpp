@@ -75,7 +75,7 @@ void Food::setName(string _name)
 }
 void Food::setW(double _water)
 {
-	water = water;
+	water = _water;
 }
 void Food::setC(int _calories)
 {
