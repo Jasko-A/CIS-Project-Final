@@ -30,9 +30,10 @@ int hashSize(int fileSize);																						//To calculate hash size from n
 Food* fileInput(ifstream &inFile);																				//To get the data from the file
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
-void printToFile(ofstream &outFile, Stack<Food> * printStack);													//To print everything out
+void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To print everything out
 Food * addNew();																								//To add a new Food object to all of the ADTs from stdin
 //void reHash(HashTable &hTable); //Unnecessary
+void toArray(BinarySearchTree &BST, Food *arr);
 int enterInt();																									//Input validation for an int
 string enterStr();																								//Input validation for a string
 void menu();																									//Display menu
@@ -40,63 +41,57 @@ void menu();																									//Display menu
 int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
-
+    
     string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
-
+    
     ifstream inFile;
     /*string fileName; // Uncomment for production
-    do{
-        cout << "Enter file name: ";
-        cin >> fileName;*/
-
-	inFile.open("../ResourceFile/USDA_data_small.txt");
-            if (!inFile)
-                cout << "FILE DOESN'T EXIST\n";
-/*
-    }while(!inFile);*/ //Uncomment for production
-
-	BinarySearchTree keyBST(true); //true means sort by unique key
-	BinarySearchTree secBST(false); //false means sort by non unique key
+     do{
+     cout << "Enter file name: ";
+     cin >> fileName;*/
+    
+    inFile.open("../ResourceFile/USDA_data_small.txt");
+    if (!inFile)
+        cout << "FILE DOESN'T EXIST\n";
+    /*
+     }while(!inFile);*/ //Uncomment for production
+    
+    BinarySearchTree keyBST(true); //true means sort by unique key
+    BinarySearchTree secBST(false); //false means sort by non unique key
     HashTable hTable(hashSize(fileSize(fileName)));
-
+    
     createADTs(inFile, keyBST, secBST, hTable);
-
+    
     inFile.close();
-
+    
     bool checker = true;  // this is for the while loop
     char choice;
     Stack<Food> * outputStack;
     Stack<Food *> deleteStack;
-
-	// For testing purposes
-	Food * arr = new Food[keyBST.size()];
-	keyBST.inOrderArr(arr);
-	for (int i = 0; i < keyBST.size(); i++)
-		cout << arr[i].getKey() << endl;
-		
+    
     while(checker)
     {
         menu();
         cout << "\nChoice: ";
         cin.get(choice);
         cin.ignore(256,'\n');
-
-		Food * newNode;
-
+        
+        Food * newNode;
+        
         switch (choice)
         {
             case 'A': //Add new data
             case 'a':
-		newNode = addNew();
-		keyBST.insert(newNode);
-		secBST.insert(newNode);
-		hTable.addEntry(newNode);
+                newNode = addNew();
+                keyBST.insert(newNode);
+                secBST.insert(newNode);
+                hTable.addEntry(newNode);
                 break;
             case 'D': //Delete data
             case 'd':
-
+                
                 if (hTable.search(enterInt(), newNode))
-		{
+                {
                     deleteStack.push(newNode);
                     hTable.remove(newNode);
                     keyBST.remove(newNode->getKey());
@@ -104,36 +99,36 @@ int main()
                 }
                 else
                     cout << "Key not found\n";
-
+                
                 break;
             case 'S': //Search Manager
             case 's':
                 searchManager(&keyBST, &secBST);
-
+                
                 /*
-                char answer;
-                cout << "Would you like to seach by unique key (Y/N): ";
-                cin >> answer;
-                if (answer == 'Y' || answer == 'y')
-                {
-                    if (hTable.search(enterInt(), newNode))
-                        cout << newNode->getName() << endl;
-                    else
-                        cout << "Key not found\n";
-                }
-                else if (answer == 'N' || answer == 'n')
-                {
-                    if(newNode = secBST.search(enterStr())) //Doesn't seem to work?
-                        cout << newNode->getKey() << " " << newNode->getName() << endl;
-                    else
-                        cout << "Key not found\n";
-                }*/
+                 char answer;
+                 cout << "Would you like to seach by unique key (Y/N): ";
+                 cin >> answer;
+                 if (answer == 'Y' || answer == 'y')
+                 {
+                 if (hTable.search(enterInt(), newNode))
+                 cout << newNode->getName() << endl;
+                 else
+                 cout << "Key not found\n";
+                 }
+                 else if (answer == 'N' || answer == 'n')
+                 {
+                 if(newNode = secBST.search(enterStr())) //Doesn't seem to work?
+                 cout << newNode->getKey() << " " << newNode->getName() << endl;
+                 else
+                 cout << "Key not found\n";
+                 }*/
                 break;
             case 'L': //List Manager
             case 'l':
                 listManager(&keyBST, &secBST, &hTable);
                 break;
-
+                
             case 'U': //Undo delete
             case 'u':
                 if(!deleteStack.isEmpty()){
@@ -144,48 +139,48 @@ int main()
                 }
                 else
                     cout << "No Previous Deletions\n";
-
+                
                 break;
-	    case 'O': //Open a file
-	    case 'o': //Currently only works for HashTable
-		do{
-        	    cout << "Enter file name: ";
-       		    cin >> fileName;
-        	    inFile.open(fileName.c_str());
-            		if (!inFile)
-               	    cout << "FILE DOESN'T EXIST\n";
-    		}while(!inFile);
-		emptyADTs(fileName, keyBST, secBST, hTable);
-		createADTs(inFile, keyBST, secBST, hTable);
-		inFile.close();
-		cin.ignore();
+            case 'O': //Open a file
+            case 'o': //Currently only works for HashTable
+                do{
+                    cout << "Enter file name: ";
+                    cin >> fileName;
+                    inFile.open(fileName.c_str());
+                    if (!inFile)
+                        cout << "FILE DOESN'T EXIST\n";
+                }while(!inFile);
+                emptyADTs(fileName, keyBST, secBST, hTable);
+                createADTs(inFile, keyBST, secBST, hTable);
+                inFile.close();
+                cin.ignore();
             case 'W': //Write to a file
             case 'w':
                 while(!deleteStack.isEmpty())
                     deleteStack.pop(newNode);
-              /*  ofstream outFile;
-                outFile.open("output.txt");
-                outputStack = keyBST.inOrderStack;
-                printToFile(outFile, outputStack);*/
+                /*  ofstream outFile;
+                 outFile.open("output.txt");
+                 outputStack = keyBST.inOrderStack;
+                 printToFile(outFile, outputStack);*/
                 break;
             case 'T': //Statistics
             case 't':
-				cout << "\nSize of Array: " << hTable.getSize()
-				<< "\nCount: " << hTable.getCount()
-				<< "\nFilled Slots: " << hTable.getFilledSlots()
-				<< "\nCollisions: " << hTable.getCollisions()
-				<< "\nNumber of Linked Lists: " << hTable.getNumberLL()
-				<< "\nLongest Linked List: " << hTable.getLongestLL()
-				<< "\nAverage Linked List: " << hTable.getAverageLL()
-				<< "\nLoad Factor: " << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
-				<< endl;
+                cout << "\nSize of Array: " << hTable.getSize()
+                << "\nCount: " << hTable.getCount()
+                << "\nFilled Slots: " << hTable.getFilledSlots()
+                << "\nCollisions: " << hTable.getCollisions()
+                << "\nNumber of Linked Lists: " << hTable.getNumberLL()
+                << "\nLongest Linked List: " << hTable.getLongestLL()
+                << "\nAverage Linked List: " << hTable.getAverageLL()
+                << "\nLoad Factor: " << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
+                << endl;
                 break;
             case 'Q': //Quit
             case 'q':
                 checker = false;
                 break;
-	    default:
-		cout << "Unrecognized command\n";
+            default:
+                cout << "Unrecognized command\n";
         }
     }
     return 0;
@@ -207,10 +202,10 @@ int hashSize(int fileSize)
     int hashSize = fileSize * 2;
     int sqrtHashSize;
     bool isPrime;
-
+    
     do
     {
-	sqrtHashSize = sqrt(hashSize);
+        sqrtHashSize = sqrt(hashSize);
         isPrime = true;
         for (int i = 2; i < sqrtHashSize; i++)
         {
@@ -223,7 +218,7 @@ int hashSize(int fileSize)
         hashSize++;
     } while (isPrime == false);
     number = hashSize - 1;
-
+    
     return number;
 }
 
@@ -231,88 +226,88 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 {
     string buffer;
     getline(inFile, buffer);
-
+    
     if (buffer.length()) //Ensures we don't go out of range
     {
         int index;
         int start;
         static const char carrot = '^'; //Not even really necessary
-
-		double water;
-		int calories;
-		double protein;
-		double fat;
-		double fiber;
-		double sugar;
-
+        
+        double water;
+        int calories;
+        double protein;
+        double fat;
+        double fiber;
+        double sugar;
+        
         int key = stoi(buffer.substr(1, 6));//Key
-
+        
         buffer = buffer.substr(9, buffer.length());
         index = buffer.find(carrot);
         string name = buffer.substr(0, index-1);//Name
-
+        
         start = index + 2;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);//Water
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			water = stod(buffer.substr(start, index));
-		else
-			water = 0;
-
+        if ((buffer.substr(start, index)).length())
+            water = stod(buffer.substr(start, index));
+        else
+            water = 0;
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);//Calories
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			calories = stoi(buffer.substr(start, index));
-		else
-			calories = 0;
-
+        if ((buffer.substr(start, index)).length())
+            calories = stoi(buffer.substr(start, index));
+        else
+            calories = 0;
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);//Protein
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			protein = stod(buffer.substr(start, index));
-		else
-			protein = 0;
-
+        if ((buffer.substr(start, index)).length())
+            protein = stod(buffer.substr(start, index));
+        else
+            protein = 0;
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot);//Fat
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			fat = stod(buffer.substr(start, index));
-		else
-			fat = 0;
-
+        if ((buffer.substr(start, index)).length())
+            fat = stod(buffer.substr(start, index));
+        else
+            fat = 0;
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Ash
-
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Carbohydrates
-
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Fiber
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			fiber = stod(buffer.substr(start, index));
-		else
-			fiber = 0;
-
+        if ((buffer.substr(start, index)).length())
+            fiber = stod(buffer.substr(start, index));
+        else
+            fiber = 0;
+        
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
         index = buffer.find(carrot); //Fiber
         start = 0;
-		if ((buffer.substr(start, index)).length())
-			sugar = stod(buffer.substr(start, index));
-		else
-			sugar = 0;
-
+        if ((buffer.substr(start, index)).length())
+            sugar = stod(buffer.substr(start, index));
+        else
+            sugar = 0;
+        
         Food * newFood = new Food(key, name, water, calories, protein, fat, fiber, sugar);
         return newFood;
     }
@@ -339,22 +334,28 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
 
 void printToFile(ofstream &outFile, Stack<Food*>* printStack)
 {
-    Food * temp;
+    Food * arr = new Food[BST.size()];
+    toArray(BST, arr);
     outFile << "Sorted Data using the unique key" << endl << endl;
-    while (printStack->getCount() != 0)
+    
+    for (int i = 0; i < BST.size(); i++)
     {
-        printStack->pop(temp);
-        outFile <<"~" << temp->getKey() << "~^~" << temp->getName() << "~^" << temp->getW() << "^" << temp->getC() << "^" << temp->getP();
-        outFile << "^" << temp->getF() << "^" << temp->getFi() << "^" << temp->getS() << "^"<< endl;
+        outFile <<"~" << arr[i]->getKey() << "~^~" << arr[i]->getName() << "~^" << arr[i]->getW() << "^" << arr[i]->getC() << "^" << arr[i]->getP();
+        outFile << "^" << arr[i]->getF() << "^" << arr[i]->getFi() << "^" << arr[i]->getS() << "^"<< endl;
     }
 }
 
-/*void reHash(HashTable &hTable) //Unnecessary
+void toArray(BinarySearchTree &BST, Food *arr)
 {
-    int hashActualSize = hTable.getCount();
-    int newSize = hashSize(hashActualSize);
-    HashTable newHashTable(newSize);
-}*/
+    BST.inOrderArr(arr);
+}
+
+/*void reHash(HashTable &hTable) //Unnecessary
+ {
+ int hashActualSize = hTable.getCount();
+ int newSize = hashSize(hashActualSize);
+ HashTable newHashTable(newSize);
+ }*/
 
 
 void menu()
@@ -373,50 +374,50 @@ void menu()
 
 Food * addNew()				//needs input validation
 {
-	int uKey;
-	string fName;
-	double _water;
-	int _cal;
-	double _protein;
-	double _fat;
-	double _fiber;
-	double _sugar;
-
-	cout << "\nEnter a key: ";
-	cin >> uKey;
-	cout << "\nEnter a food name: ";
-	cin >> fName;
-	cout << "\nEnter water content: ";
-	cin >> _water;
-	cout << "\nEnter calorie content: ";
-	cin >> _cal;
-	cout << "\nEnter protein content: ";
-	cin >> _protein;
-	cout << "\nEnter fat content: ";
-	cin >> _fat;
-	cout << "\nEnter fiber content: ";
-	cin >> _fiber;
-	cout << "\nEnter sugar content: ";
-	cin >> _sugar;
-	cin.ignore(256, '\n');
-
-	Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
-	return newFood;
+    int uKey;
+    string fName;
+    double _water;
+    int _cal;
+    double _protein;
+    double _fat;
+    double _fiber;
+    double _sugar;
+    
+    cout << "\nEnter a key: ";
+    cin >> uKey;
+    cout << "\nEnter a food name: ";
+    cin >> fName;
+    cout << "\nEnter water content: ";
+    cin >> _water;
+    cout << "\nEnter calorie content: ";
+    cin >> _cal;
+    cout << "\nEnter protein content: ";
+    cin >> _protein;
+    cout << "\nEnter fat content: ";
+    cin >> _fat;
+    cout << "\nEnter fiber content: ";
+    cin >> _fiber;
+    cout << "\nEnter sugar content: ";
+    cin >> _sugar;
+    cin.ignore(256, '\n');
+    
+    Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
+    return newFood;
 }
 
 int enterInt()
 {
-	int sKey;
-	bool success;
-	do {
-		cout << "Enter a value: ";
-		//success = cin >> sKey;
-		cin >> sKey;
-		success = true;
-		cin.clear();
-		cin.ignore(256, '\n');
-	} while (!success);
-	return sKey;
+    int sKey;
+    bool success;
+    do {
+        cout << "Enter a value: ";
+        //success = cin >> sKey;
+        cin >> sKey;
+        success = true;
+        cin.clear();
+        cin.ignore(256, '\n');
+    } while (!success);
+    return sKey;
 }
 
 string enterStr()
