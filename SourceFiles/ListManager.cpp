@@ -4,7 +4,10 @@
 
 #include "../HeaderFiles/ListManager.h"
 
-
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTree, HashTable * hashTable){
     bool quit = false;
 
@@ -78,6 +81,10 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
     }
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void unsortedList(HashTable * hashTable)
 {
     cout << "Listing unsorted data in hash table sequence: \n";
@@ -85,12 +92,20 @@ void unsortedList(HashTable * hashTable)
     hashTable->visitAll(displayItem);
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void treeList(BinarySearchTree * tree)
 {
     tree->inOrderPrint();
 }
 
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void displayItem(Food * foodItem){
         cout << "\nFood Key  : " << foodItem->getKey() << endl;
         cout << "Food Name : " << foodItem->getName() << endl;

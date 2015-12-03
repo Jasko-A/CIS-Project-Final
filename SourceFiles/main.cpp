@@ -186,6 +186,10 @@ int main()
     return 0;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 int fileSize(string fileName)
 {
     ifstream inFile(fileName.c_str());
@@ -196,6 +200,10 @@ int fileSize(string fileName)
     return count;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 int hashSize(int fileSize)
 {
     int number = 0;
@@ -222,6 +230,10 @@ int hashSize(int fileSize)
     return number;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 Food* fileInput(ifstream &inFile)//For an example of this function in action, run while(fileInput(inFile)); OR while(temp = fileInput(inFile));
 {
     string buffer;
@@ -315,6 +327,10 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         return NULL;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
 {
     Food * temp;
@@ -327,6 +343,10 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
     return;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable) //Needs the BSTs
 {
     hTable.rehash(hashSize(fileSize(fileName)));
@@ -334,6 +354,10 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
     secBST.clear();
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void printToFile(ofstream &outFile, BinarySearchTree &BST)
 {
 	const int size = BST.size();
@@ -365,11 +389,19 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
     }
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void toArray(BinarySearchTree &BST, Food *arr)
 {
     BST.inOrderArr(arr);
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 void menu()
 {
     cout << "\n            Main Menu             \n"
@@ -385,6 +417,10 @@ void menu()
     << "Q - Quit Program\n";
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 Food * addNew()				//needs input validation
 {
     int uKey;
@@ -420,6 +456,10 @@ Food * addNew()				//needs input validation
     return newFood;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 int enterInt()
 {
     int in;
@@ -433,6 +473,10 @@ int enterInt()
     return in;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 double enterDouble()
 {
     double in;
@@ -446,6 +490,10 @@ double enterDouble()
     return in;
 }
 
+/** =================================== */
+/* <function purpose>
+<explanation of all input parameters>
+<explanation of all output actions and return value > */
 string enterStr()
 {
     string in;
