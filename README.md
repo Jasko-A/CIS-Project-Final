@@ -5,16 +5,9 @@
 **Current goals:**
 -----------------
 Write main and other .cpp's  
- - [x] File input management  
- - [ ] File output  
- - [ ] Stdin input management (Mostly there)  
- - [x] Menu  
- - [ ] List  
+ - [ ] List  (Mostly there)
  - [ ] Search (Mostly there)  
- - [x] Statistics  
- Others?  
   
-- [x] Make it compile  
 - [ ] Add comments to EVERYTHING
 
 *Use the following style for comments (if possible):*
@@ -25,16 +18,20 @@ Write main and other .cpp's
    <explanation of all input parameters>
    <explanation of all output actions and return value > */ 
  ```
-  
-**Future goals:**
------------------
-- [ ] Test with data  
-- [ ] Repeatedly  
+ 
+- [x] Test with data  
+- [ ] Repeatedly (Check once bug count = 0; p < 0.05)  
 - [ ] Get our presentation sorted out  
 - [ ] Turn it in  
 
 **Past goals**
 --------------
+ - [x] Stdin input management
+ - [x] File input management  
+ - [x] File output  
+ - [x] Menu  
+ - [x] Statistics  
+ - [x] Make it compile  
 Write sources for the header files
  - [x] Food.cpp
  - [x] BinaryTree.cpp
