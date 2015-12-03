@@ -35,33 +35,33 @@ void BinaryTree::_printIndentedTree(BinaryNode * nodePtr, int level)
 /* Public member function to place all items in the tree into a Stack inOrder.
 No input paramerters.
 No return value. */
-void BinaryTree::inOrderPrint()
+void BinaryTree::inOrderPrint(void display(Food *))
 {
-	_inOrderPrint(rootPtr);
+	_inOrderPrint(rootPtr, display);
 }
 
 /** =================================== */
 /* Private member function called by inOrderStack to make an inOrder Stack.
 Recieves the root of the tree.
 No return value. Output's an inOrder of the BT. */
-void BinaryTree::_inOrderPrint(BinaryNode * nodePtr)
+void BinaryTree::_inOrderPrint(BinaryNode * nodePtr, void display(Food *))
 {
 	if (sortedKey)
 	{
 		if (nodePtr != 0)
 		{
-			_inOrderPrint(nodePtr->getLeftPtr());
-			cout << "\nKey: " << nodePtr->getItem()->getKey() << " Name: " << nodePtr->getItem()->getName();
-			_inOrderPrint(nodePtr->getRightPtr());
+			_inOrderPrint(nodePtr->getLeftPtr(), display);
+			display(nodePtr->getItem());
+			_inOrderPrint(nodePtr->getRightPtr(), display);
 		}
 	}
 	else
 	{
 		if (nodePtr != 0)
 		{
-			_inOrderPrint(nodePtr->getLeftPtr());
-			cout << "\nKey: " << nodePtr->getItem()->getKey() << " Name: " << nodePtr->getItem()->getName();
-			_inOrderPrint(nodePtr->getRightPtr());
+			_inOrderPrint(nodePtr->getLeftPtr(), display);
+			display(nodePtr->getItem());
+			_inOrderPrint(nodePtr->getRightPtr(), display);
 		}
 	}
 }
