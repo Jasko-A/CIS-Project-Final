@@ -412,6 +412,9 @@ Food * addNew()				//needs input validation
     cin >> _sugar;
     cin.ignore(256, '\n');
 
+    for(int i = 0; i < fName.size(); i++)
+        fName[i] = toupper(fName[i]);
+
     Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
     return newFood;
 }
