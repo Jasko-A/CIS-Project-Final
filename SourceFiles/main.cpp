@@ -31,8 +31,7 @@ Food* fileInput(ifstream &inFile);																				//To get the data from the
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
 void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To print everything out
-Food * addNew();																								//To add a new Food object to all of the ADTs from stdin
-//void reHash(HashTable &hTable); //Unnecessary
+Food * addNew();
 void toArray(BinarySearchTree &BST, Food *arr);
 int enterInt();																									//Input validation for an int
 string enterStr();																								//Input validation for a string
@@ -91,7 +90,6 @@ int main()
                 break;
             case 'D': //Delete data
             case 'd':
-
                 if (hTable.search(enterInt(), newNode))
                 {
                     deleteStack.push(newNode);
@@ -101,30 +99,10 @@ int main()
                 }
                 else
                     cout << "Key not found\n";
-
                 break;
             case 'S': //Search Manager
             case 's':
                 searchManager(&keyBST, &secBST);
-
-                /*
-                 char answer;
-                 cout << "Would you like to seach by unique key (Y/N): ";
-                 cin >> answer;
-                 if (answer == 'Y' || answer == 'y')
-                 {
-                 if (hTable.search(enterInt(), newNode))
-                 cout << newNode->getName() << endl;
-                 else
-                 cout << "Key not found\n";
-                 }
-                 else if (answer == 'N' || answer == 'n')
-                 {
-                 if(newNode = secBST.search(enterStr())) //Doesn't seem to work?
-                 cout << newNode->getKey() << " " << newNode->getName() << endl;
-                 else
-                 cout << "Key not found\n";
-                 }*/
                 break;
             case 'L': //List Manager
             case 'l':
@@ -156,11 +134,13 @@ int main()
                 createADTs(inFile, keyBST, secBST, hTable);
                 inFile.close();
                 cin.ignore();
+                break;
             case 'W': //Write to a file
             case 'w':
+                //Empty stack
                 while(!deleteStack.isEmpty())
                     deleteStack.pop(newNode);
-
+                //Write to file
                 cout << "Enter file name: ";
                 cin >> fileName;
                 cin.ignore();
@@ -360,14 +340,6 @@ void toArray(BinarySearchTree &BST, Food *arr)
 {
     BST.inOrderArr(arr);
 }
-
-/*void reHash(HashTable &hTable) //Unnecessary
- {
- int hashActualSize = hTable.getCount();
- int newSize = hashSize(hashActualSize);
- HashTable newHashTable(newSize);
- }*/
-
 
 void menu()
 {
