@@ -365,8 +365,12 @@ BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & targ
 {
 	if (!nodePtr)
 		return nullptr;
-	else if (target.getName().substr(0,target.getName().length()) == nodePtr->getItem()->getName().substr(0, nodePtr->getItem()->getName().length()))
+	else if (target.getName() == nodePtr->getItem()->getName().substr(0, target.getName().length()))
+	{
+		if (target.getName() == nodePtr->getRightPtr()->getItem()->getName().substr(0, target.getName().length()))
+			_searchName(nodePtr->getRightPtr(), target);
 		return nodePtr;
+	}
 	else if (target.getName() < nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getLeftPtr() == nullptr)
@@ -374,7 +378,7 @@ BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & targ
 		else
 			return _searchName(nodePtr->getLeftPtr(), target);
 	}
-	else if (target.getName() > nodePtr->getItem()->getName())
+	else if (target.getName() >= nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getRightPtr())
 			return _searchName(nodePtr->getRightPtr(), target);
