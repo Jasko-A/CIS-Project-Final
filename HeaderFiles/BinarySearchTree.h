@@ -29,7 +29,7 @@ private:
 	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
 	bool _searchName(BinaryNode* nodePtr, string target, void display(Food *)) const;
 	BinaryNode* deleteNode(BinaryNode* nodePtr);
-	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food & successor);
+	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food * successor);
 	BinaryNode* findLeftmostNode(BinaryNode* nodePtr);
 };
 

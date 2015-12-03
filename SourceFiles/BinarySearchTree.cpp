@@ -151,9 +151,9 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 	}
 	else
 	{
-		Food newNodeValue;
+		Food * newNodeValue;
 		nodePtr->setRightPtr(removeLeftmostNode(nodePtr->getRightPtr(), newNodeValue));
-		nodePtr->setItem(&newNodeValue);
+		nodePtr->setItem(newNodeValue);
 		return nodePtr;
 	}
 }
@@ -162,11 +162,11 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 /* To remove the left most node in the BST.
 Recieves the root of the tree as well as 
 <explanation of all output actions and return value > */
-BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food & successor)
+BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food * successor)
 {
 	if (nodePtr->getLeftPtr() == 0)
 	{
-		successor = *nodePtr->getItem();
+		successor = nodePtr->getItem();
 		return deleteNode(nodePtr);
 	}
 	else

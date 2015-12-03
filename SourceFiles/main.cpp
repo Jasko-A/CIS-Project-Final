@@ -370,11 +370,10 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
 	const int size = BST.size();
     Food *arr = new Food[size];
     BST.inOrderArr(arr);
-    for (int i = 0; i < BST.size(); i++)
+    for (int i = 0; i < size; i++)
     {
-        outFile <<"~" << arr[i].getKey()
-        << "~^~" << arr[i].getName()
-        << "~^";
+        outFile <<"~" << arr[i].getKey()<< "~^~" << arr[i].getName() << "~^";
+		outFile.flush();
         if(arr[i].getW() >= 0)
             outFile << arr[i].getW();
         outFile << "^";
