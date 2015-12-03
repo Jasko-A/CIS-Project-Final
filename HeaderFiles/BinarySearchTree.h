@@ -25,7 +25,7 @@ private:
 	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _insertName(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _remove(BinaryNode* nodePtr, Food * target, bool & success);
-	BinaryNode* _removeName(BinaryNode* nodePtr, Food *& target, bool & success);
+	BinaryNode* _removeName(BinaryNode* nodePtr, Food * target, bool & success);
 	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
 	BinaryNode* _searchName(BinaryNode* nodePtr, const Food & target) const;
 	BinaryNode* deleteNode(BinaryNode* nodePtr);
