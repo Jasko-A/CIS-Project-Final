@@ -11,8 +11,6 @@
 #include "../HeaderFiles/Food.h"
 #include "../HeaderFiles/BinarySearchTree.h"
 #include "../HeaderFiles/HashTable.h"
-#include "../HeaderFiles/SearchManager.h"
-#include "../HeaderFiles/ListManager.h"
 using namespace std;
 
 int fileSize(string fileName);																					//To count the lines for the HashTable
