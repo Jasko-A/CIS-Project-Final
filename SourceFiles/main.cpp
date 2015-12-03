@@ -187,9 +187,10 @@ int main()
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/*fileSize calculates the number of lines in a file by opening it and counting
+
+A string that holds the file name is passed in
+An int is returned with the number of lines */
 int fileSize(string fileName)
 {
     ifstream inFile(fileName.c_str());
@@ -201,9 +202,11 @@ int fileSize(string fileName)
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/*hashSize takes the the number of lines in the file and calulates the next prime
+immediately above 2*fileSize to give us the hash size
+
+An int containing the number of lines is passed in
+An int containg the size of the array is returned */
 int hashSize(int fileSize)
 {
     int number = 0;
@@ -231,9 +234,10 @@ int hashSize(int fileSize)
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* fileInput takes an ifstream, reads a line, and puts data into a Food object, whose pointer it passes back
+
+It takes an ifstream object by reference
+It returns a Food pointer */
 Food* fileInput(ifstream &inFile)//For an example of this function in action, run while(fileInput(inFile)); OR while(temp = fileInput(inFile));
 {
     string buffer;
@@ -328,9 +332,10 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* createADTs inserts the Food objects passed from fileInput into the ADTs
+
+It takes an ifstream, two BinarySearchTrees, and a HashTable, all by reference
+It returns nothing (But changes the ADTs passed to it by reference) */
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
 {
     Food * temp;
@@ -344,9 +349,10 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* emptyADTs clears the ADTs so that they can be filled again
+
+It takes a string for the file name as well as references to two BinarySearchTrees and a HashTable
+It returns nothing */
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable) //Needs the BSTs
 {
     hTable.rehash(hashSize(fileSize(fileName)));
@@ -355,14 +361,15 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* printToFile prints all of the data to an output file in the same syntax it was recieved
+
+It takes an ofstream and a BST, both by reference
+It returns nothing, but outputs data to the file */
 void printToFile(ofstream &outFile, BinarySearchTree &BST)
 {
 	const int size = BST.size();
     Food *arr = new Food[size];
-    toArray(BST, arr);
+    BST.inOrderArr(arr);
     for (int i = 0; i < BST.size(); i++)
     {
         outFile <<"~" << arr[i].getKey()
@@ -379,7 +386,7 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
         outFile << "^";
         if(arr[i].getF() >= 0)
             outFile << arr[i].getF();
-        outFile << "^";
+        outFile << "^^^";
         if(arr[i].getFi() >= 0)
             outFile << arr[i].getFi();
         outFile << "^";
@@ -390,18 +397,10 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
-void toArray(BinarySearchTree &BST, Food *arr)
-{
-    BST.inOrderArr(arr);
-}
+/* menu outputs the options to stdout
 
-/** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+No input parameters
+No output parameters */
 void menu()
 {
     cout << "\n            Main Menu             \n"
@@ -418,9 +417,10 @@ void menu()
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* addNew creates a new Food item from stdin and returns its pointer
+
+No input parameters
+Returns a Food pointer */
 Food * addNew()				//needs input validation
 {
     int uKey;
@@ -457,9 +457,10 @@ Food * addNew()				//needs input validation
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* enterInt gets an int from stdin and handles errors
+
+No input parameters
+Returns an int */
 int enterInt()
 {
     int in;
@@ -474,9 +475,10 @@ int enterInt()
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* enterDouble gets a double from stdin and handles errors
+
+No input parameters
+Returns a double */
 double enterDouble()
 {
     double in;
@@ -491,9 +493,10 @@ double enterDouble()
 }
 
 /** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
+/* enterStr takes a string and clears the line
+
+No input parameter
+Returns a string */
 string enterStr()
 {
     string in;

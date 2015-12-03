@@ -98,7 +98,7 @@ void unsortedList(HashTable * hashTable)
 <explanation of all output actions and return value > */
 void treeList(BinarySearchTree * tree)
 {
-    tree->inOrderPrint();
+    tree->inOrderPrint(displayItem);
 }
 
 
