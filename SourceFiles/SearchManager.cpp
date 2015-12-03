@@ -3,6 +3,8 @@
 
 #include "../HeaderFiles/SearchManager.h"
 
+int enterInt();
+
 /*
 Purpose of the seachManager is to display menu where the user will enter one of few choices.
 If the user wants to search by key it will go to the appropriate functions,
@@ -10,28 +12,25 @@ same for food name.
 nothing is returned.
 */
 void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTree){
-    cout << "Search option selected\n";
-    cout << "Now displaying the search menu\n\n";
     bool quit = false;
 
     //Used during the menu loop
     string input;
     char command;
 
-    //Displays the menu to the user initially
-    cout << "          Search Manager          \n";
-    cout << "----------------------------------\n";
-    cout << "P) Search by USDA identification number\n";
-    cout << "S) Search by food name\n";
-    cout << "M) Show Menu\n";
-    cout << "Q) Quit Search Manager\n\n";
-
-
     //Loop while the user has not entered the quit command (quit = 'q')
     while(!quit){
+
+        //Displays the menu to the user
+        cout << "\n          Search Manager          \n";
+        cout << "----------------------------------\n";
+        cout << "N - Search by Nutrient Databank Number\n";
+        cout << "D - Search by Short Description\n";
+        cout << "Q - Quit Search Manager\n\n";
+
         //Get the input from the user
         cin.sync();
-        cout << "Enter a menu option:  ";
+        cout << "Enter a Menu Option:  ";
         getline(cin, input);
         command = input[0];
 
@@ -42,29 +41,17 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
         switch(command){
 
                 //Option to search using a unique key, which is the USDA identification number
-            case 'P':
+            case 'N':
                 PrimaryKeySearchManager(primaryTree);
                 break;
 
                 //Option to search using a secondary key, which is the USDA food name
-            case 'S':
+            case 'D':
                 SecondaryKeySearchManager(secondaryTree);
-                break;
-
-                //Display the menu
-            case 'M':
-                cout << "\n                 MENU                 \n";
-                cout << "----------------------------------------\n";
-                cout << "P) Search by USDA identification number\n";
-                cout << "S) Search by food name\n";
-                cout << "M) Show Menu\n";
-                cout << "Q) Quit Search Manager\n";
                 break;
 
                 //Quit out of the sub menu.
             case 'Q':
-                cout << "Now quiting the search\n";
-
                 quit = true;
                 break;
 
@@ -87,19 +74,18 @@ void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
     Food * searchedFoodItem;
 
     //Have the user enter the ID number
-    cout << "Please enter the USDA identification number: ";
-    cin >> key;
-    cin.ignore();
+    cout << "Nutrient Databank Number- ";
+    key = enterInt();
 
     //Check if the Food is in the tree
     searchedFoodItem = primaryTree->search(key);
 
     //Display the item if it's found
     if(searchedFoodItem != nullptr){
-        cout << searchedFoodItem->getKey() << " found.\n";
+        cout << searchedFoodItem->getKey() << " found.\n\n";
         displayFoodData(searchedFoodItem);
     }else
-        cout << key << " was not found in the USDA Nutritional Database.\n";
+        cout << key << " was not found in the USDA Nutritional Database.";
 }
 /*
 Purpose of this function is to search the hash table by food name
@@ -110,7 +96,7 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     Food * searchedFoodItem;
 
     //Have the user enter the name
-    cout << "Please enter the name of the food as listed in the USDA database: ";
+    cout << "Short Description- Enter a string: ";
     getline(cin, name);
 
     //Check if the Food is in the tree
@@ -121,10 +107,10 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
 
     //Display the item if it's found
     if(searchedFoodItem != nullptr){
-        cout << searchedFoodItem->getName() << " found.\n";
+        cout << searchedFoodItem->getName() << " found.\n\n";
         displayFoodData(searchedFoodItem);
     }else
-        cout << name << " was not found in the USDA Nutritional Database.\n";
+        cout << name << " was not found in the USDA Nutritional Database.";
 }
 /*
 The purpose of this function is to, display the contents of the food object
@@ -132,12 +118,12 @@ that was searched by the above functions
 Shows everthing in the object form the name to the nutrtional facts
 */
 void displayFoodData(Food * searchedFoodItem){
-        cout << "\tFood Key  : " << searchedFoodItem->getKey() << endl;
-        cout << "\tFood Name : " << searchedFoodItem->getName() << endl;
-        cout << "\tWater     : " << searchedFoodItem->getW() << endl;
-        cout << "\tCalories  : " << searchedFoodItem->getC() << endl;
-        cout << "\tProtein   : " << searchedFoodItem->getP() << endl;
-        cout << "\tFat       : " << searchedFoodItem->getF() << endl;
-        cout << "\tFiber     : " << searchedFoodItem->getFi() << endl;
-        cout << "\tSugar     : " << searchedFoodItem->getS() << endl;
+        cout << "\tNDB_No.    (5 digit): " << searchedFoodItem->getKey() << endl;
+        cout << "\tShrt_Desc  (60 char): " << searchedFoodItem->getName() << endl;
+        cout << "\tWater       (g/100g): " << searchedFoodItem->getW() << endl;
+        cout << "\tCalories (kcal/100g): " << searchedFoodItem->getC() << endl;
+        cout << "\tProtein     (g/100g): " << searchedFoodItem->getP() << endl;
+        cout << "\tFat         (g/100g): " << searchedFoodItem->getF() << endl;
+        cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi() << endl;
+        cout << "\tSugar       (g/100g): " << searchedFoodItem->getS();
 }

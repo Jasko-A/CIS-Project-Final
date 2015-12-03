@@ -34,6 +34,7 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To pri
 Food * addNew();
 void toArray(BinarySearchTree &BST, Food *arr);
 int enterInt();																									//Input validation for an int
+double enterDouble();
 string enterStr();																								//Input validation for a string
 void menu();																									//Display menu
 
@@ -41,7 +42,7 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_big.txt"; //Delete for production
+    string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
 
 	ofstream outFile;
     ifstream inFile;
@@ -52,7 +53,7 @@ int main()
 
     inFile.open(fileName.c_str());
     if (!inFile)
-        cout << "FILE DOESN'T EXIST\n";
+        cout << "ERROR: File \"" << fileName << "\" Not Found\n";
     /*
      }while(!inFile);*/ //Uncomment for production
 
@@ -71,7 +72,7 @@ int main()
     while(checker)
     {
         menu();
-        cout << "\nChoice: ";
+        cout << "\nEnter a Menu Option: ";
         cin.get(choice);
         cin.ignore(256,'\n');
 
@@ -90,6 +91,7 @@ int main()
                 break;
             case 'D': //Delete data
             case 'd':
+                cout << "\nNDB_No. (5 digit) ";
                 if (hTable.search(enterInt(), newNode))
                 {
                     deleteStack.push(newNode);
@@ -123,17 +125,18 @@ int main()
                 break;
             case 'O': //Open a file
             case 'o': //Currently only works for HashTable
-                do{
-                    cout << "Enter file name: ";
-                    cin >> fileName;
-                    inFile.open(fileName.c_str());
-                    if (!inFile)
-                        cout << "FILE DOESN'T EXIST\n";
-                }while(!inFile);
-                emptyADTs(fileName, keyBST, secBST, hTable);
-                createADTs(inFile, keyBST, secBST, hTable);
-                inFile.close();
+                cout << "Enter file name: ";
+                cin >> fileName;
+                inFile.open(fileName.c_str());
+                if (inFile)
+                {
+                    emptyADTs(fileName, keyBST, secBST, hTable);
+                    createADTs(inFile, keyBST, secBST, hTable);
+                }
+                else
+                    cout << "ERROR: File \"" << fileName << "\" Not Found\n";
                 cin.ignore();
+                inFile.close();
                 break;
             case 'W': //Write to a file
             case 'w':
@@ -150,14 +153,15 @@ int main()
                 break;
             case 'T': //Statistics
             case 't':
-                cout << "\nSize of Array: " << hTable.getSize()
-                << "\nCount: " << hTable.getCount()
-                << "\nFilled Slots: " << hTable.getFilledSlots()
-                << "\nCollisions: " << hTable.getCollisions()
+                cout << "\nHASH TABLE STATISTICS:"
+                << "\nSize of Array:          " << hTable.getSize()
+                << "\nCount:                  " << hTable.getCount()
+                << "\nFilled Slots:           " << hTable.getFilledSlots()
+                << "\nCollisions:             " << hTable.getCollisions()
                 << "\nNumber of Linked Lists: " << hTable.getNumberLL()
-                << "\nLongest Linked List: " << hTable.getLongestLL()
-                << "\nAverage Linked List: " << hTable.getAverageLL()
-                << "\nLoad Factor: " << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
+                << "\nLongest Linked List:    " << hTable.getLongestLL()
+                << "\nAverage Linked List:    " << hTable.getAverageLL()
+                << "\nLoad Factor:            " << setprecision(4) << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
                 << endl;
                 break;
             case 'Q': //Quit
@@ -170,7 +174,7 @@ int main()
 				outFile.close();
                 break;
             default:
-                cout << "Unrecognized command\n";
+                cout << "ERROR: Unrecognized Command\n";
         }
     }
     return 0;
@@ -343,9 +347,10 @@ void toArray(BinarySearchTree &BST, Food *arr)
 
 void menu()
 {
-    cout << "\nList of Menu options\n\n";
-    cout << "A - Add New Data\n"
-    << "D - Delete Data by key number\n"
+    cout << "\n            Main Menu             \n"
+    << "----------------------------------\n"
+    << "A - Add New Data\n"
+    << "D - Delete Data by NDB_No.\n"
     << "S - Search Manager\n"
     << "L - List Manager\n"
     << "U - Undo Delete\n"
@@ -366,23 +371,22 @@ Food * addNew()				//needs input validation
     double _fiber;
     double _sugar;
 
-    cout << "\nEnter a key: ";
-    cin >> uKey;
-    cout << "\nEnter a food name: ";
-    cin >> fName;
-    cout << "\nEnter water content: ";
-    cin >> _water;
-    cout << "\nEnter calorie content: ";
-    cin >> _cal;
-    cout << "\nEnter protein content: ";
-    cin >> _protein;
-    cout << "\nEnter fat content: ";
-    cin >> _fat;
-    cout << "\nEnter fiber content: ";
-    cin >> _fiber;
-    cout << "\nEnter sugar content: ";
-    cin >> _sugar;
-    cin.ignore(256, '\n');
+    cout << "\nNDB_No.    (5 digit) ";
+    uKey = enterInt();
+    cout << "\nShrt_Desc  (60 char) Enter string: ";
+    getline(cin, fName);
+    cout << "\nWater       (g/100g) ";
+    _water = enterDouble();
+    cout << "\nCalories (kcal/100g) ";
+    _cal = enterInt();
+    cout << "\nProtein     (g/100g) ";
+    _protein = enterDouble();
+    cout << "\nFat         (g/100g) ";
+    _fat = enterDouble();
+    cout << "\nFiber       (g/100g) ";
+    _fiber = enterDouble();
+    cout << "\nSugar       (g/100g) ";
+    _sugar = enterDouble();
 
     for(int i = 0; i < fName.size(); i++)
         fName[i] = toupper(fName[i]);
@@ -393,24 +397,35 @@ Food * addNew()				//needs input validation
 
 int enterInt()
 {
-    int sKey;
+    int in;
     bool success;
     do {
         cout << "Enter a value: ";
-        //success = cin >> sKey;
-        cin >> sKey;
-        success = true;
+        success = cin >> in;
         cin.clear();
         cin.ignore(256, '\n');
     } while (!success);
-    return sKey;
+    return in;
+}
+
+double enterDouble()
+{
+    double in;
+    bool success;
+    do {
+        cout << "Enter a value: ";
+        success = cin >> in;
+        cin.clear();
+        cin.ignore(256, '\n');
+    } while (!success);
+    return in;
 }
 
 string enterStr()
 {
-    string str;
+    string in;
     cout << "Enter a string: ";
-    cin >> str;
+    getline(cin, in);
     cin.ignore(256, '\n');
-    return str;
+    return in;
 }

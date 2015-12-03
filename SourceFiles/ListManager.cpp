@@ -6,30 +6,28 @@
 
 
 void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTree, HashTable * hashTable){
-    cout << "Search option selected\n";
-    cout << "Now displaying the search menu\n\n";
     bool quit = false;
 
     //Used during the menu loop
     string input;
     char command;
 
-    //Displays the menu to the user initially
-    cout << "            List Manager          \n";
-    cout << "----------------------------------\n";
-    cout << "U) List unsorted data according to hash table\n";
-    cout << "P) List by USDA identification number\n";
-    cout << "S) List by food name\n";
-    cout << "I) Print as an indented list\n";
-    cout << "M) Show Menu\n";
-    cout << "Q) Quit List Manager\n\n";
-
 
     //Loop while the user has not entered the quit command (quit = 'q')
     while(!quit){
+
+        //Displays the menu to the user
+        cout << "\n           List Manager           \n";
+        cout << "----------------------------------\n";
+        cout << "U - List Unsorted Data\n";
+        cout << "N - List by Nutrient Databank Number\n";
+        cout << "D - List by Description\n";
+        cout << "I - Print as an Indented List\n";
+        cout << "Q - Quit List Manager\n\n";
+
         //Get the input from the user
         cin.sync();
-        cout << "Enter a menu option:  ";
+        cout << "Enter a Menu Option:  ";
         getline(cin, input);
         command = input[0];
 
@@ -45,13 +43,13 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
                 break;
 
                  //Option to list by a unique key, which is the USDA identification number
-            case 'P':
+            case 'N':
                 cout << "Listing by the USDA identification number: \n";
                 treeList(primaryTree);
                 break;
 
                 //Option to list by a secondary key, which is the food name
-            case 'S':
+            case 'D':
                 cout << "Listing alphabetically by the foods name: \n";
                 treeList(secondaryTree);
                 break;
@@ -66,23 +64,8 @@ void listManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTre
                 secondaryTree->printIndentedTree();
                 break;
 
-                //Display the menu
-            case 'M':
-                cout << "\n                 MENU                 \n";
-                cout << "----------------------------------------\n";
-                cout << "U) List unsorted data according to hash table\n";
-                cout << "P) List by USDA identification number\n";
-                cout << "S) List by food name\n";
-                cout << "I) Print as an indented list\n";
-                cout << "M) Show Menu\n";
-                cout << "Q) Quit List Manager\n";
-
-                break;
-
                 //Quit out of the sub menu.
             case 'Q':
-                cout << "Now quiting the list manager\n";
-
                 quit = true;
                 break;
 
@@ -116,6 +99,6 @@ void displayItem(Food * foodItem){
         cout << "\tProtein   : " << foodItem->getP() << endl;
         cout << "\tFat       : " << foodItem->getF() << endl;
         cout << "\tFiber     : " << foodItem->getFi() << endl;
-        cout << "\tSugar     : " << foodItem->getS() << endl;
+        cout << "\tSugar     : " << foodItem->getS();
 }
 
