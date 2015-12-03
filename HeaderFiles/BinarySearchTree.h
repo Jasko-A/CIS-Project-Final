@@ -19,7 +19,7 @@ public:
 	bool remove(string name);				//remove by Name
 	// find a target node
 	Food* search(int key) const;			//Search by key
-	Food* search(string name) const;		//Search by name
+	bool search(string name, void display(Food *)) const;		//Search by name
 
 private:
 	BinaryNode* _insert(BinaryNode* nodePtr, BinaryNode* newNodePtr);
@@ -27,7 +27,7 @@ private:
 	BinaryNode* _remove(BinaryNode* nodePtr, Food * target, bool & success);
 	BinaryNode* _removeName(BinaryNode* nodePtr, Food * target, bool & success);
 	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
-	BinaryNode* _searchName(BinaryNode* nodePtr, const Food & target) const;
+	bool _searchName(BinaryNode* nodePtr, string target, void display(Food *)) const;
 	BinaryNode* deleteNode(BinaryNode* nodePtr);
 	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food & successor);
 	BinaryNode* findLeftmostNode(BinaryNode* nodePtr);

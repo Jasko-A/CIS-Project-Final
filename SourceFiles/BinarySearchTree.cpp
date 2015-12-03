@@ -335,20 +335,12 @@ BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food * target, bo
 /* Public search function to find an item in the BST by calling _searchName.
 Accepts a int key for the item to be searched in the BST.
 This function returns a pointer to the Food object if found, else null is returned. */
-Food* BinarySearchTree::search(string name) const
+bool BinarySearchTree::search(string name, void display(Food *)) const
 {
 	if (!sortedKey)
 	{
-		Food temp;
-		temp.setName(name);
-		Food * target = &temp;
-		BinaryNode* newNodePtr = _searchName(rootPtr, *target);
-		if (newNodePtr)
-		{
-			return newNodePtr->getItem();
-		}
-		else
-			return nullptr;
+		if (!_searchName(rootPtr, name, display))
+			cout << name << " is not found in the USDA database.\n";
 	}
 	else
 	{
@@ -361,28 +353,40 @@ Food* BinarySearchTree::search(string name) const
 /* Private member function called by search in order to find a specific node.
 Accepts the root of the BST as well as the target that is being searched for.
 Returns the Node of the item that is found. If not found null is returned. */
-BinaryNode* BinarySearchTree::_searchName(BinaryNode* nodePtr, const Food & target) const
+bool BinarySearchTree::_searchName(BinaryNode* nodePtr, string target, void display(Food *)) const
 {
 	if (!nodePtr)
-		return nullptr;
-	else if (target.getName() == nodePtr->getItem()->getName().substr(0, target.getName().length()))	
-		return nodePtr;
-	else if (target.getName() < nodePtr->getItem()->getName())
+		return false;
+	else if (target == nodePtr->getItem()->getName().substr(0, target.length()))
+	{
+		if (nodePtr->getRightPtr())
+		{
+			if (target == nodePtr->getRightPtr()->getItem()->getName().substr(0, target.length()))
+				_searchName(nodePtr->getRightPtr(), target, display);
+		}
+		if (nodePtr->getLeftPtr())
+		{
+			if (target == nodePtr->getLeftPtr()->getItem()->getName().substr(0, target.length()))
+				_searchName(nodePtr->getLeftPtr(), target, display);
+		}
+		display(nodePtr->getItem());
+		return true;
+	}
+	else if (target < nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getLeftPtr())
 			return _searchName(nodePtr->getLeftPtr(), target);
 		else
-			return nullptr;
+			return false;
 	}
-	else if (target.getName() >= nodePtr->getItem()->getName())
+	else if (target >= nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getRightPtr())
 			return _searchName(nodePtr->getRightPtr(), target);
 		else
-			return nullptr;
+			return false;
 
 	}
-	return nodePtr;
 }
 
 /** =================================== */
