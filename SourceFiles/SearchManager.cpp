@@ -82,7 +82,6 @@ void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
 
     //Display the item if it's found
     if(searchedFoodItem != nullptr){
-        cout << searchedFoodItem->getKey() << " found.\n\n";
         displayFoodData(searchedFoodItem);
     }else
         cout << key << " was not found in the USDA Nutritional Database.";
@@ -106,11 +105,8 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     searchedFoodItem = secondaryTree->search(name);
 
     //Display the item if it's found
-    if(searchedFoodItem != nullptr){
-        cout << searchedFoodItem->getName() << " found.\n\n";
-        displayFoodData(searchedFoodItem);
-    }else
-        cout << name << " was not found in the USDA Nutritional Database.";
+    if(!secondaryTree->search(name, displayFoodData))
+        cout << endl << name << " was not found in the USDA Nutritional Database.";
 }
 /*
 The purpose of this function is to, display the contents of the food object

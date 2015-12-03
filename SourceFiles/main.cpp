@@ -38,6 +38,12 @@ double enterDouble();
 string enterStr();																								//Input validation for a string
 void menu();																									//Display menu
 
+/**===================================*/
+/*main creates all ADTs and manages the main menu through a while loop and switch.
+main calls many other functions to handle various things.
+
+main neither takes nor returns a value.
+*/
 int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
