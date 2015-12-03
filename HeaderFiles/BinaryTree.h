@@ -25,7 +25,7 @@ public:
 	int size() const { return count; }
 	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
-	void inOrderPrint();
+	void inOrderPrint(void display(Food *));
 	void inOrderArr(Food arr[]);
 
 
@@ -37,7 +37,7 @@ public:
 private:
 	void destroyTree(BinaryNode* nodePtr);
 	void _printIndentedTree(BinaryNode* nodePtr, int level);
-	void _inOrderPrint(BinaryNode * nodePtr);
+	void _inOrderPrint(BinaryNode * nodePtr, void display(Food *));
 	void _inOrderArr(BinaryNode * nodePtr, Food arr[], int *i);
 
 };
