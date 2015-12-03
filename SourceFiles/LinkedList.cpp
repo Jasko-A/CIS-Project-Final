@@ -63,7 +63,7 @@ with the Food * as data. It
 then inserts it intor the linked
 list in ascending order.
 *******************************/
-void LinkedList::addItem(Food * newFood)
+bool LinkedList::addItem(Food * newFood)
 {
   node * newNode = new node;
   newNode->data = newFood;
@@ -71,11 +71,18 @@ void LinkedList::addItem(Food * newFood)
   node * temp = head;
   while(temp->next != tail && newFood->getKey() > temp->next->data->getKey())
     temp = temp->next;
+  if(newFood->getKey() == temp->next->data->getKey())
+  {
+    cerr << "\nERROR: Cannot enter duplicate unique key!\n";
+    delete newNode;
+    return false;
+  }
   temp->next->back = newNode;
   newNode->next = temp->next;
   temp->next = newNode;
   newNode->back = temp;
   count++;
+  return true;
 }
 
 /***** LinkedList::deleteItem *****

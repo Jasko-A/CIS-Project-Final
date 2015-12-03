@@ -24,7 +24,7 @@ public:
   LinkedList();
   ~LinkedList();
 
-  void addItem(Food * newFood);
+  bool addItem(Food * newFood);
   bool deleteItem(int &id);
   bool itemExists(int &id);
   bool search(int &id, Food *& returnedItem);

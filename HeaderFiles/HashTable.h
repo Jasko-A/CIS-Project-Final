@@ -22,7 +22,7 @@ public:
     HashTable(int setSize);
     ~HashTable();
     //Mutators and accessors
-    void addEntry(Food * newEntry);
+    bool addEntry(Food * newEntry);
     bool remove(Food * deletePtr);
     bool search(int id, Food *& returnedPtr);
     void rehash(int setSize);

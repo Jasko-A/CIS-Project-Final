@@ -60,15 +60,17 @@ the array. It hashes the key and
 then adds it to the respective
 LinkedList.
 *******************************/
-void HashTable::addEntry(Food * newEntry)
+bool HashTable::addEntry(Food * newEntry)
 {
   int hash = _hash(newEntry->getKey());
-  if(arr[hash].getCount() > 0)
+  if(!arr[hash].addItem(newEntry))
+    return false;
+  if(arr[hash].getCount() > 1)
     collisions++;
   else
     filledSlots++;
-  arr[hash].addItem(newEntry);
   count++;
+  return true;
 }
 
 /***** HashTable::remove *****

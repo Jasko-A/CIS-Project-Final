@@ -89,6 +89,7 @@ void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
     //Have the user enter the ID number
     cout << "Please enter the USDA identification number: ";
     cin >> key;
+    cin.ignore();
 
     //Check if the Food is in the tree
     searchedFoodItem = primaryTree->search(key);
