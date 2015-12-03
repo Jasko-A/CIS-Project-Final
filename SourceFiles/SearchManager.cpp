@@ -67,7 +67,6 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
 /*
 Purpose of this function is to search by a unique key through the hash table
 */
-
 void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
 {
     int key;
