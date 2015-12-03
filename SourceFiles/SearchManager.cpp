@@ -114,6 +114,9 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     getline(cin, name);
 
     //Check if the Food is in the tree
+    for(int i = 0; i < name.size(); i++)
+        name[i] = toupper(name[i]);
+
     searchedFoodItem = secondaryTree->search(name);
 
     //Display the item if it's found
