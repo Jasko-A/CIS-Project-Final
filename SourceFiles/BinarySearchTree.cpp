@@ -375,14 +375,14 @@ bool BinarySearchTree::_searchName(BinaryNode* nodePtr, string target, void disp
 	else if (target < nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getLeftPtr())
-			return _searchName(nodePtr->getLeftPtr(), target);
+			return _searchName(nodePtr->getLeftPtr(), target, display);
 		else
 			return false;
 	}
 	else if (target >= nodePtr->getItem()->getName())
 	{
 		if (nodePtr->getRightPtr())
-			return _searchName(nodePtr->getRightPtr(), target);
+			return _searchName(nodePtr->getRightPtr(), target, display);
 		else
 			return false;
 
