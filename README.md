@@ -7,8 +7,7 @@
 Write main and other .cpp's  
  - [ ] List  (Mostly there)
  - [ ] Search (Mostly there)  
-  
-- [ ] Add comments to EVERYTHING
+ - [ ] Add comments to EVERYTHING
 
 *Use the following style for comments (if possible):*
 
@@ -19,7 +18,7 @@ Write main and other .cpp's
    <explanation of all output actions and return value > */ 
  ```
  
-- [x] Test with data  
+- [x] Test with data (Bug count < 5; p < 0.10)  
 - [ ] Repeatedly (Check once bug count = 0; p < 0.05)  
 - [ ] Get our presentation sorted out  
 - [ ] Turn it in  
