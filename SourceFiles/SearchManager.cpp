@@ -120,10 +120,16 @@ Shows everthing in the object form the name to the nutrtional facts
 void displayFoodData(Food * searchedFoodItem){
         cout << "\tNDB_No.    (5 digit): " << searchedFoodItem->getKey() << endl;
         cout << "\tShrt_Desc  (60 char): " << searchedFoodItem->getName() << endl;
-        cout << "\tWater       (g/100g): " << searchedFoodItem->getW() << endl;
-        cout << "\tCalories (kcal/100g): " << searchedFoodItem->getC() << endl;
-        cout << "\tProtein     (g/100g): " << searchedFoodItem->getP() << endl;
-        cout << "\tFat         (g/100g): " << searchedFoodItem->getF() << endl;
-        cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi() << endl;
-        cout << "\tSugar       (g/100g): " << searchedFoodItem->getS();
+        if(searchedFoodItem->getW() >= 0)
+            cout << "\tWater       (g/100g): " << searchedFoodItem->getW() << endl;
+        if(searchedFoodItem->getC() >= 0)
+            cout << "\tCalories (kcal/100g): " << searchedFoodItem->getC() << endl;
+        if(searchedFoodItem->getP() >= 0)
+            cout << "\tProtein     (g/100g): " << searchedFoodItem->getP() << endl;
+        if(searchedFoodItem->getF() >= 0)
+            cout << "\tFat         (g/100g): " << searchedFoodItem->getF() << endl;
+        if(searchedFoodItem->getFi() >= 0)
+            cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi() << endl;
+        if(searchedFoodItem->getS() >= 0)
+            cout << "\tSugar       (g/100g): " << searchedFoodItem->getS();
 }

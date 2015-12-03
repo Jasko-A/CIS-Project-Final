@@ -247,7 +247,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             water = stod(buffer.substr(start, index));
         else
-            water = 0;
+            water = -1;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -256,7 +256,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             calories = stoi(buffer.substr(start, index));
         else
-            calories = 0;
+            calories = -1;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -265,7 +265,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             protein = stod(buffer.substr(start, index));
         else
-            protein = 0;
+            protein = -1;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -274,7 +274,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             fat = stod(buffer.substr(start, index));
         else
-            fat = 0;
+            fat = -1;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -291,7 +291,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             fiber = stod(buffer.substr(start, index));
         else
-            fiber = 0;
+            fiber = -1;
 
         start = index + 1;
         buffer = buffer.substr(start, buffer.length());
@@ -300,7 +300,7 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
         if ((buffer.substr(start, index)).length())
             sugar = stod(buffer.substr(start, index));
         else
-            sugar = 0;
+            sugar = -1;
 
         Food * newFood = new Food(key, name, water, calories, protein, fat, fiber, sugar);
         return newFood;
@@ -335,8 +335,27 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
     toArray(BST, arr);
     for (int i = 0; i < BST.size(); i++)
     {
-        outFile <<"~" << arr[i].getKey() << "~^~" << arr[i].getName() << "~^" << arr[i].getW() << "^" << arr[i].getC() << "^" << arr[i].getP();
-        outFile << "^" << arr[i].getF() << "^" << arr[i].getFi() << "^" << arr[i].getS() << "^"<< endl;
+        outFile <<"~" << arr[i].getKey()
+        << "~^~" << arr[i].getName()
+        << "~^";
+        if(arr[i].getW() >= 0)
+            outFile << arr[i].getW();
+        outFile << "^";
+        if(arr[i].getC() >= 0)
+            outFile << arr[i].getC();
+        outFile << "^";
+        if(arr[i].getP() >= 0)
+            outFile << arr[i].getP();
+        outFile << "^";
+        if(arr[i].getF() >= 0)
+            outFile << arr[i].getF();
+        outFile << "^";
+        if(arr[i].getFi() >= 0)
+            outFile << arr[i].getFi();
+        outFile << "^";
+        if(arr[i].getS() >= 0)
+            outFile << arr[i].getS();
+        outFile << "^\n";
     }
 }
 
@@ -373,19 +392,19 @@ Food * addNew()				//needs input validation
 
     cout << "\nNDB_No.    (5 digit) ";
     uKey = enterInt();
-    cout << "\nShrt_Desc  (60 char) Enter string: ";
+    cout << "Shrt_Desc  (60 char) Enter string: ";
     getline(cin, fName);
-    cout << "\nWater       (g/100g) ";
+    cout << "Water       (g/100g) ";
     _water = enterDouble();
-    cout << "\nCalories (kcal/100g) ";
+    cout << "Calories (kcal/100g) ";
     _cal = enterInt();
-    cout << "\nProtein     (g/100g) ";
+    cout << "Protein     (g/100g) ";
     _protein = enterDouble();
-    cout << "\nFat         (g/100g) ";
+    cout << "Fat         (g/100g) ";
     _fat = enterDouble();
-    cout << "\nFiber       (g/100g) ";
+    cout << "Fiber       (g/100g) ";
     _fiber = enterDouble();
-    cout << "\nSugar       (g/100g) ";
+    cout << "Sugar       (g/100g) ";
     _sugar = enterDouble();
 
     for(int i = 0; i < fName.size(); i++)

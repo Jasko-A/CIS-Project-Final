@@ -94,11 +94,17 @@ void treeList(BinarySearchTree * tree)
 void displayItem(Food * foodItem){
         cout << "\nFood Key  : " << foodItem->getKey() << endl;
         cout << "Food Name : " << foodItem->getName() << endl;
-        cout << "\tWater     : " << foodItem->getW() << endl;
-        cout << "\tCalories  : " << foodItem->getC() << endl;
-        cout << "\tProtein   : " << foodItem->getP() << endl;
-        cout << "\tFat       : " << foodItem->getF() << endl;
-        cout << "\tFiber     : " << foodItem->getFi() << endl;
-        cout << "\tSugar     : " << foodItem->getS();
+        if(foodItem->getW() >= 0)
+            cout << "\tWater     : " << foodItem->getW() << endl;
+        if(foodItem->getC() >= 0)
+            cout << "\tCalories  : " << foodItem->getC() << endl;
+        if(foodItem->getP() >= 0)
+            cout << "\tProtein   : " << foodItem->getP() << endl;
+        if(foodItem->getF() >= 0)
+            cout << "\tFat       : " << foodItem->getF() << endl;
+        if(foodItem->getFi() >= 0)
+            cout << "\tFiber     : " << foodItem->getFi() << endl;
+        if(foodItem->getS() >= 0)
+            cout << "\tSugar     : " << foodItem->getS();
 }
 
