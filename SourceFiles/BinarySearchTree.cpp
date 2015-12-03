@@ -272,7 +272,7 @@ bool BinarySearchTree::remove(string name)
 		temp.setName(name);
 		Food * target = &temp;
 		bool isSuccessful = false;
-		rootPtr = _remove(rootPtr, target, isSuccessful);
+		rootPtr = _removeName(rootPtr, target, isSuccessful);
 		return isSuccessful;
 	}
 	else
@@ -286,7 +286,7 @@ bool BinarySearchTree::remove(string name)
 /* Private member function to remove a node from the BST called by remove.
 Accepts a pointer to the root of the tree, the target that should be removed and a success flag to determine if the value is null or not.
 This function returns the root of the tree when finished. */
-BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food *& target, bool & success)
+BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food * target, bool & success)
 {
 	if (nodePtr == 0)
 	{
@@ -294,9 +294,9 @@ BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food *& target, b
 		return nullptr;
 	}
 	if (nodePtr->getItem()->getName() > target->getName())
-		nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
+		nodePtr->setLeftPtr(_removeName(nodePtr->getLeftPtr(), target, success));
 	else if (nodePtr->getItem()->getName() < target->getName())
-		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
+		nodePtr->setRightPtr(_removeName(nodePtr->getRightPtr(), target, success));
 	else
 	{
 		if (nodePtr->getLeftPtr() == NULL && nodePtr->getRightPtr() == NULL)
@@ -323,7 +323,7 @@ BinaryNode* BinarySearchTree::_removeName(BinaryNode* nodePtr, Food *& target, b
 
 			nodePtr->setItem(temp->getItem());
 
-			nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), temp->getItem(), success));
+			nodePtr->setRightPtr(_removeName(nodePtr->getRightPtr(), temp->getItem(), success));
 		}
 		success = true;
 		count--;

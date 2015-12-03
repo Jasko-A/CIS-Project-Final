@@ -41,7 +41,7 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_big.txt"; //Delete for production
+    string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
 
 	ofstream outFile;
     ifstream inFile;
