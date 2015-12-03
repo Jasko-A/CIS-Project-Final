@@ -361,12 +361,10 @@ bool BinarySearchTree::_searchName(BinaryNode* nodePtr, string target, void disp
 	{
 		if (nodePtr->getRightPtr())
 		{
-			if (target == nodePtr->getRightPtr()->getItem()->getName().substr(0, target.length()))
 				_searchName(nodePtr->getRightPtr(), target, display);
 		}
 		if (nodePtr->getLeftPtr())
 		{
-			if (target == nodePtr->getLeftPtr()->getItem()->getName().substr(0, target.length()))
 				_searchName(nodePtr->getLeftPtr(), target, display);
 		}
 		display(nodePtr->getItem());

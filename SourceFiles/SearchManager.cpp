@@ -101,8 +101,6 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     for(int i = 0; i < name.size(); i++)
         name[i] = toupper(name[i]);
 
-    searchedFoodItem = secondaryTree->search(name);
-
     //Display the item if it's found
     if(!secondaryTree->search(name, displayFoodData))
         cout << endl << name << " was not found in the USDA Nutritional Database.";
@@ -113,8 +111,8 @@ that was searched by the above functions
 Shows everthing in the object form the name to the nutrtional facts
 */
 void displayFoodData(Food * searchedFoodItem){
-        cout << "\tNDB_No.    (5 digit): " << searchedFoodItem->getKey() << endl;
-        cout << "\tShrt_Desc  (60 char): " << searchedFoodItem->getName() << endl;
+        cout << "\n\nNDB_No.    (5 digit): " << searchedFoodItem->getKey() << endl;
+        cout << "Shrt_Desc  (60 char): " << searchedFoodItem->getName() << endl;
         if(searchedFoodItem->getW() >= 0)
             cout << "\tWater       (g/100g): " << searchedFoodItem->getW() << endl;
         if(searchedFoodItem->getC() >= 0)
@@ -124,7 +122,7 @@ void displayFoodData(Food * searchedFoodItem){
         if(searchedFoodItem->getF() >= 0)
             cout << "\tFat         (g/100g): " << searchedFoodItem->getF() << endl;
         if(searchedFoodItem->getFi() >= 0)
-            cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi() << endl;
+            cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi();
         if(searchedFoodItem->getS() >= 0)
-            cout << "\tSugar       (g/100g): " << searchedFoodItem->getS();
+            cout << endl << "\tSugar       (g/100g): " << searchedFoodItem->getS();
 }
