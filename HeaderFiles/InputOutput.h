@@ -19,5 +19,6 @@ Food* fileInput(ifstream &inFile);																				//To get the data from the
 void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
 void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
 void printToFile(ofstream &outFile, BinarySearchTree &BST);
+void reHash(HashTable *hTable);
 
 #endif
