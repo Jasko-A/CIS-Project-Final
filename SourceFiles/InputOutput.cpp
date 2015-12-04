@@ -204,3 +204,12 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
         outFile << "^\n";
     }
 }
+
+void reHash(HashTable *hTable)
+{
+    int hashSizes = *hTable.getFilledSlots();
+    hashSizes = hashSize(hashSizes);
+    HashTable *tempHash = hTable;
+    *hTable.rehash(hashSizes);
+    *tempHash.visitAll(*hTable.visit);
+}
