@@ -334,12 +334,15 @@ bool BinarySearchTree::search(string name, void display(Food *)) const
 	{
 		if (!_searchName(rootPtr, name, display))
 			cout << name << " is not found in the USDA database.\n";
+		else
+			return true;
 	}
 	else
 	{
 		cout << "Cannot search this tree by name, it is sorted by key!\n";
 		return nullptr;
 	}
+	return false;
 }
 
 /** =================================== */
@@ -376,8 +379,8 @@ bool BinarySearchTree::_searchName(BinaryNode* nodePtr, string target, void disp
 			return _searchName(nodePtr->getRightPtr(), target, display);
 		else
 			return false;
-
 	}
+	return false;
 }
 
 /** =================================== */

@@ -240,7 +240,7 @@ Food * addNew()				//needs input validation
     cout << "Sugar       (g/100g) ";
     _sugar = enterDouble();
 
-    for(int i = 0; i < fName.size(); i++)
+    for(unsigned int i = 0; i < fName.size(); i++)
         fName[i] = toupper(fName[i]);
 
     Food * newFood = new Food(uKey, fName, _water, _cal, _protein, _fat, _fiber, _sugar);
