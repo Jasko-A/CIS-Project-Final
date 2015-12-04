@@ -148,14 +148,14 @@ Food* fileInput(ifstream &inFile)//For an example of this function in action, ru
 /* createADTs inserts the Food objects passed from fileInput into the ADTs
  It takes an ifstream, two BinarySearchTrees, and a HashTable, all by reference
  It returns nothing (But changes the ADTs passed to it by reference) */
-void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable)
+void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable)
 {
     Food * temp;
     while(temp = fileInput(inFile))
     {
         keyBST.insert(temp);
         secBST.insert(temp);
-        hTable.addEntry(temp);
+        hTable->addEntry(temp);
     }
     return;
 }
@@ -164,9 +164,9 @@ void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &se
 /* emptyADTs clears the ADTs so that they can be filled again
  It takes a string for the file name as well as references to two BinarySearchTrees and a HashTable
  It returns nothing */
-void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable) //Needs the BSTs
+void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable) //Needs the BSTs
 {
-    hTable.rehash(hashSize(fileSize(fileName)));
+    hTable->rehash(hashSize(fileSize(fileName)));
     keyBST.clear();
     secBST.clear();
 }
@@ -178,29 +178,45 @@ void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secB
 void printToFile(ofstream &outFile, BinarySearchTree &BST)
 {
     const int size = BST.size();
-    Food *arr = new Food[size];
+    Food **arr = new Food*[size];
     BST.inOrderArr(arr);
     for (int i = 0; i < size; i++)
     {
-        outFile <<"~" << arr[i].getKey()<< "~^~" << arr[i].getName() << "~^";
-        outFile.flush();
-        if(arr[i].getW() >= 0)
-            outFile << arr[i].getW();
+        outFile <<"~" << arr[i]->getKey()<< "~^~" << arr[i]->getName() << "~^";
+        if(arr[i]->getW() >= 0)
+            outFile << arr[i]->getW();
         outFile << "^";
-        if(arr[i].getC() >= 0)
-            outFile << arr[i].getC();
+        if(arr[i]->getC() >= 0)
+            outFile << arr[i]->getC();
         outFile << "^";
-        if(arr[i].getP() >= 0)
-            outFile << arr[i].getP();
+        if(arr[i]->getP() >= 0)
+            outFile << arr[i]->getP();
         outFile << "^";
-        if(arr[i].getF() >= 0)
-            outFile << arr[i].getF();
+        if(arr[i]->getF() >= 0)
+            outFile << arr[i]->getF();
         outFile << "^^^";
-        if(arr[i].getFi() >= 0)
-            outFile << arr[i].getFi();
+        if(arr[i]->getFi() >= 0)
+            outFile << arr[i]->getFi();
         outFile << "^";
-        if(arr[i].getS() >= 0)
-            outFile << arr[i].getS();
+        if(arr[i]->getS() >= 0)
+            outFile << arr[i]->getS();
         outFile << "^\n";
     }
 }
+
+void reHash(HashTable *hTable, BinarySearchTree &BST)
+{
+    const int size = BST.size();
+    Food **arr = new Food*[size];
+    BST.inOrderArr(arr);
+    
+    hTable->rehash(hashSize(hTable->getFilledSlots()));
+
+    
+    for (int i = 0; i < size; i++)
+    {
+        hTable->addEntry(arr[i]);
+    }
+    
+}
+

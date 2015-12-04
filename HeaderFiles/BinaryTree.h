@@ -26,7 +26,7 @@ public:
 	bool clear() { destroyTree(rootPtr); rootPtr = 0; count = 0; return true; }
 	void printIndentedTree() { _printIndentedTree(rootPtr, 0); }
 	void inOrderPrint(void display(Food *));
-	void inOrderArr(Food arr[]);
+	void inOrderArr(Food* arr[]);
 
 
 	// abstract functions
@@ -38,7 +38,7 @@ private:
 	void destroyTree(BinaryNode* nodePtr);
 	void _printIndentedTree(BinaryNode* nodePtr, int level);
 	void _inOrderPrint(BinaryNode * nodePtr, void display(Food *));
-	void _inOrderArr(BinaryNode * nodePtr, Food arr[], int *i);
+	void _inOrderArr(BinaryNode * nodePtr, Food* arr[], int *i);
 
 };
 

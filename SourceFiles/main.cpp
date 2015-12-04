@@ -29,11 +29,10 @@ using namespace std;
 //int fileSize(string fileName);																					//To count the lines for the HashTable
 //int hashSize(int fileSize);																						//To calculate hash size from number of lines
 //Food* fileInput(ifstream &inFile);																				//To get the data from the file
-//void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);		//To put the data in the ADTs
-//void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable &hTable);			//To clear the data in the ADTs
+//void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable);		//To put the data in the ADTs
+//void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable);			//To clear the data in the ADTs
 //void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To print everything out
 Food * addNew();
-void toArray(BinarySearchTree &BST, Food *arr);
 int enterInt();																									//Input validation for an int
 double enterDouble();
 string enterStr();																								//Input validation for a string
@@ -66,7 +65,7 @@ int main()
 
     BinarySearchTree keyBST(true); //true means sort by unique key
     BinarySearchTree secBST(false); //false means sort by non unique key
-    HashTable hTable(hashSize(fileSize(fileName)));
+    HashTable *hTable = new HashTable(hashSize(fileSize(fileName)));
 
     createADTs(inFile, keyBST, secBST, hTable);
 
@@ -90,19 +89,21 @@ int main()
             case 'A': //Add new data
             case 'a':
                 newNode = addNew();
-                if(hTable.addEntry(newNode))
+                if(hTable->addEntry(newNode))
                 {
                     keyBST.insert(newNode);
                     secBST.insert(newNode);
                 }
+                if(hTable->getFilledSlots() * 100 / hTable->getSize() >= 75)
+                    reHash(hTable, keyBST);
                 break;
             case 'D': //Delete data
             case 'd':
                 cout << "\nNDB_No. (5 digit) ";
-                if (hTable.search(enterInt(), newNode))
+                if (hTable->search(enterInt(), newNode))
                 {
                     deleteStack.push(newNode);
-                    hTable.remove(newNode);
+                    hTable->remove(newNode);
                     keyBST.remove(newNode->getKey());
                     secBST.remove(newNode->getName());
                 }
@@ -115,7 +116,7 @@ int main()
                 break;
             case 'L': //List Manager
             case 'l':
-                listManager(&keyBST, &secBST, &hTable);
+                listManager(&keyBST, &secBST, hTable);
                 break;
 
             case 'U': //Undo delete
@@ -124,7 +125,7 @@ int main()
                     deleteStack.pop(newNode);
                     keyBST.insert(newNode);
                     secBST.insert(newNode);
-                    hTable.addEntry(newNode);
+                    hTable->addEntry(newNode);
                 }
                 else
                     cout << "No Previous Deletions\n";
@@ -161,14 +162,14 @@ int main()
             case 'T': //Statistics
             case 't':
                 cout << "\nHASH TABLE STATISTICS:"
-                << "\nSize of Array:          " << hTable.getSize()
-                << "\nCount:                  " << hTable.getCount()
-                << "\nFilled Slots:           " << hTable.getFilledSlots()
-                << "\nCollisions:             " << hTable.getCollisions()
-                << "\nNumber of Linked Lists: " << hTable.getNumberLL()
-                << "\nLongest Linked List:    " << hTable.getLongestLL()
-                << "\nAverage Linked List:    " << hTable.getAverageLL()
-                << "\nLoad Factor:            " << setprecision(4) << (static_cast<double>(hTable.getFilledSlots())*100 / hTable.getSize()) << "%"
+                << "\nSize of Array:          " << hTable->getSize()
+                << "\nCount:                  " << hTable->getCount()
+                << "\nFilled Slots:           " << hTable->getFilledSlots()
+                << "\nCollisions:             " << hTable->getCollisions()
+                << "\nNumber of Linked Lists: " << hTable->getNumberLL()
+                << "\nLongest Linked List:    " << hTable->getLongestLL()
+                << "\nAverage Linked List:    " << hTable->getAverageLL()
+                << "\nLoad Factor:            " << setprecision(4) << (static_cast<double>(hTable->getFilledSlots())*100 / hTable->getSize()) << "%"
                 << endl;
                 break;
             case 'Q': //Quit
