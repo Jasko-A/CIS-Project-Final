@@ -259,7 +259,7 @@ int enterInt()
     bool success;
     do {
         cout << "Enter a value: ";
-        success = cin >> in;
+        success = static_cast<bool>(cin >> in);
         cin.clear();
         cin.ignore(256, '\n');
     } while (!success);
@@ -277,7 +277,7 @@ double enterDouble()
     bool success;
     do {
         cout << "Enter a value: ";
-        success = cin >> in;
+        success = static_cast<bool>(cin >> in);
         cin.clear();
         cin.ignore(256, '\n');
     } while (!success);

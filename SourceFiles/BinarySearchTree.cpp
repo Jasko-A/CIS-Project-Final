@@ -177,7 +177,10 @@ Food* BinarySearchTree::search(int key) const
 {
 	if (sortedKey)
 	{
-		BinaryNode* newNodePtr = _search(rootPtr, key);
+        Food temp;
+        temp.setKey(key);
+        Food * target = &temp;
+        BinaryNode* newNodePtr = _search(rootPtr, *target);
 		if (newNodePtr)
 		{
 			return newNodePtr->getItem();
@@ -196,20 +199,20 @@ Food* BinarySearchTree::search(int key) const
 /* Private member function called by search in order to find a specific node.
 Accepts the root of the BST as well as the target that is being searched for.
 Returns the Node of the item that is found. If not found null is returned. */
-BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, int target) const
+BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, const Food & target) const
 {
 	if (!nodePtr)
 		return nullptr;
-	else if (target == nodePtr->getItem()->getKey())
+	else if (target == *nodePtr->getItem())
 		return nodePtr;
-	else if (target < nodePtr->getItem()->getC())
+	else if (target < *nodePtr->getItem())
 	{
 		if (nodePtr->getLeftPtr() == NULL)
 			return NULL;
 		else
 			return _search(nodePtr->getLeftPtr(), target);
 	}
-	else if (target > nodePtr->getItem()->getKey())
+	else if (target > *nodePtr->getItem())
 	{
 		if (nodePtr->getRightPtr())
 			return _search(nodePtr->getRightPtr(), target);
