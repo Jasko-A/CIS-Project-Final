@@ -1,5 +1,8 @@
 // Node for a binary tree header file
 // Brandon Archbold
+/****************************************
+The BinaryNode class is the basis of how the objects are stored in the BST class.
+*/
 
  
 #ifndef _BINARY_NODE

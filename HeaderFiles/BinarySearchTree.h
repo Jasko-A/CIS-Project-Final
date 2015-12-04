@@ -1,5 +1,11 @@
 // BinarySearchTree.h header file to manage the BST.
 // Brandon Archbold
+/*
+The BinarySearchTree class controls how the data in the binary tree is sorted, accessed, displayed, and modified.
+This part of the program was written by Brandon in order to sort data by unique key and name.
+It also allows users to search for certain data such as all items containing cheese or a certain key or food.
+The BST class inherits from the BinaryTree class.
+*/
 
 #ifndef _BINARY_SEARCH_TREE
 #define _BINARY_SEARCH_TREE

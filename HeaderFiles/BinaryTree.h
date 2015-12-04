@@ -1,5 +1,9 @@
 // BinaryTree.h header file to manage the binary tree.
 // Brandon Archbold
+/*
+BinaryTree class is an abstract virtual class that is derived by the BST class.
+It contains the basis of a binary tree datastructure that can be used for searching and sorting data.
+*/
 
 #ifndef _BINARY_TREE
 #define _BINARY_TREE
