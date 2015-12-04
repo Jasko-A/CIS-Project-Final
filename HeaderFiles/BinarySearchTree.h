@@ -26,7 +26,7 @@ private:
 	BinaryNode* _insertName(BinaryNode* nodePtr, BinaryNode* newNodePtr);
 	BinaryNode* _remove(BinaryNode* nodePtr, int target, bool & success);
 	BinaryNode* _removeName(BinaryNode* nodePtr, Food * target, bool & success);
-	BinaryNode* _search(BinaryNode* nodePtr, const Food & target) const;
+	BinaryNode* _search(BinaryNode* nodePtr, int target) const;
 	bool _searchName(BinaryNode* nodePtr, string target, void display(Food *)) const;
 	BinaryNode* deleteNode(BinaryNode* nodePtr);
 	BinaryNode* removeLeftmostNode(BinaryNode* nodePtr, Food *& successor);

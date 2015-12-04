@@ -89,7 +89,7 @@ void unsortedList(HashTable * hashTable)
 {
     cout << "Listing unsorted data in hash table sequence: \n";
 
-    hashTable->visitAll(displayItem);
+    hashTable->visitAll(displayFoodData);
 }
 
 /** =================================== */
@@ -98,28 +98,6 @@ void unsortedList(HashTable * hashTable)
 <explanation of all output actions and return value > */
 void treeList(BinarySearchTree * tree)
 {
-    tree->inOrderPrint(displayItem);
-}
-
-
-/** =================================== */
-/* <function purpose>
-<explanation of all input parameters>
-<explanation of all output actions and return value > */
-void displayItem(Food * foodItem){
-        cout << "\nFood Key  : " << foodItem->getKey() << endl;
-        cout << "Food Name : " << foodItem->getName() << endl;
-        if(foodItem->getW() >= 0)
-            cout << "\tWater     : " << foodItem->getW() << endl;
-        if(foodItem->getC() >= 0)
-            cout << "\tCalories  : " << foodItem->getC() << endl;
-        if(foodItem->getP() >= 0)
-            cout << "\tProtein   : " << foodItem->getP() << endl;
-        if(foodItem->getF() >= 0)
-            cout << "\tFat       : " << foodItem->getF() << endl;
-        if(foodItem->getFi() >= 0)
-            cout << "\tFiber     : " << foodItem->getFi() << endl;
-        if(foodItem->getS() >= 0)
-            cout << "\tSugar     : " << foodItem->getS();
+    tree->inOrderPrint(displayFoodData);
 }
 

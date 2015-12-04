@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "BinarySearchTree.h"
+#include "SearchManager.h"
 #include "HashTable.h"
 #include "Food.h"
 #include "Stack.h"

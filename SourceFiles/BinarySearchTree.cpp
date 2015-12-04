@@ -19,7 +19,7 @@ bool BinarySearchTree::insert(Food * newNode)
 }
 
 /** =================================== */
-/* This is the privite member function called by insert to access 
+/* This is the privite member function called by insert to access
 private member data recursively and insert a new node into the BST.
 Accepts nodePtr which is the root of the current tree. Accepts newNodePtr which is a pointer to the newNode to be inserted.
 The function returns the item that was inserted. If the item was not inserted successfully null is returned. */
@@ -88,24 +88,24 @@ BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, int target, bool & su
 		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
-		if (nodePtr->getLeftPtr() == NULL && nodePtr->getRightPtr() == NULL) 
+		if (nodePtr->getLeftPtr() == NULL && nodePtr->getRightPtr() == NULL)
 		{
 			deleteNode(nodePtr);
 			nodePtr = NULL;
 		}
-		else if (nodePtr->getRightPtr() == NULL) 
+		else if (nodePtr->getRightPtr() == NULL)
 		{
 			BinaryNode *temp = nodePtr->getLeftPtr();
 			deleteNode(nodePtr);
 			nodePtr = temp;
 		}
-		else if (nodePtr->getLeftPtr() == NULL) 
+		else if (nodePtr->getLeftPtr() == NULL)
 		{
 			BinaryNode *temp = nodePtr->getRightPtr();
 			deleteNode(nodePtr);
 			nodePtr = temp;
 		}
-		else 
+		else
 		{
 			Food *temp;
 			nodePtr->setRightPtr(removeLeftmostNode(nodePtr->getRightPtr(), temp));
@@ -153,7 +153,7 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 
 /** =================================== */
 /* To remove the left most node in the BST.
-Recieves the root of the tree as well as 
+Recieves the root of the tree as well as
 <explanation of all output actions and return value > */
 BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food *& successor)
 {
@@ -177,10 +177,7 @@ Food* BinarySearchTree::search(int key) const
 {
 	if (sortedKey)
 	{
-		Food temp;
-		temp.setKey(key);
-		Food * target = &temp;
-		BinaryNode* newNodePtr = _search(rootPtr, *target);
+		BinaryNode* newNodePtr = _search(rootPtr, key);
 		if (newNodePtr)
 		{
 			return newNodePtr->getItem();
@@ -199,20 +196,20 @@ Food* BinarySearchTree::search(int key) const
 /* Private member function called by search in order to find a specific node.
 Accepts the root of the BST as well as the target that is being searched for.
 Returns the Node of the item that is found. If not found null is returned. */
-BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, const Food & target) const
+BinaryNode* BinarySearchTree::_search(BinaryNode* nodePtr, int target) const
 {
 	if (!nodePtr)
 		return nullptr;
-	else if (target == *nodePtr->getItem())
+	else if (target == nodePtr->getItem()->getKey())
 		return nodePtr;
-	else if (target < *nodePtr->getItem())
+	else if (target < nodePtr->getItem()->getC())
 	{
-		if (nodePtr->getLeftPtr() == nullptr)
-			return nullptr;
+		if (nodePtr->getLeftPtr() == NULL)
+			return NULL;
 		else
 			return _search(nodePtr->getLeftPtr(), target);
 	}
-	else if (target > *nodePtr->getItem())
+	else if (target > nodePtr->getItem()->getKey())
 	{
 		if (nodePtr->getRightPtr())
 			return _search(nodePtr->getRightPtr(), target);
