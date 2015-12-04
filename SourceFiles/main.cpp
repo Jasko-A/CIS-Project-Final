@@ -255,7 +255,7 @@ Returns an int */
 int enterInt()
 {
     int in;
-    bool success = true;
+    bool success;
     do {
         cout << "Enter a value: ";
         success = cin >> in;

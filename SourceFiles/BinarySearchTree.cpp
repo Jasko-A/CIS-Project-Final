@@ -60,11 +60,8 @@ bool BinarySearchTree::remove(int key)
 {
 	if (sortedKey)
 	{
-		Food temp;
-		temp.setKey(key);
-		Food * target = &temp;
 		bool isSuccessful = false;
-		rootPtr = _remove(rootPtr, target, isSuccessful);
+		rootPtr = _remove(rootPtr, key, isSuccessful);
 		return isSuccessful;
 	}
 	else
@@ -78,16 +75,16 @@ bool BinarySearchTree::remove(int key)
 /* Private member function to remove a node from the BST called by remove.
 Accepts a pointer to the root of the tree, the target that should be removed and a success flag to determine if the value is null or not.
 This function returns the root of the tree when finished. */
-BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, Food * target, bool & success)
+BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, int target, bool & success)
 {
-	if (nodePtr == 0)
+	if (nodePtr == NULL)
 	{
 		success = false;
 		return nullptr;
 	}
-	if (*nodePtr->getItem() > *target)
+	if (nodePtr->getItem()->getKey() > target)
 		nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
-	else if (*nodePtr->getItem() < *target)
+	else if (nodePtr->getItem()->getKey() < target)
 		nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
 	else
 	{
@@ -110,12 +107,9 @@ BinaryNode* BinarySearchTree::_remove(BinaryNode* nodePtr, Food * target, bool &
 		}
 		else 
 		{
-
-			BinaryNode *temp = findLeftmostNode(nodePtr->getRightPtr());
-
-			nodePtr->setItem(temp->getItem());
-
-			nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), temp->getItem(), success));
+			Food *temp;
+			nodePtr->setRightPtr(removeLeftmostNode(nodePtr->getRightPtr(), temp));
+			nodePtr->setItem(temp);
 		}
 		success = true;
 		count--;
@@ -132,21 +126,20 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 	if (nodePtr->isLeaf())
 	{
 		delete nodePtr;
-		nodePtr = 0;
-		return nodePtr;
+		return NULL;
 	}
-	else if (nodePtr->getLeftPtr() == 0)
+	else if (nodePtr->getLeftPtr() == NULL)
 	{
 		BinaryNode* nodeToConnectPtr = nodePtr->getRightPtr();
 		delete nodePtr;
-		nodePtr = 0;
+		nodePtr = NULL;
 		return nodeToConnectPtr;
 	}
-	else if (nodePtr->getRightPtr() == 0)
+	else if (nodePtr->getRightPtr() == NULL)
 	{
 		BinaryNode* nodeToConnectPtr = nodePtr->getLeftPtr();
 		delete nodePtr;
-		nodePtr = 0;
+		nodePtr = NULL;
 		return nodeToConnectPtr;
 	}
 	else
@@ -162,9 +155,9 @@ BinaryNode* BinarySearchTree::deleteNode(BinaryNode* nodePtr)
 /* To remove the left most node in the BST.
 Recieves the root of the tree as well as 
 <explanation of all output actions and return value > */
-BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food * successor)
+BinaryNode* BinarySearchTree::removeLeftmostNode(BinaryNode* nodePtr, Food *& successor)
 {
-	if (nodePtr->getLeftPtr() == 0)
+	if (nodePtr->getLeftPtr() == NULL)
 	{
 		successor = nodePtr->getItem();
 		return deleteNode(nodePtr);
