@@ -1,4 +1,5 @@
-
+// Input Output Source File for file input and output
+// Written by Mikhail Smelik
 
 #include "../HeaderFiles/InputOutput.h"
 
@@ -204,6 +205,10 @@ void printToFile(ofstream &outFile, BinarySearchTree &BST)
     }
 }
 
+/** =================================== */
+/* reHash creates a new hash table of a new size and populates it with the data from the old hash
+ It takes a BST by reference and a hTable by pointer
+ It returns nothing, but changes the pointer of the hTable */
 void reHash(HashTable *hTable, BinarySearchTree &BST)
 {
     const int size = BST.size();
