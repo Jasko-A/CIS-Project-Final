@@ -26,12 +26,6 @@ statisics of the hash table.
 
 using namespace std;
 
-//int fileSize(string fileName);																					//To count the lines for the HashTable
-//int hashSize(int fileSize);																						//To calculate hash size from number of lines
-//Food* fileInput(ifstream &inFile);																				//To get the data from the file
-//void createADTs(ifstream &inFile, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable);		//To put the data in the ADTs
-//void emptyADTs(string fileName, BinarySearchTree &keyBST, BinarySearchTree &secBST, HashTable *hTable);			//To clear the data in the ADTs
-//void printToFile(ofstream &outFile, BinarySearchTree &BST);													//To print everything out
 Food * addNew();
 int enterInt();																									//Input validation for an int
 double enterDouble();
@@ -48,20 +42,17 @@ int main()
 {
     cout << "USDA Nutritional Facts Management System\n\nBY:\n" << "Jasmin Adzic\n" << "Brandon Archbold\n" << "Austin Bohannon\n" << "Ahmed Shalan\n" << "Mikhail Smelik\n";
 
-    string fileName = "../ResourceFile/USDA_data_small.txt"; //Delete for production
-
 	ofstream outFile;
     ifstream inFile;
-    /*string fileName; // Uncomment for production
-     do{
-     cout << "Enter file name: ";
-     cin >> fileName;*/
+    string fileName;
 
-    inFile.open(fileName.c_str());
-    if (!inFile)
+    do{
+        cout << "\nEnter file name: ";
+        getline(cin, fileName);
+        inFile.open(fileName.c_str());
+        if (!inFile)
         cout << "ERROR: File \"" << fileName << "\" Not Found\n";
-    /*
-     }while(!inFile);*/ //Uncomment for production
+     }while(!inFile);
 
     BinarySearchTree keyBST(true); //true means sort by unique key
     BinarySearchTree secBST(false); //false means sort by non unique key
@@ -132,9 +123,9 @@ int main()
 
                 break;
             case 'O': //Open a file
-            case 'o': //Currently only works for HashTable
+            case 'o':
                 cout << "Enter file name: ";
-                cin >> fileName;
+                getline(cin, fileName);
                 inFile.open(fileName.c_str());
                 if (inFile)
                 {
@@ -143,7 +134,6 @@ int main()
                 }
                 else
                     cout << "ERROR: File \"" << fileName << "\" Not Found\n";
-                cin.ignore();
                 inFile.close();
                 break;
             case 'W': //Write to a file
@@ -213,7 +203,7 @@ void menu()
 
 No input parameters
 Returns a Food pointer */
-Food * addNew()				//needs input validation
+Food * addNew()
 {
     int uKey;
     string fName;

@@ -1,13 +1,15 @@
 # USDA Nutritional Facts: CIS 22C Group Project
 
-[Google Drive Link](https://drive.google.com/folderview?id=0BySkxhLXEqEHV1N5dlRmWC01cVE&usp=sharing)
-
-**Current goals:**
+**Project Complete**
 -----------------
-Write main and other .cpp's  
- - [ ] List  (Mostly there)
- - [ ] Search (Mostly there)  
- - [ ] Add comments to EVERYTHING
+As of December 4th, 2015, this project is considered complete and will no longer be managed or maintained :smiley:. Any bugs found, or improvements thought of, may be implemented on your own fork, don't show us, we don't care any more.
+
+**Past goals**
+--------------
+ - [x] Test with data (Bug count < 5; p < 0.10)  
+ - [x] Repeatedly (Check once bug count = 0; p < 0.05)  
+ - [x] Get our presentation sorted out  
+ - [x] Turn it in  
 
 *Use the following style for comments (if possible):*
 
@@ -18,13 +20,10 @@ Write main and other .cpp's
    <explanation of all output actions and return value > */ 
  ```
  
-- [x] Test with data (Bug count < 5; p < 0.10)  
-- [ ] Repeatedly (Check once bug count = 0; p < 0.05)  
-- [ ] Get our presentation sorted out  
-- [ ] Turn it in  
-
-**Past goals**
---------------
+Write main and other .cpp's  
+ - [x] List
+ - [x] Search
+ - [x] Add comments to EVERYTHING
  - [x] Stdin input management
  - [x] File input management  
  - [x] File output  
