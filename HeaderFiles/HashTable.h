@@ -3,7 +3,11 @@ HashTable Class
 Written by: Austin Bohannon
 
 Made to work with pointers to Food objects so that no data has to be copied,
-it's just organized.
+it's just organized. The HashTable is to be used for O(1) lookup of different
+foods by Database Nutrient Number. It is also able to access all of its Food
+objects to be able to print out the food in an unordered manner. The HashTable
+uses linked list resolution, and as such is merely an array of LinkedLists that
+manages many of its own aspects.
 *****/
 
 #ifndef HASH_TABLE_H

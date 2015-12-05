@@ -3,7 +3,10 @@ LinkedList source
 Written by: Austin Bohannon
 
 Made to work with pointers to Food objects so that no data has to be copied,
-it's just organized.
+it's just organized. Handles the linked list resolution for the HashTable.
+It inserts in order, and can thus search in an average of O(n/2) time,
+however, the HashTable minimizes the length of these linked lists. It also
+has some print and visit functions.
 **/
 
 #include "../HeaderFiles/LinkedList.h"
@@ -168,14 +171,4 @@ void LinkedList::visitAll(void visit(Food *))
         visit(temp->data);
         temp = temp->next;
     }
-}
-
-void LinkedList::printAll()
-{
-	node * temp = head->next;
-	while (temp != tail)
-	{
-		cout << temp->data->getKey() << endl;
-		temp = temp->next;
-	}
 }
