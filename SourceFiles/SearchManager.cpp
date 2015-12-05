@@ -1,17 +1,23 @@
-// Search Manager Source File for Team Project
-// Ahmed Shalan
+// Search Manager Source File for screen output
+// Written by Ahmed Shalan
+
 
 #include "../HeaderFiles/SearchManager.h"
 
-int enterInt();
-
-/*
-Purpose of the seachManager is to display menu where the user will enter one of few choices.
-If the user wants to search by key it will go to the appropriate functions,
-same for food name.
-nothing is returned.
-*/
+/* ==================================================
+                    searchManager
+ 
+ Desc- The search manager function starts a menu loop
+       with options for searching the data in the BST's
+       by key or by name.
+ In  - The function recieves pointers of the primary and
+       secondary BSTs.
+ Out - The function itself has no return value. The
+       function displays a menu with options in a loop
+       until quit is selected to exit the menu loop.
+ ==================================================== */
 void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryTree){
+    //Flag to check whether the user selected quit
     bool quit = false;
 
     //Used during the menu loop
@@ -28,7 +34,7 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
         cout << "D - Search by Short Description\n";
         cout << "Q - Quit Search Manager\n\n";
 
-        //Get the input from the user
+        //Gets the input from the user
         cin.sync();
         cout << "Enter a Menu Option:  ";
         getline(cin, input);
@@ -37,10 +43,10 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
         //Forces all command inputs to uppercase (t and T are both T);
         command = toupper(command);
 
-        //Process the menu command
+        //Processes the menu command
         switch(command){
 
-                //Option to search using a unique key, which is the USDA identification number
+                //Option to search using a unique key, which is the USDA databank number
             case 'N':
                 PrimaryKeySearchManager(primaryTree);
                 break;
@@ -50,7 +56,7 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
                 SecondaryKeySearchManager(secondaryTree);
                 break;
 
-                //Quit out of the sub menu.
+                //Quit out of the search manager sub menu.
             case 'Q':
                 quit = true;
                 break;
@@ -64,9 +70,19 @@ void searchManager(BinarySearchTree * primaryTree, BinarySearchTree * secondaryT
     }
 }
 
-/*
-Purpose of this function is to search by a unique key through the hash table
-*/
+//Decleration of the enterInt() function from main, which is also
+//used in the functions for search manager.
+int enterInt();
+
+
+/* ==================================================
+               PrimaryKeySearchManager
+ 
+ Desc- This function searches the BST by unique key
+ In  - The function recieves a pointer to the primary BST
+ Out - The function has no return values but outputs the
+       food item being searched for if it is found.
+ ==================================================== */
 void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
 {
     int key;
@@ -85,9 +101,17 @@ void PrimaryKeySearchManager(BinarySearchTree * primaryTree)
     }else
         cout << key << " was not found in the USDA Nutritional Database.";
 }
-/*
-Purpose of this function is to search the hash table by food name
-*/
+
+
+/* ==================================================
+            SecondaryKeySearchManager
+ 
+ Desc- This function searches the BST by the secondary key,
+       which is the foods name.
+ In  - The function recieves a pointer to the secondary BST
+ Out - The function has no return values but outputs the
+       food item being searched for if it is found.
+ ==================================================== */
 void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
 {
     string name;
@@ -105,11 +129,18 @@ void SecondaryKeySearchManager(BinarySearchTree * secondaryTree)
     if(!secondaryTree->search(name, displayFoodData))
         cout << endl << name << " was not found in the USDA Nutritional Database.";
 }
-/*
-The purpose of this function is to, display the contents of the food object
-that was searched by the above functions
-Shows everthing in the object form the name to the nutrtional facts
-*/
+
+
+/* ==================================================
+                displayFoodData
+ 
+ Desc- This function displays the contents of a food items
+       member data when called. Called during searches
+       and lists (in the list manager files)
+ In  - The function recieves a pointer to a food object
+ Out - The function has no return values but outputs all
+       of the foods data in a organized fashion.
+ ==================================================== */
 void displayFoodData(Food * searchedFoodItem){
         cout << "\n\nNDB_No.    (5 digit): " << searchedFoodItem->getKey() << endl;
         cout << "Shrt_Desc  (60 char): " << searchedFoodItem->getName() << endl;
@@ -122,7 +153,7 @@ void displayFoodData(Food * searchedFoodItem){
         if(searchedFoodItem->getF() >= 0)
             cout << "\tFat         (g/100g): " << searchedFoodItem->getF() << endl;
         if(searchedFoodItem->getFi() >= 0)
-            cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi();
+            cout << "\tFiber       (g/100g): " << searchedFoodItem->getFi() << endl;
         if(searchedFoodItem->getS() >= 0)
-            cout << endl << "\tSugar       (g/100g): " << searchedFoodItem->getS();
+            cout << "\tSugar       (g/100g): " << searchedFoodItem->getS();
 }

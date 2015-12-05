@@ -1,12 +1,19 @@
-// Search Manager Header File for Team Project
-// Ahmed Shalan
+// Search Manager Header File for screen output
+// Written by Ahmed Shalan
+
+
+/*
+The search manager header file includes function declerations for when the
+the functions are defined in the search manager source file. No class
+declarations are made.
+*/
 
 #ifndef _SEARCH_MANAGER
 #define _SEARCH_MANAGER
 
 
 #include <iostream>
-#include "BinarySearchTree.h"
+#include "BinarySearchTree.h"            //For the BST search
 #include "Food.h"
 #include <string>
 using namespace std;
